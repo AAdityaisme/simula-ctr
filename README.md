@@ -5,8 +5,14 @@ Take-home for Simula. Work in progress; see PRs for the build order.
 
 ## Run
 
-```
+```bash
 uv sync
-# place impressions.csv and characters.csv in data/
-uv run python cli.py --help
+
+# Put the supplied files at data/impressions.csv and data/characters.csv.
+uv run python cli.py evaluate --baseline
+
+# Run the committed 5,000-row fixture instead.
+uv run python cli.py evaluate --baseline --smoke
+
+uv run pytest -q
 ```
