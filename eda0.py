@@ -1,0 +1,20 @@
+import pandas as pd, numpy as np
+imp=pd.read_csv("data/impressions.csv", dtype={"id":str}); ch=pd.read_csv("data/characters.csv")
+print("rows",len(imp),"cols",imp.shape[1]); print("CTR",round(imp.click.mean(),4))
+h=imp.hour.astype(str); print("hour range",h.min(),"→",h.max(),"| distinct hours",h.nunique(),"| distinct days",h.str[:6].nunique())
+print("\nper-day rows / CTR:"); d=imp.assign(day=h.str[:6]).groupby("day").click.agg(["size","mean"]).round(4); print(d.to_string())
+print("\ncardinality:"); 
+for c in ["site_id","site_domain","site_category","app_id","app_domain","app_category","device_id","device_ip","device_model","device_type","device_conn_type","C1","C14","C15","C16","C17","C18","C19","C20","C21","banner_pos","character_id"]:
+    print(f"  {c:18s} {imp[c].nunique():>8}")
+print("\nconversation_turn:",imp.conversation_turn.describe()[["min","50%","max"]].to_dict()); print("session_msg_count:",imp.session_msg_count.describe()[["min","50%","max"]].to_dict())
+print("turn>count rows:",(imp.conversation_turn>imp.session_msg_count).sum())
+print("\nCTR by conversation_turn (first 8):"); print(imp.groupby("conversation_turn").click.agg(["size","mean"]).head(8).round(4).to_string())
+print("\ncharacter join: impressions with character in characters.csv:",imp.character_id.isin(ch.character_id).mean().round(4))
+m=imp.merge(ch,on="character_id",how="left")
+print("CTR by safety_tier:"); print(m.groupby("safety_tier").click.agg(["size","mean"]).round(4).to_string())
+print("CTR by creator_type:"); print(m.groupby("creator_type").click.agg(["size","mean"]).round(4).to_string())
+cc=imp.character_id.value_counts(); print("\nimpressions per character: median",cc.median(),"p90",cc.quantile(.9),"max",cc.max(),"| chars with <10 impressions:",(cc<10).sum(),"of",len(cc))
+print("device_id share of 'a99f214a' (Avazu null-device marker):",(imp.device_id=="a99f214a").mean().round(3))
+print("device_ip unique / rows:",round(imp.device_ip.nunique()/len(imp),3))
+print("\ncharacters.csv:",ch.safety_tier.value_counts().to_dict(),ch.creator_type.value_counts().to_dict()); print("created_at range",ch.created_at.min(),"→",ch.created_at.max()); print("num_interactions median",ch.num_interactions.median(),"max",ch.num_interactions.max())
+print("name prefixes:",ch.character_name.str.split("_").str[0].value_counts().head(8).to_dict())
