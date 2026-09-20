@@ -56,7 +56,7 @@ def evaluate_baselines(data_dir, smoke=False):
         "# Baseline evaluation\n\n" + _markdown_table(combined) + "\n",
         encoding="utf-8",
     )
-    records = combined.where(pd.notna(combined), None).to_dict(orient="records")
+    records = combined.astype(object).where(pd.notna(combined), None).to_dict(orient="records")
     reports_dir.joinpath("baselines.json").write_text(
         json.dumps(records, indent=2, allow_nan=False) + "\n",
         encoding="utf-8",
