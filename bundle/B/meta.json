@@ -1,0 +1,64 @@
+{
+  "params": {
+    "objective": "binary",
+    "learning_rate": 0.05,
+    "num_leaves": 31,
+    "min_data_in_leaf": 200,
+    "feature_fraction": 0.8,
+    "bagging_fraction": 0.8,
+    "bagging_freq": 1,
+    "min_data_per_group": 100,
+    "cat_smooth": 10,
+    "verbose": -1,
+    "seed": 20260920
+  },
+  "best_iteration": 183,
+  "select_log_loss": 0.4332064790104087,
+  "calibration": {
+    "recipe": "one_day_half",
+    "days": 1,
+    "shrink": 0.5,
+    "dev_log_loss": {
+      "one_day_full": 0.4332089098103315,
+      "one_day_half": 0.4332076755527598,
+      "two_day_full": 0.4332226495278072
+    },
+    "delta": -0.027076097455858483
+  },
+  "window_cutoffs": {
+    "dev_fit": [
+      14102100,
+      14102700
+    ],
+    "select": [
+      14102700,
+      14102800
+    ],
+    "refit": [
+      14102100,
+      14102800
+    ],
+    "calibrate": [
+      14102800,
+      14102900
+    ],
+    "test": [
+      14102900,
+      null
+    ]
+  },
+  "versions": {
+    "lightgbm": "4.7.0",
+    "pandas": "3.0.5",
+    "scikit-learn": "1.9.1",
+    "python": "3.12.13"
+  },
+  "data_row_counts": {
+    "all": 1000000,
+    "dev_fit": 642897,
+    "select": 86788,
+    "refit": 729685,
+    "calibrate": 142909,
+    "test": 127406
+  }
+}
