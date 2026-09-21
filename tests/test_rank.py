@@ -160,3 +160,22 @@ def test_no_fill(fitted_smoke, requests):
     assert result["selected_candidate_id"] is None
     assert result["no_fill"] is True
     assert result["reason"] == "no_fill"
+
+
+def test_malformed_payloads_are_rejected(fitted_smoke, requests):
+    bundle, characters = fitted_smoke
+    base = requests["shared_creative_two_slots"]
+    null_id = copy.deepcopy(base)
+    null_id["candidates"][0]["candidate_id"] = None
+    with pytest.raises(ValueError, match="missing candidate_id"):
+        rank(null_id, bundle, characters)
+    no_seed = copy.deepcopy(base)
+    del no_seed["seed"]
+    with pytest.raises(ValueError, match="seed"):
+        rank(no_seed, bundle, characters)
+    too_many = copy.deepcopy(base)
+    too_many["candidates"] = [
+        {**base["candidates"][0], "candidate_id": f"c{i}"} for i in range(51)
+    ]
+    with pytest.raises(ValueError, match="more than 50"):
+        rank(too_many, bundle, characters)

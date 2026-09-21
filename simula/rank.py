@@ -8,7 +8,7 @@ from simula.train import predict
 
 POLICY = dict(
     version="policy-v1", epsilon=0.05, score_gap=0.01, fatigue_k=0.5,
-    tie_break="lowest candidate_id",
+    tie_break="lowest candidate_id", max_candidates=50,
 )
 TIERS = ("sfw", "suggestive", "mature")
 REQUEST_FIELDS = [
@@ -20,7 +20,7 @@ OPTIONAL_REQUEST_FIELDS = ["conversation_turn", "session_msg_count"]
 CANDIDATE_FIELDS = ["candidate_id", "content_tier"] + CONTRACT["candidate"]
 
 
-def validate(payload):
+def validate(payload, policy=POLICY):
     """Validate ownership, identity, tier, and surface invariants."""
     request = payload.get("request", {})
     for field in REQUEST_FIELDS:
@@ -29,6 +29,10 @@ def validate(payload):
     candidates = payload.get("candidates", [])
     if not candidates:
         raise ValueError("candidate list is empty")
+    if len(candidates) > policy["max_candidates"]:
+        raise ValueError(f"more than {policy['max_candidates']} candidates")
+    if not isinstance(payload.get("seed"), int):
+        raise ValueError("missing integer seed")
     request_owned = set(REQUEST_FIELDS + OPTIONAL_REQUEST_FIELDS)
     required = ("candidate_id", "banner_pos", "C14", "content_tier")
     ids = []
@@ -37,7 +41,7 @@ def validate(payload):
         if conflicts:
             raise ValueError(f"candidate {index} carries request field: {conflicts[0]}")
         for field in required:
-            if field not in candidate:
+            if candidate.get(field) is None:
                 raise ValueError(f"candidate {index} missing {field}")
         if candidate["content_tier"] not in TIERS:
             raise ValueError(f"unknown tier: {candidate['content_tier']}")
@@ -133,7 +137,7 @@ def _excluded(candidate):
 
 def rank(payload, bundle, characters, policy=POLICY):
     """Rank and select a bounded candidate set with eligibility and exploration."""
-    validate(payload)
+    validate(payload, policy)
     eligible, ceiling, missing_character = _eligibility(payload, characters)
     kept = [index for index, value in enumerate(eligible) if value]
     candidate_rows = []
