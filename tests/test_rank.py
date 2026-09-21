@@ -142,6 +142,8 @@ def test_all_unseen_identical_uses_tie_break(fitted_smoke, requests):
     assert result["indistinguishable"] is True
     assert result["degraded"]["character_metadata_missing"] is True
     assert result["ceiling"]["effective"] == "sfw"
+    assert all(row["is_unseen_C14"] is True for row in result["candidates"])
+    assert result["selected_candidate_id"] == "unseen-a"
 
 
 def test_negative_exposure_count_is_rejected(fitted_smoke, requests):
@@ -150,8 +152,6 @@ def test_negative_exposure_count_is_rejected(fitted_smoke, requests):
     payload["exposure"]["counts"] = {"fixed-mid": -2}
     with pytest.raises(ValueError, match="non-negative"):
         rank(payload, bundle, characters)
-    assert all(row["is_unseen_C14"] is True for row in result["candidates"])
-    assert result["selected_candidate_id"] == "unseen-a"
 
 
 def test_no_fill(fitted_smoke, requests):
