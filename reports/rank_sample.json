@@ -1,0 +1,314 @@
+[
+  {
+    "id": "shared_creative_two_slots",
+    "selected_candidate_id": "shared-slot-1",
+    "no_fill": false,
+    "reason": null,
+    "indistinguishable": false,
+    "ceiling": {
+      "publisher": "mature",
+      "character": "mature",
+      "effective": "mature"
+    },
+    "degraded": {
+      "exposure_state_unavailable": true,
+      "character_metadata_missing": false
+    },
+    "versions": {
+      "feature_set": "B",
+      "calibration": "one_day_half",
+      "policy": "policy-v1"
+    },
+    "echo": {
+      "conversation_turn": 2,
+      "session_msg_count": 3
+    },
+    "candidates": [
+      {
+        "candidate_id": "shared-slot-1",
+        "rank": 1,
+        "eligible": true,
+        "exclusion_reason": null,
+        "banner_pos": 1,
+        "C14": 15702,
+        "raw_pctr": 0.3200796146475763,
+        "calibrated_pctr": 0.3142160030277853,
+        "utility": 0.3142160030277853,
+        "in_exploration_set": true,
+        "selection_probability": 1.0,
+        "is_unseen_C14": false,
+        "is_rare_C14": false,
+        "is_unseen_character_id": false,
+        "is_rare_character_id": false
+      },
+      {
+        "candidate_id": "different-creative",
+        "rank": 2,
+        "eligible": true,
+        "exclusion_reason": null,
+        "banner_pos": 0,
+        "C14": 6563,
+        "raw_pctr": 0.2892332071934594,
+        "calibrated_pctr": 0.28369889557800254,
+        "utility": 0.28369889557800254,
+        "in_exploration_set": false,
+        "selection_probability": 0.0,
+        "is_unseen_C14": false,
+        "is_rare_C14": false,
+        "is_unseen_character_id": false,
+        "is_rare_character_id": false
+      },
+      {
+        "candidate_id": "shared-slot-0",
+        "rank": 3,
+        "eligible": true,
+        "exclusion_reason": null,
+        "banner_pos": 0,
+        "C14": 15702,
+        "raw_pctr": 0.24483611041566128,
+        "calibrated_pctr": 0.23986462407037984,
+        "utility": 0.23986462407037984,
+        "in_exploration_set": false,
+        "selection_probability": 0.0,
+        "is_unseen_C14": false,
+        "is_rare_C14": false,
+        "is_unseen_character_id": false,
+        "is_rare_character_id": false
+      }
+    ]
+  },
+  {
+    "id": "fixed_slot_with_gate",
+    "selected_candidate_id": "fixed-mid",
+    "no_fill": false,
+    "reason": null,
+    "indistinguishable": false,
+    "ceiling": {
+      "publisher": "mature",
+      "character": "sfw",
+      "effective": "sfw"
+    },
+    "degraded": {
+      "exposure_state_unavailable": false,
+      "character_metadata_missing": false
+    },
+    "versions": {
+      "feature_set": "B",
+      "calibration": "one_day_half",
+      "policy": "policy-v1"
+    },
+    "echo": {
+      "conversation_turn": 8,
+      "session_msg_count": 12
+    },
+    "candidates": [
+      {
+        "candidate_id": "fixed-mid",
+        "rank": 1,
+        "eligible": true,
+        "exclusion_reason": null,
+        "banner_pos": 0,
+        "C14": 22163,
+        "raw_pctr": 0.26468944397877586,
+        "calibrated_pctr": 0.2594533324499258,
+        "utility": 0.2594533324499258,
+        "in_exploration_set": true,
+        "selection_probability": 0.975,
+        "is_unseen_C14": false,
+        "is_rare_C14": true,
+        "is_unseen_character_id": false,
+        "is_rare_character_id": false
+      },
+      {
+        "candidate_id": "fixed-low",
+        "rank": 2,
+        "eligible": true,
+        "exclusion_reason": null,
+        "banner_pos": 0,
+        "C14": 20346,
+        "raw_pctr": 0.2606645661380837,
+        "calibrated_pctr": 0.25548041132584465,
+        "utility": 0.25548041132584465,
+        "in_exploration_set": true,
+        "selection_probability": 0.025,
+        "is_unseen_C14": false,
+        "is_rare_C14": false,
+        "is_unseen_character_id": false,
+        "is_rare_character_id": false
+      },
+      {
+        "candidate_id": "fixed-high-exposed",
+        "rank": 3,
+        "eligible": true,
+        "exclusion_reason": null,
+        "banner_pos": 0,
+        "C14": 20345,
+        "raw_pctr": 0.2977583768616849,
+        "calibrated_pctr": 0.29212798572248927,
+        "utility": 0.11685119428899571,
+        "in_exploration_set": false,
+        "selection_probability": 0.0,
+        "is_unseen_C14": false,
+        "is_rare_C14": false,
+        "is_unseen_character_id": false,
+        "is_rare_character_id": false
+      },
+      {
+        "candidate_id": "fixed-gated",
+        "rank": null,
+        "eligible": false,
+        "exclusion_reason": "content_tier_above_ceiling",
+        "banner_pos": 0,
+        "C14": 21789,
+        "raw_pctr": null,
+        "calibrated_pctr": null,
+        "utility": null,
+        "in_exploration_set": false,
+        "selection_probability": 0.0,
+        "is_unseen_C14": null,
+        "is_rare_C14": null,
+        "is_unseen_character_id": null,
+        "is_rare_character_id": null
+      }
+    ]
+  },
+  {
+    "id": "all_unseen_identical",
+    "selected_candidate_id": "unseen-a",
+    "no_fill": false,
+    "reason": null,
+    "indistinguishable": true,
+    "ceiling": {
+      "publisher": "mature",
+      "character": null,
+      "effective": "sfw"
+    },
+    "degraded": {
+      "exposure_state_unavailable": true,
+      "character_metadata_missing": true
+    },
+    "versions": {
+      "feature_set": "B",
+      "calibration": "one_day_half",
+      "policy": "policy-v1"
+    },
+    "echo": {
+      "conversation_turn": 14,
+      "session_msg_count": 14
+    },
+    "candidates": [
+      {
+        "candidate_id": "unseen-a",
+        "rank": 1,
+        "eligible": true,
+        "exclusion_reason": null,
+        "banner_pos": 0,
+        "C14": "new-ad-1",
+        "raw_pctr": 0.19636773269737215,
+        "calibrated_pctr": 0.1921300207736197,
+        "utility": 0.1921300207736197,
+        "in_exploration_set": true,
+        "selection_probability": 0.9666666666666667,
+        "is_unseen_C14": true,
+        "is_rare_C14": false,
+        "is_unseen_character_id": true,
+        "is_rare_character_id": false
+      },
+      {
+        "candidate_id": "unseen-b",
+        "rank": 2,
+        "eligible": true,
+        "exclusion_reason": null,
+        "banner_pos": 0,
+        "C14": "new-ad-2",
+        "raw_pctr": 0.19636773269737215,
+        "calibrated_pctr": 0.1921300207736197,
+        "utility": 0.1921300207736197,
+        "in_exploration_set": true,
+        "selection_probability": 0.016666666666666666,
+        "is_unseen_C14": true,
+        "is_rare_C14": false,
+        "is_unseen_character_id": true,
+        "is_rare_character_id": false
+      },
+      {
+        "candidate_id": "unseen-c",
+        "rank": 3,
+        "eligible": true,
+        "exclusion_reason": null,
+        "banner_pos": 0,
+        "C14": "new-ad-3",
+        "raw_pctr": 0.19636773269737215,
+        "calibrated_pctr": 0.1921300207736197,
+        "utility": 0.1921300207736197,
+        "in_exploration_set": true,
+        "selection_probability": 0.016666666666666666,
+        "is_unseen_C14": true,
+        "is_rare_C14": false,
+        "is_unseen_character_id": true,
+        "is_rare_character_id": false
+      }
+    ]
+  },
+  {
+    "id": "no_fill",
+    "selected_candidate_id": null,
+    "no_fill": true,
+    "reason": "no_fill",
+    "indistinguishable": false,
+    "ceiling": {
+      "publisher": "sfw",
+      "character": "sfw",
+      "effective": "sfw"
+    },
+    "degraded": {
+      "exposure_state_unavailable": true,
+      "character_metadata_missing": false
+    },
+    "versions": {
+      "feature_set": "B",
+      "calibration": "one_day_half",
+      "policy": "policy-v1"
+    },
+    "echo": {
+      "conversation_turn": 14,
+      "session_msg_count": 14
+    },
+    "candidates": [
+      {
+        "candidate_id": "no-fill-suggestive",
+        "rank": null,
+        "eligible": false,
+        "exclusion_reason": "content_tier_above_ceiling",
+        "banner_pos": 0,
+        "C14": 6563,
+        "raw_pctr": null,
+        "calibrated_pctr": null,
+        "utility": null,
+        "in_exploration_set": false,
+        "selection_probability": 0.0,
+        "is_unseen_C14": null,
+        "is_rare_C14": null,
+        "is_unseen_character_id": null,
+        "is_rare_character_id": null
+      },
+      {
+        "candidate_id": "no-fill-mature",
+        "rank": null,
+        "eligible": false,
+        "exclusion_reason": "content_tier_above_ceiling",
+        "banner_pos": 0,
+        "C14": 15702,
+        "raw_pctr": null,
+        "calibrated_pctr": null,
+        "utility": null,
+        "in_exploration_set": false,
+        "selection_probability": 0.0,
+        "is_unseen_C14": null,
+        "is_rare_C14": null,
+        "is_unseen_character_id": null,
+        "is_rare_character_id": null
+      }
+    ]
+  }
+]

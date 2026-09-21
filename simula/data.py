@@ -66,6 +66,18 @@ def load(data_dir):
     return joined.drop(columns="_merge")
 
 
+def load_characters(data_dir):
+    """Read only the character table with stable identifier and date types."""
+    _, characters_path = _csv_paths(data_dir)
+    characters = pd.read_csv(
+        characters_path,
+        dtype={"character_id": str},
+        parse_dates=["created_at"],
+    )
+    assert not characters["character_id"].duplicated().any(), "duplicate character ids"
+    return characters
+
+
 def add_flags(df):
     """Add time, surface, sentinel, genre, and character-age columns."""
     result = df.copy()

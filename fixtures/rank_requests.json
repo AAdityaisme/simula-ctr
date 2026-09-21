@@ -1,0 +1,277 @@
+[
+  {
+    "id": "shared_creative_two_slots",
+    "_note": "All content_tier, publisher, and exposure values in this fixture are demonstration data.",
+    "request": {
+      "hour": 14102900,
+      "character_id": "8e19e5e343",
+      "site_id": "1fbe01fe",
+      "site_domain": "f3845767",
+      "site_category": "28905ebd",
+      "app_id": "ecad2386",
+      "app_domain": "7801e8d9",
+      "app_category": "07d7df22",
+      "device_id": "a99f214a",
+      "device_ip": "75bb1b58",
+      "device_model": "7e752449",
+      "device_type": 1,
+      "device_conn_type": 2,
+      "C1": 1005,
+      "conversation_turn": 2,
+      "session_msg_count": 3
+    },
+    "candidates": [
+      {
+        "candidate_id": "shared-slot-0",
+        "content_tier": "sfw",
+        "banner_pos": 0,
+        "C14": 15702,
+        "C15": 320,
+        "C16": 50,
+        "C17": 1722,
+        "C18": 0,
+        "C19": 35,
+        "C20": "-1",
+        "C21": 79
+      },
+      {
+        "candidate_id": "shared-slot-1",
+        "content_tier": "sfw",
+        "banner_pos": 1,
+        "C14": 15702,
+        "C15": 320,
+        "C16": 50,
+        "C17": 1722,
+        "C18": 0,
+        "C19": 35,
+        "C20": "-1",
+        "C21": 79
+      },
+      {
+        "candidate_id": "different-creative",
+        "content_tier": "sfw",
+        "banner_pos": 0,
+        "C14": 6563,
+        "C15": 320,
+        "C16": 50,
+        "C17": 572,
+        "C18": 2,
+        "C19": 39,
+        "C20": "-1",
+        "C21": 32
+      }
+    ],
+    "publisher": {
+      "max_content_tier": "mature"
+    },
+    "seed": 7
+  },
+  {
+    "id": "fixed_slot_with_gate",
+    "_note": "All content_tier, publisher, and exposure values in this fixture are demonstration data.",
+    "request": {
+      "hour": 14102900,
+      "character_id": "593e7c0432",
+      "site_id": "1fbe01fe",
+      "site_domain": "f3845767",
+      "site_category": "28905ebd",
+      "app_id": "ecad2386",
+      "app_domain": "7801e8d9",
+      "app_category": "07d7df22",
+      "device_id": "a99f214a",
+      "device_ip": "d82523d8",
+      "device_model": "8a4875bd",
+      "device_type": 1,
+      "device_conn_type": 0,
+      "C1": 1005,
+      "conversation_turn": 8,
+      "session_msg_count": 12
+    },
+    "candidates": [
+      {
+        "candidate_id": "fixed-high-exposed",
+        "content_tier": "sfw",
+        "banner_pos": 0,
+        "C14": 20345,
+        "C15": 300,
+        "C16": 250,
+        "C17": 2331,
+        "C18": 2,
+        "C19": 39,
+        "C20": "-1",
+        "C21": 23
+      },
+      {
+        "candidate_id": "fixed-mid",
+        "content_tier": "sfw",
+        "banner_pos": 0,
+        "C14": 22163,
+        "C15": 320,
+        "C16": 50,
+        "C17": 2553,
+        "C18": 2,
+        "C19": 167,
+        "C20": "-1",
+        "C21": 23
+      },
+      {
+        "candidate_id": "fixed-low",
+        "content_tier": "sfw",
+        "banner_pos": 0,
+        "C14": 20346,
+        "C15": 300,
+        "C16": 250,
+        "C17": 2331,
+        "C18": 2,
+        "C19": 39,
+        "C20": "100194",
+        "C21": 23
+      },
+      {
+        "candidate_id": "fixed-gated",
+        "content_tier": "suggestive",
+        "banner_pos": 0,
+        "C14": 21789,
+        "C15": 320,
+        "C16": 50,
+        "C17": 2512,
+        "C18": 2,
+        "C19": 291,
+        "C20": "-1",
+        "C21": 52
+      }
+    ],
+    "publisher": {
+      "max_content_tier": "mature"
+    },
+    "exposure": {
+      "key": "demo-user-593e7c0432",
+      "window": "24h",
+      "counts": {
+        "fixed-high-exposed": 3
+      }
+    },
+    "seed": 7
+  },
+  {
+    "id": "all_unseen_identical",
+    "_note": "All content_tier, publisher, and exposure values in this fixture are demonstration data.",
+    "request": {
+      "hour": 14102904,
+      "character_id": "new-character",
+      "site_id": "805d7074",
+      "site_domain": "3a1a5671",
+      "site_category": "50e219e0",
+      "app_id": "ecad2386",
+      "app_domain": "7801e8d9",
+      "app_category": "07d7df22",
+      "device_id": "417b4598",
+      "device_ip": "b17eaa6e",
+      "device_model": "8debacdb",
+      "device_type": 0,
+      "device_conn_type": 0,
+      "C1": 1002,
+      "conversation_turn": 14,
+      "session_msg_count": 14
+    },
+    "candidates": [
+      {
+        "candidate_id": "unseen-a",
+        "content_tier": "sfw",
+        "banner_pos": 0,
+        "C14": "new-ad-1",
+        "C15": 320,
+        "C16": 50,
+        "C17": 572,
+        "C18": 2,
+        "C19": 39,
+        "C20": "-1",
+        "C21": 32
+      },
+      {
+        "candidate_id": "unseen-b",
+        "content_tier": "sfw",
+        "banner_pos": 0,
+        "C14": "new-ad-2",
+        "C15": 320,
+        "C16": 50,
+        "C17": 572,
+        "C18": 2,
+        "C19": 39,
+        "C20": "-1",
+        "C21": 32
+      },
+      {
+        "candidate_id": "unseen-c",
+        "content_tier": "sfw",
+        "banner_pos": 0,
+        "C14": "new-ad-3",
+        "C15": 320,
+        "C16": 50,
+        "C17": 572,
+        "C18": 2,
+        "C19": 39,
+        "C20": "-1",
+        "C21": 32
+      }
+    ],
+    "publisher": {
+      "max_content_tier": "mature"
+    },
+    "seed": 7
+  },
+  {
+    "id": "no_fill",
+    "_note": "All content_tier, publisher, and exposure values in this fixture are demonstration data.",
+    "request": {
+      "hour": 14102904,
+      "character_id": "ab0d641088",
+      "site_id": "805d7074",
+      "site_domain": "3a1a5671",
+      "site_category": "50e219e0",
+      "app_id": "ecad2386",
+      "app_domain": "7801e8d9",
+      "app_category": "07d7df22",
+      "device_id": "417b4598",
+      "device_ip": "b17eaa6e",
+      "device_model": "8debacdb",
+      "device_type": 0,
+      "device_conn_type": 0,
+      "C1": 1002,
+      "conversation_turn": 14,
+      "session_msg_count": 14
+    },
+    "candidates": [
+      {
+        "candidate_id": "no-fill-suggestive",
+        "content_tier": "suggestive",
+        "banner_pos": 0,
+        "C14": 6563,
+        "C15": 320,
+        "C16": 50,
+        "C17": 572,
+        "C18": 2,
+        "C19": 39,
+        "C20": "-1",
+        "C21": 32
+      },
+      {
+        "candidate_id": "no-fill-mature",
+        "content_tier": "mature",
+        "banner_pos": 0,
+        "C14": 15702,
+        "C15": 320,
+        "C16": 50,
+        "C17": 1722,
+        "C18": 0,
+        "C19": 35,
+        "C20": "-1",
+        "C21": 79
+      }
+    ],
+    "publisher": {
+      "max_content_tier": "sfw"
+    },
+    "seed": 7
+  }
+]

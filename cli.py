@@ -5,9 +5,10 @@ from pathlib import Path
 import pandas as pd
 
 from simula.baselines import constant, lookup, predict as baseline_predict
-from simula.data import WINDOWS, add_flags, load, split
+from simula.data import WINDOWS, add_flags, load, load_characters, split
 from simula.evaluate import plot_reliability, rare_table, reliability, slices
 from simula.features import FEATURE_SETS
+from simula.rank import rank as rank_candidates
 from simula.train import load_bundle, predict as model_predict, train_all
 
 
@@ -152,6 +153,42 @@ def evaluate_models(data_dir, model_dir, smoke=False):
     )
 
 
+def rank_requests(requests_path, model_dir, data_dir, out_path, smoke=False):
+    """Rank fixture requests with the selected bundle and write full decisions."""
+    source = Path("fixtures") if smoke else Path(data_dir)
+    model_dir = Path(model_dir)
+    selected = json.loads(model_dir.joinpath("selected.json").read_text())["feature_set"]
+    bundle = load_bundle(model_dir / selected)
+    characters = load_characters(source)
+    payloads = json.loads(Path(requests_path).read_text())
+    results = []
+    for payload in payloads:
+        result = {"id": payload["id"], **rank_candidates(payload, bundle, characters)}
+        results.append(result)
+        print(
+            f"\n{payload['id']}: selected={result['selected_candidate_id']} "
+            f"no_fill={result['no_fill']} indistinguishable={result['indistinguishable']} "
+            f"degraded={result['degraded']}"
+        )
+        table = pd.DataFrame(result["candidates"])[
+            [
+                "candidate_id", "rank", "eligible", "exclusion_reason", "banner_pos",
+                "C14", "calibrated_pctr", "utility", "in_exploration_set",
+                "selection_probability", "is_unseen_C14",
+            ]
+        ].rename(
+            columns={
+                "in_exploration_set": "in_E",
+                "selection_probability": "p_select",
+                "is_unseen_C14": "unseen_C14",
+            }
+        )
+        print(table.to_string(index=False))
+    out_path = Path(out_path)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(results, indent=2, allow_nan=False) + "\n")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Simula CTR utilities")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -165,10 +202,18 @@ def main():
     mode.add_argument("--model")
     evaluate.add_argument("--data-dir", default="data")
     evaluate.add_argument("--smoke", action="store_true")
+    rank_parser = subparsers.add_parser("rank", help="rank candidate sets")
+    rank_parser.add_argument("--requests", required=True)
+    rank_parser.add_argument("--model", required=True)
+    rank_parser.add_argument("--data-dir", default="data")
+    rank_parser.add_argument("--smoke", action="store_true")
+    rank_parser.add_argument("--out", default="reports/rank_sample.json")
     args = parser.parse_args()
 
     if args.command == "train":
         train_models(args.data_dir, args.out, args.smoke)
+    elif args.command == "rank":
+        rank_requests(args.requests, args.model, args.data_dir, args.out, args.smoke)
     elif args.baseline:
         evaluate_baselines(args.data_dir, args.smoke)
     else:
