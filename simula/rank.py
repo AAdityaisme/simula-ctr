@@ -47,6 +47,9 @@ def validate(payload):
     publisher_tier = payload.get("publisher", {}).get("max_content_tier")
     if publisher_tier not in TIERS:
         raise ValueError(f"unknown tier: {publisher_tier}")
+    counts = payload.get("exposure", {}).get("counts", {})
+    if any(count < 0 for count in counts.values()):
+        raise ValueError("exposure counts must be non-negative")
     app_placeholder = request["app_id"] == "ecad2386"
     site_placeholder = request["site_id"] == "85f751fd"
     if app_placeholder == site_placeholder:
@@ -60,10 +63,8 @@ def _eligibility(payload, characters):
     character = None if matched.empty else matched.iloc[0]["safety_tier"]
     if character is not None and character not in TIERS:
         raise ValueError(f"unknown tier: {character}")
-    ceiling = min(
-        TIERS.index(publisher),
-        TIERS.index(character) if character is not None else len(TIERS) - 1,
-    )
+    # unknown character metadata fails closed: strictest tier until it lands
+    ceiling = min(TIERS.index(publisher), TIERS.index(character) if character is not None else 0)
     effective = TIERS[ceiling]
     eligible = [TIERS.index(row["content_tier"]) <= ceiling for row in payload["candidates"]]
     return eligible, {

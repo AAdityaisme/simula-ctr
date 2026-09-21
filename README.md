@@ -32,6 +32,7 @@ state:
 
 ```json
 {
+  "id": "request-1",
   "request": {
     "hour": 14102900, "character_id": "...", "site_id": "...", "site_domain": "...",
     "site_category": "...", "app_id": "...", "app_domain": "...", "app_category": "...",

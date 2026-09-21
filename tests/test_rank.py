@@ -141,6 +141,15 @@ def test_all_unseen_identical_uses_tie_break(fitted_smoke, requests):
     result = rank(requests["all_unseen_identical"], bundle, characters)
     assert result["indistinguishable"] is True
     assert result["degraded"]["character_metadata_missing"] is True
+    assert result["ceiling"]["effective"] == "sfw"
+
+
+def test_negative_exposure_count_is_rejected(fitted_smoke, requests):
+    bundle, characters = fitted_smoke
+    payload = copy.deepcopy(requests["fixed_slot_with_gate"])
+    payload["exposure"]["counts"] = {"fixed-mid": -2}
+    with pytest.raises(ValueError, match="non-negative"):
+        rank(payload, bundle, characters)
     assert all(row["is_unseen_C14"] is True for row in result["candidates"])
     assert result["selected_candidate_id"] == "unseen-a"
 
