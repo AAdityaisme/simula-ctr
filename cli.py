@@ -6,6 +6,7 @@ import pandas as pd
 
 from simula.baselines import constant, lookup, predict as baseline_predict
 from simula.data import WINDOWS, add_flags, load, load_characters, split
+from simula.drift import ADAPT, adapt, daily_table, hour_matched, plot_drift, psi_table
 from simula.evaluate import plot_reliability, rare_table, reliability, slices
 from simula.features import FEATURE_SETS
 from simula.rank import rank as rank_candidates
@@ -189,6 +190,65 @@ def rank_requests(requests_path, model_dir, data_dir, out_path, smoke=False):
     out_path.write_text(json.dumps(results, indent=2, allow_nan=False) + "\n")
 
 
+def drift_report(data_dir, model_dir, smoke=False):
+    """Generate daily drift and predict-then-update adaptation reports."""
+    source = Path("fixtures") if smoke else Path(data_dir)
+    df = add_flags(load(source))
+    model_dir = Path(model_dir)
+    selected = json.loads(model_dir.joinpath("selected.json").read_text())["feature_set"]
+    bundle = load_bundle(model_dir / selected)
+    daily = daily_table(df, bundle)
+    matched = hour_matched(df)
+    matched_report = matched.rename_axis("period").reset_index()
+    stability = psi_table(df)
+    adaptation = adapt(df, bundle, ADAPT["shrink"])
+    adaptation_rows = []
+    for state in ("frozen", "adapted"):
+        for day, values in adaptation[state].items():
+            adaptation_rows.append({
+                "state": state, "day": day, **values,
+                "delta": adaptation["delta"], "shrink": adaptation["shrink"],
+            })
+    adaptation_table = pd.DataFrame(adaptation_rows)
+
+    print("\ndaily")
+    print(daily.to_string(index=False))
+    print("\nhour matched")
+    print(matched_report.to_string(index=False))
+    print("\nPSI")
+    print(stability.to_string(index=False))
+    print(f"\nadaptation: delta={adaptation['delta']:.6f} shrink={adaptation['shrink']:.6f}")
+    print(adaptation_table.to_string(index=False))
+
+    reports_dir = Path("reports")
+    reports_dir.mkdir(exist_ok=True)
+    header = (
+        "# Drift monitoring and intercept adaptation\n\n"
+        "Training-day predictions are in-sample and show error moving with the mix; "
+        "they are not held-out metrics. Labels for day d are assumed available at "
+        "00:00 on day d+1 because the data has no availability timestamps.\n\n"
+        "Unseen-C14 share is zero by construction during the Oct 21–27 refit window. "
+        "The prototype makes one update on the partial Oct 30 day. Its monotonic intercept "
+        "shift changes probability levels, never candidate order.\n\n"
+    )
+    sections = (
+        ("Daily", daily), ("Hour-matched CTR", matched_report),
+        ("Population stability index", stability), ("Adaptation", adaptation_table),
+    )
+    body = "\n\n".join(f"## {name}\n\n{_markdown_table(table)}" for name, table in sections)
+    reports_dir.joinpath("drift.md").write_text(header + body + "\n", encoding="utf-8")
+    records = {
+        "daily": daily.to_dict(orient="records"),
+        "hour_matched": matched_report.to_dict(orient="records"),
+        "psi": stability.to_dict(orient="records"),
+        "adapt": adaptation,
+    }
+    reports_dir.joinpath("drift.json").write_text(
+        json.dumps(records, indent=2, allow_nan=False) + "\n", encoding="utf-8"
+    )
+    plot_drift(daily, reports_dir / "drift.png")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Simula CTR utilities")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -208,12 +268,18 @@ def main():
     rank_parser.add_argument("--data-dir", default="data")
     rank_parser.add_argument("--smoke", action="store_true")
     rank_parser.add_argument("--out", default="reports/rank_sample.json")
+    drift_parser = subparsers.add_parser("drift", help="report drift and daily adaptation")
+    drift_parser.add_argument("--model", required=True)
+    drift_parser.add_argument("--data-dir", default="data")
+    drift_parser.add_argument("--smoke", action="store_true")
     args = parser.parse_args()
 
     if args.command == "train":
         train_models(args.data_dir, args.out, args.smoke)
     elif args.command == "rank":
         rank_requests(args.requests, args.model, args.data_dir, args.out, args.smoke)
+    elif args.command == "drift":
+        drift_report(args.data_dir, args.model, args.smoke)
     elif args.baseline:
         evaluate_baselines(args.data_dir, args.smoke)
     else:
