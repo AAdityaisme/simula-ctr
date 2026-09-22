@@ -118,7 +118,8 @@ def choose_calibration(dev_booster, df):
 def _save_bundle(path, booster, encoder, meta):
     path.mkdir(parents=True, exist_ok=True)
     booster.save_model(path / "model.txt")
-    path.joinpath("encoder.json").write_text(json.dumps(encoder, indent=2) + "\n")
+    public = {key: value for key, value in encoder.items() if not key.startswith("_")}
+    path.joinpath("encoder.json").write_text(json.dumps(public, indent=2) + "\n")
     path.joinpath("meta.json").write_text(json.dumps(meta, indent=2) + "\n")
 
 

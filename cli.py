@@ -1,7 +1,10 @@
 import argparse
+import copy
+import platform
 import json
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 from simula.baselines import constant, lookup, predict as baseline_predict
@@ -154,7 +157,50 @@ def evaluate_models(data_dir, model_dir, smoke=False):
     )
 
 
-def rank_requests(requests_path, model_dir, data_dir, out_path, smoke=False):
+def benchmark_rank(payloads, bundle, characters, rounds):
+    """Time rank() per request on warm artifacts and write reports/latency.md."""
+    import time
+
+    payloads = list(payloads)
+    base = next((p for p in payloads if p.get("exposure")), payloads[0])
+    for size in (1, 10, 50):
+        template = next(c for c in base["candidates"] if c["content_tier"] == "sfw")
+        synthetic = {**copy.deepcopy(base), "id": f"synthetic_{size}_candidates"}
+        synthetic["candidates"] = [
+            {**template, "candidate_id": f"c{i}", "banner_pos": i % 2} for i in range(size)
+        ]
+        payloads.append(synthetic)
+    for payload in payloads:
+        rank_candidates(payload, bundle, characters)  # warm-up
+    timings = {payload["id"]: [] for payload in payloads}
+    for _ in range(rounds):
+        for payload in payloads:
+            start = time.perf_counter()
+            rank_candidates(payload, bundle, characters)
+            timings[payload["id"]].append((time.perf_counter() - start) * 1000)
+    rows = [
+        {
+            "request": name, "candidates": len(next(p for p in payloads if p["id"] == name)["candidates"]),
+            "rounds": rounds, "p50_ms": float(np.percentile(values, 50)),
+            "p95_ms": float(np.percentile(values, 95)), "p99_ms": float(np.percentile(values, 99)),
+        }
+        for name, values in timings.items()
+    ]
+    table = pd.DataFrame(rows)
+    print(f"\nlatency (in-process rank(), warm bundle, one request at a time, {platform.machine()} python {platform.python_version()})")
+    print(table.to_string(index=False))
+    Path("reports").mkdir(exist_ok=True)
+    Path("reports/latency.md").write_text(
+        "# Rank latency\n\nIn-process `rank()` on a warm bundle and character table, one request "
+        "at a time, no network, no serialization, single core, after one warm-up call. "
+        f"Machine: {platform.machine()}, python {platform.python_version()}. "
+        "This is the model-plus-policy cost inside a 50 ms budget, not an end-to-end p99.\n\n"
+        + _markdown_table(table) + "\n",
+        encoding="utf-8",
+    )
+
+
+def rank_requests(requests_path, model_dir, data_dir, out_path, smoke=False, bench=0):
     """Rank fixture requests with the selected bundle and write full decisions."""
     source = Path("fixtures") if smoke else Path(data_dir)
     model_dir = Path(model_dir)
@@ -162,6 +208,8 @@ def rank_requests(requests_path, model_dir, data_dir, out_path, smoke=False):
     bundle = load_bundle(model_dir / selected)
     characters = load_characters(source)
     payloads = json.loads(Path(requests_path).read_text())
+    if bench:
+        benchmark_rank(payloads, bundle, characters, bench)
     results = []
     for payload in payloads:
         result = {"id": payload["id"], **rank_candidates(payload, bundle, characters)}
@@ -224,8 +272,8 @@ def drift_report(data_dir, model_dir, smoke=False):
     reports_dir.mkdir(exist_ok=True)
     header = (
         "# Drift monitoring and intercept adaptation\n\n"
-        "Training-day predictions are in-sample and show error moving with the mix; "
-        "they are not held-out metrics. Labels for day d are assumed available at "
+        "Oct 21–27 predictions are model-in-sample and Oct 28 is calibration-in-sample; "
+        "they show error moving with the mix and are not held-out metrics. Labels for day d are assumed available at "
         "00:00 on day d+1 because the data has no availability timestamps.\n\n"
         "Unseen-C14 share is zero by construction during the Oct 21–27 refit window. "
         "The prototype makes one update on the partial Oct 30 day. Its monotonic intercept "
@@ -268,6 +316,7 @@ def main():
     rank_parser.add_argument("--data-dir", default="data")
     rank_parser.add_argument("--smoke", action="store_true")
     rank_parser.add_argument("--out", default="reports/rank_sample.json")
+    rank_parser.add_argument("--bench", type=int, default=0, help="time rank() this many rounds")
     drift_parser = subparsers.add_parser("drift", help="report drift and daily adaptation")
     drift_parser.add_argument("--model", required=True)
     drift_parser.add_argument("--data-dir", default="data")
@@ -277,7 +326,7 @@ def main():
     if args.command == "train":
         train_models(args.data_dir, args.out, args.smoke)
     elif args.command == "rank":
-        rank_requests(args.requests, args.model, args.data_dir, args.out, args.smoke)
+        rank_requests(args.requests, args.model, args.data_dir, args.out, args.smoke, args.bench)
     elif args.command == "drift":
         drift_report(args.data_dir, args.model, args.smoke)
     elif args.baseline:

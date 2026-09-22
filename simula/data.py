@@ -83,7 +83,8 @@ def add_flags(df):
     result = df.copy()
     result["hour_of_day"] = result["hour"] % 100
     result["day"] = result["hour"] // 100
-    result["is_null_device"] = result["device_id"].eq("a99f214a")
+    # the export marks a missing id with one sentinel hash; a live request sends null
+    result["is_null_device"] = result["device_id"].eq("a99f214a") | result["device_id"].isna()
 
     app_placeholder = result["app_id"].eq("ecad2386")
     site_placeholder = result["site_id"].eq("85f751fd")
