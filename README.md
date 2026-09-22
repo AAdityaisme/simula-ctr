@@ -20,16 +20,19 @@ B reduces log loss 6.7% relative to the strongest lookup. That is prediction qua
 
 Where it holds and where it doesn't (model B, calibrated):
 
-| Slice | Rows | Actual CTR | Log loss | AUC |
-| --- | --- | --- | --- | --- |
-| Unseen ad (`C14` not in training), 42.9% of test | 54,602 | 14.6% | 0.372 | 0.732 |
-| Seen ad | 72,804 | 19.1% | 0.437 | 0.720 |
-| Seen-but-rare ad (<50 training rows) | 5,444 | 21.8% | 0.489 | 0.691 |
-| Character id absent from the refit window (61 characters) | 1,478 | 16.8% | 0.411 | 0.717 |
-| Characters created inside the data window (mostly seen ids) | 5,749 | 16.5% | 0.399 | 0.735 |
-| Oct 29 / Oct 30 (partial, 6 hours) | 104,450 / 22,956 | 17.3% / 16.6% | 0.411 / 0.403 | 0.729 / 0.728 |
+| Slice | Rows | Predicted CTR | Actual CTR | Log loss | AUC |
+| --- | --- | --- | --- | --- | --- |
+| All test | 127,406 | 17.6% | 17.1% | 0.409 | 0.729 |
+| Unseen ad (`C14` not in training), 42.9% of test | 54,602 | 14.8% | 14.6% | 0.372 | 0.732 |
+| Seen ad | 72,804 | 19.7% | 19.1% | 0.437 | 0.720 |
+| Seen-but-rare ad (<50 training rows) | 5,444 | 19.0% | 21.8% | 0.489 | 0.691 |
+| Character id absent from the refit window (61 characters) | 1,478 | 18.1% | 16.8% | 0.411 | 0.717 |
+| Characters created inside the data window (mostly seen ids) | 5,749 | 17.6% | 16.5% | 0.399 | 0.735 |
+| Oct 29 / Oct 30 (partial, 6 hours) | 104,450 / 22,956 | 17.7% / 16.9% | 17.3% / 16.6% | 0.411 / 0.403 | 0.729 / 0.728 |
 
-These slices have different click rates and mixes, so their raw log losses are not comparable measures of difficulty; the unseen-ad slice has a lower loss mostly because its base rate is lower. On seen-but-rare ads the mean prediction is 19.0% against 21.8% observed: an average underprediction whose cause I have not isolated.
+Predicted CTR is the mean calibrated prediction on the slice; against actual CTR it shows whether the level is honest, while AUC shows whether the ordering holds.
+
+These slices have different click rates and mixes, so their raw log losses are not comparable measures of difficulty; the unseen-ad slice has a lower loss mostly because its base rate is lower. Seen-but-rare ads are the weak spot: predicted 19.0% against 21.8% observed, an average underprediction whose cause I have not isolated.
 
 ## Decisions and what each one cost
 
