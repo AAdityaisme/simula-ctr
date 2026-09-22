@@ -15,14 +15,22 @@ uv run python cli.py evaluate --baseline
 uv run python cli.py train --out bundle
 uv run python cli.py evaluate --model bundle
 uv run python cli.py rank --requests fixtures/rank_requests.json --model bundle --out reports/rank_sample.json
+uv run python cli.py drift --model bundle
 
 # Run the committed 5,000-row fixture instead.
 uv run python cli.py evaluate --baseline --smoke
 uv run python cli.py train --smoke --out bundle
 uv run python cli.py evaluate --model bundle --smoke
+uv run python cli.py drift --model bundle --smoke
 
 uv run pytest -q
 ```
+
+The drift report uses in-sample predictions on training days only to show error moving
+with the traffic mix; those rows are not held-out metrics. Because the data has no
+label-availability timestamps, it assumes a completed day's labels are usable from
+00:00 the next day. The daily intercept prototype can adjust probability levels after
+labels arrive, but its monotonic shift cannot change candidate order.
 
 ## Ranking payload
 
