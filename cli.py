@@ -200,6 +200,53 @@ def benchmark_rank(payloads, bundle, characters, rounds):
     )
 
 
+def _flags(row, counts):
+    flags = []
+    if row["is_unseen_C14"]:
+        flags.append("new ad")
+    elif row["is_rare_C14"]:
+        flags.append("rare ad")
+    if row["is_unseen_character_id"]:
+        flags.append("new character")
+    seen = counts.get(str(row["C14"]), 0)
+    if seen:
+        flags.append(f"seen {seen}x")
+    return ", ".join(flags)
+
+
+def _print_decision(payload, result):
+    """Print one ranking decision the way a person would read it."""
+    ceiling = result["ceiling"]
+    counts = (payload.get("exposure") or {}).get("counts") or {}
+    print(f"\n== {payload['id']} " + "=" * max(0, 60 - len(payload["id"])))
+    print(
+        f"content ceiling  publisher {ceiling['publisher']}, character "
+        f"{ceiling['character'] or 'unknown (fails closed)'} -> effective {ceiling['effective']}"
+    )
+    print(
+        "exposure state   " + ("none, ranking on pCTR alone" if result["degraded"]["exposure_state_unavailable"]
+        else f"{payload['exposure'].get('window')} counts for key {payload['exposure'].get('key')}")
+    )
+    if result["no_fill"]:
+        print("selected         nothing: every candidate excluded (no fill)")
+    else:
+        print(f"selected         {result['selected_candidate_id']}")
+    if result["indistinguishable"]:
+        print("note             all candidates map to the same model row; order is the tie-break")
+    print()
+    header = f"{'#':>2}  {'candidate':<20}{'slot':>4}  {'creative':<9}{'pCTR':>7}{'utility':>9}  {'in E':<4}{'P(select)':>10}  flags"
+    print(header)
+    for row in result["candidates"]:
+        if not row["eligible"]:
+            print(f"{'-':>2}  {row['candidate_id']:<20}{row['banner_pos']:>4}  {str(row['C14']):<9}excluded: {row['exclusion_reason'].replace('_', ' ')}")
+            continue
+        print(
+            f"{row['rank']:>2}  {row['candidate_id']:<20}{row['banner_pos']:>4}  {str(row['C14']):<9}"
+            f"{row['calibrated_pctr'] * 100:>6.1f}%{row['utility'] * 100:>8.1f}%  "
+            f"{'yes' if row['in_exploration_set'] else 'no':<4}{row['selection_probability']:>10.3f}  {_flags(row, counts)}"
+        )
+
+
 def rank_requests(requests_path, model_dir, data_dir, out_path, smoke=False, bench=0):
     """Rank fixture requests with the selected bundle and write full decisions."""
     source = Path("fixtures") if smoke else Path(data_dir)
@@ -214,25 +261,7 @@ def rank_requests(requests_path, model_dir, data_dir, out_path, smoke=False, ben
     for payload in payloads:
         result = {"id": payload["id"], **rank_candidates(payload, bundle, characters)}
         results.append(result)
-        print(
-            f"\n{payload['id']}: selected={result['selected_candidate_id']} "
-            f"no_fill={result['no_fill']} indistinguishable={result['indistinguishable']} "
-            f"degraded={result['degraded']}"
-        )
-        table = pd.DataFrame(result["candidates"])[
-            [
-                "candidate_id", "rank", "eligible", "exclusion_reason", "banner_pos",
-                "C14", "calibrated_pctr", "utility", "in_exploration_set",
-                "selection_probability", "is_unseen_C14",
-            ]
-        ].rename(
-            columns={
-                "in_exploration_set": "in_E",
-                "selection_probability": "p_select",
-                "is_unseen_C14": "unseen_C14",
-            }
-        )
-        print(table.to_string(index=False))
+        _print_decision(payload, result)
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(results, indent=2, allow_nan=False) + "\n")
