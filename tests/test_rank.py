@@ -149,7 +149,7 @@ def test_all_unseen_identical_uses_tie_break(fitted_smoke, requests):
 def test_negative_exposure_count_is_rejected(fitted_smoke, requests):
     bundle, characters = fitted_smoke
     payload = copy.deepcopy(requests["fixed_slot_with_gate"])
-    payload["exposure"]["counts"] = {"fixed-mid": -2}
+    payload["exposure"]["counts"] = {"22163": -2}
     with pytest.raises(ValueError, match="non-negative"):
         rank(payload, bundle, characters)
 
@@ -179,3 +179,44 @@ def test_malformed_payloads_are_rejected(fitted_smoke, requests):
     ]
     with pytest.raises(ValueError, match="more than 50"):
         rank(too_many, bundle, characters)
+
+
+def test_null_device_id_is_unavailable(fitted_smoke, requests):
+    bundle, characters = fitted_smoke
+    for value in (None, "a99f214a", "missing"):
+        payload = copy.deepcopy(requests["shared_creative_two_slots"])
+        if value == "missing":
+            del payload["request"]["device_id"]
+        else:
+            payload["request"]["device_id"] = value
+        result = rank(payload, bundle, characters)
+        assert result["selected_candidate_id"] is not None
+
+
+def test_indistinguishable_requires_one_distinct_row(fitted_smoke, requests):
+    bundle, characters = fitted_smoke
+    payload = copy.deepcopy(requests["all_unseen_identical"])
+    payload["candidates"][2]["C21"] = 999
+    assert rank(payload, bundle, characters)["indistinguishable"] is False
+
+
+def test_empty_exposure_state_is_unavailable(fitted_smoke, requests):
+    bundle, characters = fitted_smoke
+    payload = copy.deepcopy(requests["fixed_slot_with_gate"])
+    payload["exposure"] = {}
+    result = rank(payload, bundle, characters)
+    assert result["degraded"]["exposure_state_unavailable"] is True
+    for row in result["candidates"]:
+        if row["eligible"]:
+            assert row["utility"] == row["calibrated_pctr"]
+
+
+def test_fatigue_is_keyed_by_creative(fitted_smoke, requests):
+    bundle, characters = fitted_smoke
+    payload = copy.deepcopy(requests["shared_creative_two_slots"])
+    creative = str(payload["candidates"][0]["C14"])
+    payload["exposure"] = {"key": "demo", "window": "24h", "counts": {creative: 2}}
+    rows = {row["candidate_id"]: row for row in rank(payload, bundle, characters)["candidates"]}
+    for name in ("shared-slot-0", "shared-slot-1"):
+        assert rows[name]["utility"] < rows[name]["calibrated_pctr"]
+    assert rows["different-creative"]["utility"] == rows["different-creative"]["calibrated_pctr"]

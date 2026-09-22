@@ -55,8 +55,15 @@ def slices(df, p):
     character_frequency = test["character_id"].map(
         refit["character_id"].value_counts()
     ).fillna(0)
+    composite = test["device_ip"] + "|" + test["device_model"]
+    key_seen = composite.isin(refit["device_ip"] + "|" + refit["device_model"])
+    null_device = test["is_null_device"].to_numpy()
     masks = {
         "all_test": np.ones(len(test), dtype=bool),
+        "null_device_key_unseen": null_device & ~key_seen.to_numpy(),
+        "null_device_key_seen": null_device & key_seen.to_numpy(),
+        "real_device_key_unseen": ~null_device & ~key_seen.to_numpy(),
+        "real_device_key_seen": ~null_device & key_seen.to_numpy(),
         "day_141029": test["day"].eq(141029).to_numpy(),
         "day_141030": test["day"].eq(141030).to_numpy(),
         "C14_seen": c14_seen.to_numpy(),

@@ -3,7 +3,7 @@ import pandas as pd
 
 from simula.data import add_flags
 from simula.features import CONTRACT, novelty_flags, transform
-from simula.train import predict
+from simula.train import apply_calibration
 
 
 POLICY = dict(
@@ -24,7 +24,7 @@ def validate(payload, policy=POLICY):
     """Validate ownership, identity, tier, and surface invariants."""
     request = payload.get("request", {})
     for field in REQUEST_FIELDS:
-        if field not in request:
+        if field not in request and field != "device_id":
             raise ValueError(f"missing request field: {field}")
     candidates = payload.get("candidates", [])
     if not candidates:
@@ -43,6 +43,8 @@ def validate(payload, policy=POLICY):
         for field in required:
             if candidate.get(field) is None:
                 raise ValueError(f"candidate {index} missing {field}")
+        if not isinstance(candidate["candidate_id"], str):
+            raise ValueError(f"candidate {index} candidate_id must be a string")
         if candidate["content_tier"] not in TIERS:
             raise ValueError(f"unknown tier: {candidate['content_tier']}")
         ids.append(candidate["candidate_id"])
@@ -51,7 +53,7 @@ def validate(payload, policy=POLICY):
     publisher_tier = payload.get("publisher", {}).get("max_content_tier")
     if publisher_tier not in TIERS:
         raise ValueError(f"unknown tier: {publisher_tier}")
-    counts = payload.get("exposure", {}).get("counts", {})
+    counts = payload.get("exposure", {}).get("counts") or {}
     if any(count < 0 for count in counts.values()):
         raise ValueError("exposure counts must be non-negative")
     app_placeholder = request["app_id"] == "ecad2386"
@@ -79,7 +81,7 @@ def _eligibility(payload, characters):
 
 
 def _assemble(payload, characters, eligible):
-    request = {field: payload["request"][field] for field in REQUEST_FIELDS}
+    request = {field: payload["request"].get(field) for field in REQUEST_FIELDS}
     records = []
     for candidate, keep in zip(payload["candidates"], eligible):
         if keep:
@@ -91,20 +93,26 @@ def _assemble(payload, characters, eligible):
 
 
 def _score(rows, bundle):
-    encoder = bundle[1]
-    raw = predict(bundle, rows, calibrated=False)
-    calibrated = predict(bundle, rows, calibrated=True)
-    flags = novelty_flags(rows, encoder)
+    booster, encoder, meta = bundle
     model_rows = transform(rows, encoder)
-    indistinguishable = len(rows) > 1 and bool(model_rows.duplicated(keep=False).all())
+    raw = np.asarray(booster.predict(model_rows), dtype=float)
+    calibrated = apply_calibration(raw, meta["calibration"]["delta"])
+    flags = novelty_flags(rows, encoder)
+    indistinguishable = len(rows) > 1 and len(model_rows.drop_duplicates()) == 1
     return raw, calibrated, flags, indistinguishable
 
 
-def _utilities(payload, ids, calibrated, policy):
-    if "exposure" not in payload:
+def _exposure_counts(payload):
+    counts = payload.get("exposure", {}).get("counts")
+    return counts if isinstance(counts, dict) else None
+
+
+def _utilities(payload, creatives, calibrated, policy):
+    counts = _exposure_counts(payload)
+    if counts is None:
         return np.asarray(calibrated, dtype=float)
-    counts = payload["exposure"].get("counts", {})
-    fatigue = np.array([counts.get(str(candidate_id), 0) for candidate_id in ids], dtype=float)
+    # keyed by creative, not candidate: one creative in two slots shares its history
+    fatigue = np.array([counts.get(str(creative), 0) for creative in creatives], dtype=float)
     return calibrated / (1 + policy["fatigue_k"] * fatigue)
 
 
@@ -147,7 +155,8 @@ def rank(payload, bundle, characters, policy=POLICY):
         rows = _assemble(payload, characters, eligible)
         raw, calibrated, flags, indistinguishable = _score(rows, bundle)
         ids = [payload["candidates"][index]["candidate_id"] for index in kept]
-        utilities = _utilities(payload, ids, calibrated, policy)
+        creatives = [payload["candidates"][index]["C14"] for index in kept]
+        utilities = _utilities(payload, creatives, calibrated, policy)
         order, exploration, probabilities, selected = _select(
             ids, utilities, payload["seed"], policy
         )
@@ -172,7 +181,7 @@ def rank(payload, bundle, characters, policy=POLICY):
         "reason": "no_fill" if not kept else None, "indistinguishable": indistinguishable,
         "ceiling": ceiling,
         "degraded": {
-            "exposure_state_unavailable": "exposure" not in payload,
+            "exposure_state_unavailable": _exposure_counts(payload) is None,
             "character_metadata_missing": missing_character,
         },
         "versions": {

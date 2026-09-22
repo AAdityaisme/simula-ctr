@@ -1,6 +1,6 @@
 # Drift monitoring and intercept adaptation
 
-Training-day predictions are in-sample and show error moving with the mix; they are not held-out metrics. Labels for day d are assumed available at 00:00 on day d+1 because the data has no availability timestamps.
+Oct 21–27 predictions are model-in-sample and Oct 28 is calibration-in-sample; they show error moving with the mix and are not held-out metrics. Labels for day d are assumed available at 00:00 on day d+1 because the data has no availability timestamps.
 
 Unseen-C14 share is zero by construction during the Oct 21–27 refit window. The prototype makes one update on the partial Oct 30 day. Its monotonic intercept shift changes probability levels, never candidate order.
 

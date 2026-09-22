@@ -57,19 +57,28 @@ def fit_encoder(train, features):
     }
 
 
+def _dtypes(encoder):
+    # built once per loaded encoder; rebuilding the category table per request cost ~30 ms
+    if "_dtypes" not in encoder:
+        encoder["_dtypes"] = {
+            feature: pd.CategoricalDtype(categories)
+            for feature, categories in encoder["categories"].items()
+        }
+    return encoder["_dtypes"]
+
+
 def transform(df, encoder):
     """Apply fitted categories and return model columns in their fitted order."""
     result = pd.DataFrame(index=df.index)
+    dtypes = _dtypes(encoder)
     for feature in encoder["features"]:
         if feature in CONTRACT["numeric"]:
             result[feature] = pd.to_numeric(df[feature], errors="coerce").astype(float)
         else:
-            categories = encoder["categories"][feature]
-            values = df[feature].astype("string")
-            values = values.where(values.isin(categories))
-            result[feature] = pd.Categorical(
-                values, categories=categories
-            )
+            dtype = dtypes[feature]
+            codes = dtype.categories.get_indexer(df[feature].astype("string").astype(object))
+            # code -1 is every unseen or missing value, which LightGBM reads as missing
+            result[feature] = pd.Categorical.from_codes(codes, dtype=dtype)
     return result
 
 
