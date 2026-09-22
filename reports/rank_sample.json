@@ -23,6 +23,10 @@
       "conversation_turn": 2,
       "session_msg_count": 3
     },
+    "exposure": {
+      "key": null,
+      "window": null
+    },
     "candidates": [
       {
         "candidate_id": "shared-slot-1",
@@ -100,6 +104,10 @@
     "echo": {
       "conversation_turn": 8,
       "session_msg_count": 12
+    },
+    "exposure": {
+      "key": "demo-user-593e7c0432",
+      "window": "24h"
     },
     "candidates": [
       {
@@ -196,6 +204,10 @@
       "conversation_turn": 14,
       "session_msg_count": 14
     },
+    "exposure": {
+      "key": null,
+      "window": null
+    },
     "candidates": [
       {
         "candidate_id": "unseen-a",
@@ -273,6 +285,10 @@
     "echo": {
       "conversation_turn": 14,
       "session_msg_count": 14
+    },
+    "exposure": {
+      "key": null,
+      "window": null
     },
     "candidates": [
       {

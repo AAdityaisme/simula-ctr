@@ -162,7 +162,7 @@ def benchmark_rank(payloads, bundle, characters, rounds):
     import time
 
     payloads = list(payloads)
-    base = next(p for p in payloads if p["exposure"] if "exposure" in p) if any("exposure" in p for p in payloads) else payloads[0]
+    base = next((p for p in payloads if p.get("exposure")), payloads[0])
     for size in (1, 10, 50):
         template = next(c for c in base["candidates"] if c["content_tier"] == "sfw")
         synthetic = {**copy.deepcopy(base), "id": f"synthetic_{size}_candidates"}
