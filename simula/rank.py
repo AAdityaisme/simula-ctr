@@ -31,7 +31,7 @@ def validate(payload, policy=POLICY):
         raise ValueError("candidate list is empty")
     if len(candidates) > policy["max_candidates"]:
         raise ValueError(f"more than {policy['max_candidates']} candidates")
-    if not isinstance(payload.get("seed"), int):
+    if not isinstance(payload.get("seed"), int) or isinstance(payload.get("seed"), bool):
         raise ValueError("missing integer seed")
     request_owned = set(REQUEST_FIELDS + OPTIONAL_REQUEST_FIELDS)
     required = ("candidate_id", "banner_pos", "C14", "content_tier")
@@ -43,8 +43,8 @@ def validate(payload, policy=POLICY):
         for field in required:
             if candidate.get(field) is None:
                 raise ValueError(f"candidate {index} missing {field}")
-        if not isinstance(candidate["candidate_id"], str):
-            raise ValueError(f"candidate {index} candidate_id must be a string")
+        if not isinstance(candidate["candidate_id"], str) or not candidate["candidate_id"]:
+            raise ValueError(f"candidate {index} candidate_id must be a non-empty string")
         if candidate["content_tier"] not in TIERS:
             raise ValueError(f"unknown tier: {candidate['content_tier']}")
         ids.append(candidate["candidate_id"])
@@ -53,9 +53,12 @@ def validate(payload, policy=POLICY):
     publisher_tier = payload.get("publisher", {}).get("max_content_tier")
     if publisher_tier not in TIERS:
         raise ValueError(f"unknown tier: {publisher_tier}")
-    counts = payload.get("exposure", {}).get("counts") or {}
-    if any(count < 0 for count in counts.values()):
-        raise ValueError("exposure counts must be non-negative")
+    exposure = payload.get("exposure")
+    if exposure is not None and not isinstance(exposure, dict):
+        raise ValueError("exposure must be an object")
+    for count in ((exposure or {}).get("counts") or {}).values():
+        if isinstance(count, bool) or not isinstance(count, (int, float)) or not np.isfinite(count) or count < 0:
+            raise ValueError("exposure counts must be finite non-negative numbers")
     app_placeholder = request["app_id"] == "ecad2386"
     site_placeholder = request["site_id"] == "85f751fd"
     if app_placeholder == site_placeholder:
@@ -103,7 +106,7 @@ def _score(rows, bundle):
 
 
 def _exposure_counts(payload):
-    counts = payload.get("exposure", {}).get("counts")
+    counts = (payload.get("exposure") or {}).get("counts")
     return counts if isinstance(counts, dict) else None
 
 
@@ -189,5 +192,6 @@ def rank(payload, bundle, characters, policy=POLICY):
             "calibration": bundle[2]["calibration"]["recipe"], "policy": policy["version"],
         },
         "echo": {field: payload["request"].get(field) for field in OPTIONAL_REQUEST_FIELDS},
+        "exposure": {key: (payload.get("exposure") or {}).get(key) for key in ("key", "window")},
         "candidates": candidate_rows,
     }

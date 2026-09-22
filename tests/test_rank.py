@@ -183,6 +183,7 @@ def test_malformed_payloads_are_rejected(fitted_smoke, requests):
 
 def test_null_device_id_is_unavailable(fitted_smoke, requests):
     bundle, characters = fitted_smoke
+    scores = []
     for value in (None, "a99f214a", "missing"):
         payload = copy.deepcopy(requests["shared_creative_two_slots"])
         if value == "missing":
@@ -190,7 +191,26 @@ def test_null_device_id_is_unavailable(fitted_smoke, requests):
         else:
             payload["request"]["device_id"] = value
         result = rank(payload, bundle, characters)
-        assert result["selected_candidate_id"] is not None
+        scores.append([row["calibrated_pctr"] for row in result["candidates"]])
+    assert scores[0] == scores[1] == scores[2]
+    for value, expected in ((None, True), ("a99f214a", True), ("0f7c61dc", False)):
+        payload = copy.deepcopy(requests["shared_creative_two_slots"])
+        payload["request"]["device_id"] = value
+        rows = rank_module._assemble(payload, characters, [True, True, True])
+        assert rows["is_null_device"].eq(expected).all()
+
+
+def test_malformed_exposure_is_rejected(fitted_smoke, requests):
+    bundle, characters = fitted_smoke
+    base = requests["fixed_slot_with_gate"]
+    for counts in ({"20345": "3"}, {"20345": float("nan")}, {"20345": True}):
+        payload = copy.deepcopy(base)
+        payload["exposure"]["counts"] = counts
+        with pytest.raises(ValueError, match="finite non-negative"):
+            rank(payload, bundle, characters)
+    payload = copy.deepcopy(base)
+    payload["exposure"] = None
+    assert rank(payload, bundle, characters)["degraded"]["exposure_state_unavailable"] is True
 
 
 def test_indistinguishable_requires_one_distinct_row(fitted_smoke, requests):

@@ -1,4 +1,6 @@
 import argparse
+import copy
+import platform
 import json
 from pathlib import Path
 
@@ -159,6 +161,17 @@ def benchmark_rank(payloads, bundle, characters, rounds):
     """Time rank() per request on warm artifacts and write reports/latency.md."""
     import time
 
+    payloads = list(payloads)
+    base = next(p for p in payloads if p["exposure"] if "exposure" in p) if any("exposure" in p for p in payloads) else payloads[0]
+    for size in (1, 10, 50):
+        template = next(c for c in base["candidates"] if c["content_tier"] == "sfw")
+        synthetic = {**copy.deepcopy(base), "id": f"synthetic_{size}_candidates"}
+        synthetic["candidates"] = [
+            {**template, "candidate_id": f"c{i}", "banner_pos": i % 2} for i in range(size)
+        ]
+        payloads.append(synthetic)
+    for payload in payloads:
+        rank_candidates(payload, bundle, characters)  # warm-up
     timings = {payload["id"]: [] for payload in payloads}
     for _ in range(rounds):
         for payload in payloads:
@@ -174,13 +187,15 @@ def benchmark_rank(payloads, bundle, characters, rounds):
         for name, values in timings.items()
     ]
     table = pd.DataFrame(rows)
-    print("\nlatency (in-process rank(), warm bundle, one request at a time)")
+    print(f"\nlatency (in-process rank(), warm bundle, one request at a time, {platform.machine()} python {platform.python_version()})")
     print(table.to_string(index=False))
     Path("reports").mkdir(exist_ok=True)
     Path("reports/latency.md").write_text(
         "# Rank latency\n\nIn-process `rank()` on a warm bundle and character table, one request "
-        "at a time, no network, no serialization, single core. This is the model-plus-policy cost "
-        "inside a 50 ms budget, not an end-to-end p99.\n\n" + _markdown_table(table) + "\n",
+        "at a time, no network, no serialization, single core, after one warm-up call. "
+        f"Machine: {platform.machine()}, python {platform.python_version()}. "
+        "This is the model-plus-policy cost inside a 50 ms budget, not an end-to-end p99.\n\n"
+        + _markdown_table(table) + "\n",
         encoding="utf-8",
     )
 
