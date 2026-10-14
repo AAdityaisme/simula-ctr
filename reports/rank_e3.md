@@ -93,4 +93,4 @@ Pairwise accuracy is the share of the 424 pairs where an arm picks the clicked a
 - The question was asked once, in one wording. A different rubric might do better, but tuning it on this window would overfit the test.
 - **Correction, 2026-10-14.** An earlier version said the 154 identical pairs "differ only in C14 and C17" and are identical "on every attribute the rankers see". Both were wrong. The red team found that they are identical only in the Jev candidate state; B's request features and pCTRs differ on most of them (see Setup). It also replaced "a coin at best" with the observed 47.9% (101/211). No numbers changed.
 
-Full suite: 42 passed in 8.90s at d115f6a
+Full suite: 42 passed in 8.66s at f6f161f
