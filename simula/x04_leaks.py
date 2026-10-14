@@ -340,6 +340,17 @@ def score(cards, pred):
             "four_way_accuracy": float(np.mean([pred[c["name"]] == c["truth"] for c in scored]))}
 
 
+def card_bootstrap(cards, pred_a, pred_b, n_boot=2000, seed=0):
+    """Paired bootstrap over cards of (a - b) in leak recall and in false rejection: (diff, lo, hi) for each."""
+    out = {}
+    for key, truths in (("leak_recall", ("leaky", "unavailable_at_decision_time")), ("false_rejection", ("safe",))):
+        names = [c["name"] for c in cards if c["truth"] in truths]
+        d = np.array([(pred_a[n] != "safe") - (pred_b[n] != "safe") for n in names], dtype=float)
+        boots = np.random.default_rng(seed).choice(d, (n_boot, len(d))).mean(axis=1)
+        out[key] = (float(d.mean()), *map(float, np.percentile(boots, [2.5, 97.5])))
+    return out
+
+
 def report(cards, answers):
     jev = {arm: {c["name"]: answers[f"{arm}:{c['name']}"]["answers"]["admission"]["choice"] for c in cards}
            for arm in ("shown", "masked", "masked_rev")}
@@ -348,12 +359,13 @@ def report(cards, answers):
         arm = "masked" if masked else "shown"
         arms[arm] = {"jev": score(cards, jev[arm]), **{k: score(cards, v) for k, v in controls(cards, masked).items()}}
     m = arms["masked"]
+    paired = {k: card_bootstrap(cards, jev["masked"], v) for k, v in controls(cards, True).items()}
     eligible = [m[k]["leak_recall"] for k in CONTROLS if m[k]["false_rejection"] <= 0.02]
     best_control = max(eligible, default=0.0)
     calls = list(answers.values())
     return {
         "cards": len(cards), "by_truth": pd.Series([c["truth"] for c in cards]).value_counts().to_dict(),
-        "arms": arms, "best_eligible_control_recall_masked": best_control,
+        "arms": arms, "best_eligible_control_recall_masked": best_control, "masked_jev_minus_control": paired,
         "win": bool(m["jev"]["plants_caught"] and m["jev"]["known_leaks_caught"]
                     and m["jev"]["leak_recall"] > best_control and m["jev"]["false_rejection"] <= 0.02),
         "shuffled_option_agreement": float(np.mean([jev["masked"][c["name"]] == jev["masked_rev"][c["name"]]

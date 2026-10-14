@@ -201,15 +201,56 @@ def run(data_dir, answers):
     }
 
 
+def seed_interval(gains):
+    """Mean and 95% t-interval over seeds; the character bootstrap cannot see seed-to-seed variance."""
+    from scipy.stats import t
+    g = np.asarray(gains)
+    half = t.ppf(0.975, len(g) - 1) * g.std(ddof=1) / np.sqrt(len(g))
+    return [float(g.mean() - half), float(g.mean() + half)]
+
+
+def seed_check(data_dir, answers, seeds=5):
+    """Post-hoc, after the pre-registered run: the same arms refit under 5 LightGBM seeds, gains averaged per seed.
+
+    Added because five pre-registered single-feature arms were bit-identical, so a single seed's gain mostly measured
+    the change in bagging and feature sampling that any extra column causes.
+    """
+    df = add_zoo(add_flags(load(data_dir)))
+    w = windows(df)
+    y, chars = w["test"]["click"].to_numpy(), w["test"]["character_id"]
+    score, _, top3 = jev_ranking(answers)
+    arms = {"B": [], **{n: [n] for n in NAMES}, "jev_top3": top3}
+    loss, splits = {}, {}
+    for s in range(seeds):
+        for name, feats in arms.items():
+            r = b_recipe(w, [f"zoo_{f}" for f in feats], seed=20260920 + s)
+            loss[(name, s)], splits[(name, s)] = _row_loss(y, r["p"]), r["splits"]
+            print(s, name, round(loss[(name, s)].mean(), 6), r["splits"], flush=True)
+    mean = {name: np.mean([loss[(name, s)] for s in range(seeds)], axis=0) for name in arms}
+    singles = [{"feature": n, "jev_score": score[n],
+                "seed_gains": [float(loss[("B", s)].mean() - loss[(n, s)].mean()) for s in range(seeds)],
+                "splits_per_seed": [splits[(n, s)][f"zoo_{n}"] for s in range(seeds)],
+                "seed_ci": seed_interval([loss[("B", s)].mean() - loss[(n, s)].mean() for s in range(seeds)]),
+                **dict(zip(("mean_gain", "ci_lo", "ci_hi"), bootstrap_diff(chars, mean["B"], mean[n])))}
+               for n in NAMES]
+    return {"seeds": seeds, "singles": singles,
+            "spearman_jev_vs_mean_gain": spearman_with_ci([score[n] for n in NAMES], [s["mean_gain"] for s in singles]),
+            "jev_top3": dict(zip(("mean_gain", "ci_lo", "ci_hi"), bootstrap_diff(chars, mean["B"], mean["jev_top3"])))}
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("step", choices=["states", "run"])
+    parser.add_argument("step", choices=["states", "run", "seeds"])
     parser.add_argument("--data", default=str(DATA))
     args = parser.parse_args()
     if args.step == "states":
         WORK.mkdir(parents=True, exist_ok=True)
         write_states(WORK / "x03_states.jsonl")
         print("wrote", WORK / "x03_states.jsonl")
+    elif args.step == "seeds":
+        out = seed_check(args.data, read_answers(ANSWERS))
+        Path("reports/x03_feature_triage_seeds.json").write_text(json.dumps(out, indent=1, default=float) + "\n")
+        print(json.dumps(out, indent=1, default=float))
     else:
         out = run(args.data, read_answers(ANSWERS))
         Path("reports/x03_feature_triage.json").write_text(json.dumps(out, indent=1, default=float) + "\n")

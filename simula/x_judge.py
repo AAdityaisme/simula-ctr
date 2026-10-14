@@ -11,7 +11,7 @@ import pandas as pd
 from simula.data import split
 from simula.features import CONTRACT, FEATURE_SETS, fit_encoder, transform
 from simula.jev_ctr import _row_loss
-from simula.train import apply_calibration, calibrate, fit, refit
+from simula.train import PARAMS, apply_calibration, calibrate, fit, refit
 
 DATA = Path.home() / "Desktop/Simula/ml-takehome/data"
 WORK = Path.home() / "simula-local/rank-jev-work/exp-x-judge"
@@ -71,11 +71,19 @@ def windows(df):
             "refit": subsample(split(df, "refit")), "calibrate": split(df, "calibrate"), "test": split(df, "test")}
 
 
-def b_recipe(w, extra=()):
+def b_recipe(w, extra=(), seed=None):
     """train.py's recipe for B + extra: early stopping on Oct 27, refit through Oct 27, calibrate on Oct 28.
 
-    Returns tree count, Oct 27 log loss of the development fit, and calibrated test probabilities.
+    Returns tree count, Oct 27 log loss of the development fit, calibrated test probabilities and the refit's split
+    count for each extra feature. `seed` overrides PARAMS["seed"] for this call only.
     """
+    if seed is not None:
+        # ponytail: train.fit/refit read the module-level PARAMS, so the seed is swapped in place and restored
+        old, PARAMS["seed"] = PARAMS["seed"], seed
+        try:
+            return b_recipe(w, extra)
+        finally:
+            PARAMS["seed"] = old
     features = FEATURE_SETS["B"] + list(extra)
     encoder = fit_encoder(w["dev_fit"], features)
     dev, rounds = fit(w["dev_fit"], w["select"], features, encoder)
@@ -85,4 +93,6 @@ def b_recipe(w, extra=()):
     cal = w["calibrate"]
     delta = calibrate(booster.predict(transform(cal, encoder)), cal["click"], SHRINK)
     p = apply_calibration(booster.predict(transform(w["test"], encoder)), delta)
-    return {"trees": int(rounds), "select_log_loss": float(select_loss), "p": p}
+    splits = dict(zip(booster.feature_name(), booster.feature_importance("split").tolist()))
+    return {"trees": int(rounds), "select_log_loss": float(select_loss), "p": p,
+            "splits": {f: splits[f] for f in extra}}
