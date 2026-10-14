@@ -4,7 +4,9 @@ Cards: every real column of the two CSVs, plus constructed recipe cards whose tr
 three plants, Astra's future aggregates and nested aliases, legal lagged versions, identity recipes). Each card is
 materialized on the refit window (Oct 21-27) only, to compute Fable's four statistics; no test-window row is read.
 Jev answers one Choice per card, in two arms: names shown and names masked (the field renamed f07, its definition
-kept). Controls: Fable's MI-outlier rule, and Astra's denylist (CONTRACT["never"]) plus a timestamp/lineage rule.
+kept). Controls: Fable's MI-outlier rule, and Astra's denylist (the policy-barred part of CONTRACT["never"]) plus a
+timestamp/lineage rule. v2 (after the red team on 1d613cd): three legal cards rebuilt from decision-time values only,
+and one admission policy for the gold labels and the denylist.
 Run:
   uv run python -m simula.x04_leaks states
   uv run --no-project --with typesafe-sdk==0.7.2 --with python-dotenv python jev_ask.py IN.jsonl OUT.jsonl
@@ -22,10 +24,10 @@ from sklearn.metrics import mutual_info_score
 from simula.data import add_flags, load, split
 from simula.features import CONTRACT
 from simula.rank_pairs import read_answers
-from simula.x_judge import DATA, WORK, day_bounds, hour_index, range_sum
+from simula.x_judge import DATA, WORK, day_bounds, frozen_decile, hour_index, range_sum, trailing_ctr
 
-ANSWERS = Path("reports/x04_leak_auditor_jev_answers.jsonl")
-STATS = WORK / "x04_card_stats.json"
+ANSWERS = Path("reports/x04_leak_auditor_v2_jev_answers.jsonl")
+STATS = WORK / "x04_card_stats_v2.json"
 LABELS = {"safe": "may be used: known at the moment the ad is chosen and not derived from outcomes that are not yet "
                   "known",
           "leaky": "derived from click outcomes (this impression's or others') that are not yet known when the ad "
@@ -70,9 +72,9 @@ KNOWN_LEAKS = ["session_msg_count", "num_interactions"]
 PLANTS = ["click_plus_noise", "click_shuffled_within_day", "device_impressions_whole_day"]
 
 
-def _ctr(df, keys, lo, hi, m=0):
+def _ctr(df, keys, lo, hi):
     clicks, shown = range_sum(df, keys, lo, hi, "click"), range_sum(df, keys, lo, hi)
-    return (clicks + m * df["click"].mean()) / (shown + m) if m else np.where(shown > 0, clicks / np.maximum(shown, 1), np.nan)
+    return np.where(shown > 0, clicks / np.maximum(shown, 1), np.nan)
 
 
 def _decile(x):
@@ -168,17 +170,21 @@ def constructed(df):
         # legal lagged versions and legal transforms
         "creative_ctr_previous_day": ("Clicks divided by impressions for this C14 on the previous calendar day.",
                                       ["click", "C14"], "earlier_days", "safe", _ctr(df, ["C14"], lo - 24, lo - 1)),
+        # v2: the smoothing prior is the overall CTR of earlier days, not of the whole window (red team, 1d613cd)
         "creative_ctr_earlier_days": ("Clicks divided by impressions for this C14 over all earlier days, smoothed "
-                                      "with 20 pseudo-impressions.", ["click", "C14"], "earlier_days", "safe",
-                                      _ctr(df, ["C14"], -np.inf, lo - 1, m=20)),
+                                      "with 20 pseudo-impressions toward the overall click rate of all earlier days.",
+                                      ["click", "C14"], "earlier_days", "safe", trailing_ctr(df, ["C14"], 20)),
         "character_ctr_earlier_days": ("Clicks divided by impressions for this character_id over all earlier days, "
-                                       "smoothed with 20 pseudo-impressions.", ["click", "character_id"],
-                                       "earlier_days", "safe", _ctr(df, ["character_id"], -np.inf, lo - 1, m=20)),
+                                       "smoothed with 20 pseudo-impressions toward the overall click rate of all "
+                                       "earlier days.", ["click", "character_id"], "earlier_days", "safe",
+                                       trailing_ctr(df, ["character_id"], 20)),
         "app_ctr_previous_day": ("Clicks divided by impressions for this app_id on the previous calendar day.",
                                  ["click", "app_id"], "earlier_days", "safe", _ctr(df, ["app_id"], lo - 24, lo - 1)),
+        # v2: decile cutoffs come from earlier days' rows, not from ranking the whole window
         "creative_ctr_previous_7_days_decile": ("Decile (0-9) of: clicks divided by impressions for this C14 over the "
-                                                "previous 7 calendar days.", ["click", "C14"], "earlier_days", "safe",
-                                                _decile(c14_prev7)),
+                                                "previous 7 calendar days, with the decile cutoffs taken from rows of "
+                                                "earlier days only.", ["click", "C14"], "earlier_days", "safe",
+                                                frozen_decile(c14_prev7, df["day"])),
         "creative_impressions_earlier_today": ("Impressions of this C14 in earlier hours of the same day.", ["C14"],
                                                "earlier_hours_today", "safe", range_sum(df, ["C14"], lo, t - 1)),
         "device_model_impressions_earlier": ("Impressions with this device_model over all earlier hours of the log.",
@@ -288,18 +294,24 @@ def mi_outlier_rule(cards):
 
 
 FUTURE = {"same_hour", "same_day", "next_hours", "whole_log"}
+# v2 admission policy, shared by the gold labels and the denylist control: a field may be used iff it is known when
+# the ad is chosen, is not derived from clicks not yet known, and is not barred by the identity policy. The never-list
+# also holds modelling choices this policy admits (id, character_name, character_description, created_at,
+# conversation_turn), so the denylist control reads only the entries the policy bars.
+POLICY_BARRED = {"click", "session_msg_count", "num_interactions", "device_id", "device_ip"}
+assert POLICY_BARRED <= set(CONTRACT["never"])
 LABEL_SAFE = {"earlier_days"}  # clicks for a day become available at its end
 
 
 def lineage_rule(cards, masked, denylist=True):
-    """Astra's control: the existing denylist (CONTRACT['never']) plus a timestamp/lineage rule.
+    """Astra's control: the denylist (the never-list entries the admission policy bars) plus a timestamp/lineage rule.
 
-    Denylist: a card whose name, or one of whose source columns, is on the never-list is rejected (device ids as
+    Denylist: a card whose name, or one of whose source columns, is on that list is rejected (device ids as
     identity_restricted). In the masked arm a real column's own name is hidden, so the denylist cannot see it.
     Timestamp: a recipe aggregating rows at or after the impression is unavailable; one reading click from rows whose
     labels are not yet available is leaky. With denylist=False only the timestamp part runs (an extra control).
     """
-    never = set(CONTRACT["never"]) - {"click"} if denylist else set()  # label use is the timestamp part's job
+    never = POLICY_BARRED - {"click"} if denylist else set()  # label use is the timestamp part's job
     out = {}
     for c in cards:
         seen = [] if masked and c["kind"] == "real" else c["sources"]
@@ -391,9 +403,9 @@ if __name__ == "__main__":
     if args.step == "states":
         cards = build_cards(args.data)
         STATS.write_text(json.dumps(cards, indent=1) + "\n")
-        write_states(cards, WORK / "x04_states.jsonl")
-        print(len(cards), "cards; wrote", WORK / "x04_states.jsonl")
+        write_states(cards, WORK / "x04_v2_states.jsonl")
+        print(len(cards), "cards; wrote", WORK / "x04_v2_states.jsonl")
     else:
         out = report(json.loads(STATS.read_text()), read_answers(ANSWERS))
-        Path("reports/x04_leak_auditor.json").write_text(json.dumps(out, indent=1, default=float) + "\n")
+        Path("reports/x04_leak_auditor_v2.json").write_text(json.dumps(out, indent=1, default=float) + "\n")
         print(json.dumps({k: v for k, v in out.items() if k != "answers"}, indent=1, default=float))

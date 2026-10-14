@@ -78,3 +78,30 @@ was already inspected by earlier work, so every result is exploratory.
   with the highest pool churn.
 - **Win (Astra).** Jev's mean recipe regret over the two origins is lower than both controls'. Interval: paired
   character bootstrap on the later window between Jev's selected recipe and each control's.
+
+## x04 v2: cards, truth and policy (after the red team on `1d613cd`, GATE: fail)
+
+Written 2026-10-14, committed before the v2 cards are built and before any v2 card statistic is computed. Why a v2:
+the v1 card statistics (including MI with click) were written 46 s before the v1 prereg commit; three cards labelled
+`safe` used information from the whole Oct 21–27 window; and the denylist control applied a wider policy than the gold
+labels. v1 results stay in the reports, marked superseded.
+
+- **Three cards rebuilt from decision-time values only** (`simula/x_judge.py`: `trailing_ctr`, `frozen_decile`).
+  `creative_ctr_earlier_days` and `character_ctr_earlier_days` are smoothed with 20 pseudo-impressions toward the
+  overall click rate of strictly earlier days (an expanding prior); rows on the first day, with no earlier labels, are
+  missing. `creative_ctr_previous_7_days_decile` takes its decile cutoffs from rows of strictly earlier days
+  (expanding), so a row's decile never depends on its own day or later. Their definitions say so. Truth stays `safe`.
+- **One admission policy for the gold labels and the denylist control.** A field may be used iff it is known when the
+  ad is chosen, is not derived from clicks not yet known, and is not barred by the identity policy. The never-list
+  (`CONTRACT["never"]`) also holds modelling choices this policy admits (`id`, `character_name`,
+  `character_description`, `created_at`, `conversation_turn`); they stay `safe` in the gold labels, and the denylist
+  control now reads only the never-list entries the policy bars: `click`, `session_msg_count`, `num_interactions`,
+  `device_id`, `device_ip`. The truth for `session_msg_count` and `num_interactions` is the README's availability
+  judgment, adopted as policy, not proven by construction.
+- **Everything else as v1:** the 75 cards and truth counts (44 / 13 / 13 / 4 / 1 probe), Fable's four statistics on
+  Oct 21–27, the question and labels, the three arms, the masked names, the controls and the win.
+- **Order:** this commit → build cards and statistics → ask Jev all 225 states again (fresh answers file
+  `reports/x04_leak_auditor_v2_jev_answers.jsonl`; v1 answers are not reused) → score.
+- **Scope of the masked arm:** definitions keep their provenance words ("click plus Gaussian noise", "same day",
+  "next 24 hours", `session_msg_count`), so the masked arm tests reading explicit provenance prose, not detecting
+  hidden lineage.

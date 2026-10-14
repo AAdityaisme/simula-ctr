@@ -3,7 +3,7 @@ import json
 import numpy as np
 import pandas as pd
 
-from simula import x03_triage as x03, x04_leaks as x04, x05_exam as x05
+from simula import x03_triage as x03, x04_leaks as x04, x05_exam as x05, x_judge
 from simula.x_judge import day_bounds, hour_index, range_sum
 
 TOY = pd.DataFrame({"hour": [14102100, 14102100, 14102101, 14102105, 14102200, 14102201],
@@ -24,9 +24,10 @@ def test_x03_state_has_no_rows_and_top3_breaks_ties_in_zoo_order():
                                         "available_at_decision_time": {"noul": True}}}
                for i, n in enumerate(x03.NAMES) for r in range(x03.REPEATS)}
     _, _, top3 = x03.jev_ranking(answers)
-    assert top3 == [x03.NAMES[4], x03.NAMES[9], x03.NAMES[10]]
+    assert top3 == [x03.NAMES[4], x03.NAMES[9], x03.NAMES[0]]  # v2: inadmissible 10 and 11 are not ranked
     draws = x03.random_draws()
     assert draws == x03.random_draws() and len(draws) == 20 and all(len(set(d)) == 3 for d in draws)
+    assert set(sum(draws, [])) <= set(x03.ADMISSIBLE)
 
 
 def _card(name, truth, window="row", sources=None, kind="constructed", mi=0.001):
@@ -42,12 +43,11 @@ def test_x04_lineage_rule_and_masking():
              _card("imps_whole_day", "unavailable_at_decision_time", "same_day", ["C14"])]
     shown, masked = x04.lineage_rule(cards, False), x04.lineage_rule(cards, True)
     assert shown["session_msg_count"] != "safe" and masked["session_msg_count"] == "safe"  # name hidden
-    assert shown["log_turn"] != "safe"  # the never-list rejects a legal transform of conversation_turn
-    assert x04.lineage_rule(cards, False, denylist=False)["log_turn"] == "safe"
+    assert shown["log_turn"] == "safe"  # v2: conversation_turn is a modelling exclusion, not an admission bar
     assert shown["ctr_prev_day"] == "safe" and shown["ctr_earlier_today"] == "leaky"
     assert shown["imps_whole_day"] == "unavailable_at_decision_time"
     s = x04.score(cards, masked)
-    assert s["leak_recall"] == 2 / 3 and s["false_rejection"] == 1 / 2 and s["missed_leaks"] == ["session_msg_count"]
+    assert s["leak_recall"] == 2 / 3 and s["false_rejection"] == 0 and s["missed_leaks"] == ["session_msg_count"]
 
 
 def test_x04_state_hides_truth_and_mi_rule_flags_outlier():
@@ -86,3 +86,22 @@ def test_x05_regret_and_novelty_matching():
     assert abs(x05.regret(table, "heldout_C17")["fit_regret"]) < 1e-12
     churn = {"pool_last_day_churn": {"C14": 0.4, "C17": 0.3, "character_id": 0.01, "app_id": 0.005}}
     assert x05.novelty_matching(churn) == "heldout_C17"
+
+
+def test_trailing_ctr_and_frozen_decile_ignore_later_clicks():
+    rng = np.random.default_rng(1)
+    day = rng.choice([141021, 141022, 141023, 141024], 400)
+    df = pd.DataFrame({"hour": day * 100 + rng.integers(0, 24, 400), "day": day, "k": rng.choice(["a", "b"], 400),
+                       "click": rng.integers(0, 2, 400)})
+    later = df.assign(click=np.where(df["day"] >= 141023, 1 - df["click"], df["click"]))
+    early = (df["day"] <= 141022).to_numpy()
+    a, b = x_judge.trailing_ctr(df, ["k"], 20), x_judge.trailing_ctr(later, ["k"], 20)
+    assert np.isnan(a[day == 141021]).all() and np.allclose(a[early & (day > 141021)], b[early & (day > 141021)])
+    assert not np.allclose(a[day == 141024], b[day == 141024])  # Oct 24 rows do see the changed Oct 23 clicks
+    masked = x_judge.trailing_ctr(df, ["k"], 20, df["day"] < 141023)
+    unlabelled_ignored = x_judge.trailing_ctr(later, ["k"], 20, df["day"] < 141023)
+    assert np.allclose(masked, unlabelled_ignored, equal_nan=True)
+    x = rng.random(400)
+    d1, d2 = x_judge.frozen_decile(x, day), x_judge.frozen_decile(np.where(day >= 141023, 1 - x, x), day)
+    assert (d1[day == 141021] == -1).all() and (d1[day <= 141022] == d2[day <= 141022]).all()
+    assert set(d1[day > 141021]) <= set(range(10))

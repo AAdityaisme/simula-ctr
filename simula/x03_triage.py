@@ -3,10 +3,11 @@
 Jev reads an assignment excerpt, B's feature list and one feature card (name, one-line definition, availability
 note). It never sees a row or a statistic. Each of the 12 zoo features is then tested by fitting B + f on
 train.py's recipe (early stopping on Oct 27, refit through Oct 27, calibrate on Oct 28, test Oct 29-30), with both
-fitting windows subsampled to 300,000 rows. Run:
+fitting windows subsampled to 300,000 rows. v2 (after the red team on 1d613cd): every arm under 5 seeds, the
+target is the mean gain over seeds for admissible features only, and availability is scored separately. Run:
   uv run python -m simula.x03_triage states     # Jev input JSONL, outside the checkout
   uv run --no-project --with typesafe-sdk==0.7.2 --with python-dotenv python jev_ask.py IN.jsonl OUT.jsonl
-  uv run python -m simula.x03_triage run        # reports/x03_feature_triage.json
+  uv run python -m simula.x03_triage run        # reports/x03_feature_triage_v2.json
 """
 import argparse
 import json
@@ -19,7 +20,8 @@ from simula.data import add_flags, load
 from simula.features import FEATURE_SETS
 from simula.jev_ctr import _row_loss, bootstrap_diff
 from simula.rank_pairs import read_answers
-from simula.x_judge import DATA, WORK, b_recipe, day_bounds, extend_numeric, hour_index, range_sum, windows
+from simula.x_judge import (DATA, WORK, b_recipe, day_bounds, extend_numeric, hour_index, range_sum, trailing_ctr,
+                             windows)
 
 ANSWERS = Path("reports/x03_feature_triage_jev_answers.jsonl")
 REPEATS, N_RANDOM, M = 3, 20, 20
@@ -52,6 +54,8 @@ ZOO = [
     ("session_msg_count", "Total messages in the chat session.", "Taken from the impression record.", False),
 ]
 NAMES = [z[0] for z in ZOO]
+ADMISSIBLE = [z[0] for z in ZOO if z[3]]  # v2: only these are ranked; availability is scored on its own
+SEEDS = [20260920 + s for s in range(5)]
 COLUMNS = [f"zoo_{n}" for n in NAMES]
 TASK = ("Simula serves contextual ads inside AI companion apps. Every impression is tied to a character (the AI "
         "persona the user is chatting with) and the conversation state at the moment of impression. Goal: predict "
@@ -78,10 +82,6 @@ def add_zoo(df):
     t = hour_index(df["hour"])
     day_lo, _ = day_bounds(df)
     today = lambda keys: range_sum(df, keys, day_lo, t - 1)  # noqa: E731
-    out = df.assign(_n=(df["day"] < 141029).astype(float))
-    out["_c"] = out["click"] * out["_n"]
-    clicks = range_sum(out, ["character_id"], -np.inf, day_lo - 1, "_c")
-    shown = range_sum(out, ["character_id"], -np.inf, day_lo - 1, "_n")
     first_seen = df.assign(_t=t).groupby("C14")["_t"].transform("min")
     zoo = {
         "prior_impressions_today_any_ad": today(["device_ip", "device_model"]),
@@ -93,7 +93,8 @@ def add_zoo(df):
         "conversation_turn": df["conversation_turn"].astype(float),
         "turn_share_of_session": df["conversation_turn"] / df["session_msg_count"],
         "safety_tier_ordinal": df["safety_tier"].map({"sfw": 0, "suggestive": 1, "mature": 2}).astype(float),
-        "character_trailing_ctr": (clicks + M * out["_c"].sum() / out["_n"].sum()) / (shown + M),
+        # v2: prior = overall CTR of earlier days, not of all of Oct 21-28 (red team, 1d613cd)
+        "character_trailing_ctr": trailing_ctr(df, ["character_id"], M, df["day"] < 141029),
         "num_interactions": df["num_interactions"].astype(float),
         "session_msg_count": df["session_msg_count"].astype(float),
     }
@@ -117,20 +118,20 @@ def write_states(path):
 def jev_ranking(answers):
     """Mean expected rung over the repeats per feature, the share answering 'available', and the top 3.
 
-    Top 3 = highest mean score; ties keep ZOO order (pre-registered).
+    Top 3 = highest mean score among ADMISSIBLE features; ties keep ZOO order (pre-registered, v2).
     """
     score = {n: float(np.mean([answers[f"{n}:{r}"]["answers"]["expected_gain"]["score"] for r in range(REPEATS)]))
              for n in NAMES}
     available = {n: float(np.mean([answers[f"{n}:{r}"]["answers"]["available_at_decision_time"]["noul"]
                                    for r in range(REPEATS)])) for n in NAMES}
-    top3 = sorted(NAMES, key=lambda n: -score[n])[:3]
+    top3 = sorted(ADMISSIBLE, key=lambda n: -score[n])[:3]
     return score, available, top3
 
 
 def random_draws(seed=0):
-    """The 20 pre-registered random 3-feature sets."""
+    """The 20 pre-registered random 3-feature sets, drawn from the admissible features (v2)."""
     rng = np.random.default_rng(seed)
-    return [sorted(rng.choice(NAMES, 3, replace=False).tolist(), key=NAMES.index) for _ in range(N_RANDOM)]
+    return [sorted(rng.choice(ADMISSIBLE, 3, replace=False).tolist(), key=NAMES.index) for _ in range(N_RANDOM)]
 
 
 def spearman_with_ci(x, y, n_boot=2000, seed=0):
@@ -149,55 +150,66 @@ def spearman_with_ci(x, y, n_boot=2000, seed=0):
 
 
 def run(data_dir, answers):
+    """v2: every arm refit under the 5 SEEDS. A feature's gain is its mean over seeds of B's test log loss minus
+    B + f's, with a t-interval over seeds; only admissible features enter the ranking and the set arms."""
     df = add_zoo(add_flags(load(data_dir)))
     w = windows(df)
     y, chars = w["test"]["click"].to_numpy(), w["test"]["character_id"]
     score, available, top3 = jev_ranking(answers)
-    fits = {}
+    seed_loss, row_loss, trees, splits = {}, {}, {}, {}
 
     def arm(name, feats):
-        r = b_recipe(w, [f"zoo_{f}" for f in feats])
-        fits[name] = {**r, "features": list(feats), "loss": _row_loss(y, r["p"])}
-        print(name, feats, r["trees"], round(fits[name]["loss"].mean(), 6), flush=True)
+        for s in SEEDS:
+            r = b_recipe(w, [f"zoo_{f}" for f in feats], seed=s)
+            loss = _row_loss(y, r["p"])
+            seed_loss[(name, s)], trees[(name, s)], splits[(name, s)] = float(loss.mean()), r["trees"], r["splits"]
+            row_loss[name] = row_loss.get(name, 0) + loss / len(SEEDS)
+            print(name, feats, s, r["trees"], round(loss.mean(), 6), r["splits"], flush=True)
+
+    def gains(name, ref="B"):
+        return [seed_loss[(ref, s)] - seed_loss[(name, s)] for s in SEEDS]
 
     arm("B", [])
-    for n in NAMES:
+    for n in ADMISSIBLE:
         arm(n, [n])
-    base = fits["B"]["loss"]
-    singles = [{"feature": n, "available_by_construction": ZOO[i][3], "jev_score": score[n],
-                "jev_available_share": available[n], "trees": fits[n]["trees"],
-                "select_gain": fits["B"]["select_log_loss"] - fits[n]["select_log_loss"],
-                **dict(zip(("test_gain", "ci_lo", "ci_hi"), bootstrap_diff(chars, base, fits[n]["loss"])))}
-               for i, n in enumerate(NAMES)]
-    gains = [s["test_gain"] for s in singles]
-    oracle3 = [s["feature"] for s in sorted(singles, key=lambda s: -s["test_gain"])][:3]
+    singles = [{"feature": n, "jev_score": score[n], "jev_available_share": available[n],
+                "seed_gains": gains(n), "gain": float(np.mean(gains(n))), "seed_ci": seed_interval(gains(n)),
+                "trees_per_seed": [trees[(n, s)] for s in SEEDS],
+                "splits_per_seed": [splits[(n, s)][f"zoo_{n}"] for s in SEEDS],
+                "char_ci_seed_mean": list(bootstrap_diff(chars, row_loss["B"], row_loss[n]))[1:]}
+               for n in ADMISSIBLE]
+    oracle3 = [s["feature"] for s in sorted(singles, key=lambda s: -s["gain"])][:3]
     arm("jev_top3", top3)
     arm("oracle_top3", oracle3)
     draws = random_draws()
     for d, feats in enumerate(draws):
         arm(f"random3_{d}", feats)
-    random_loss = np.mean([fits[f"random3_{d}"]["loss"] for d in range(N_RANDOM)], axis=0)
-    set_rows = [{"arm": k, "features": fits[k]["features"], "trees": fits[k]["trees"],
-                 "test_log_loss": float(fits[k]["loss"].mean()),
-                 **dict(zip(("gain_vs_B", "ci_lo", "ci_hi"), bootstrap_diff(chars, base, fits[k]["loss"])))}
-                for k in ["B", "jev_top3", "oracle_top3"] + [f"random3_{d}" for d in range(N_RANDOM)]]
-    jev_vs_random = dict(zip(("diff", "ci_lo", "ci_hi"), bootstrap_diff(chars, fits["jev_top3"]["loss"], random_loss)))
-    rho = spearman_with_ci([score[n] for n in NAMES], gains)
-    truth = np.array([z[3] for z in ZOO])
+    random_names = [f"random3_{d}" for d in range(N_RANDOM)]
+    jev_minus_random = [seed_loss[("jev_top3", s)] - np.mean([seed_loss[(k, s)] for k in random_names])
+                        for s in SEEDS]
+    sets = [{"arm": k, "gain_vs_B": float(np.mean(gains(k))), "seed_ci": seed_interval(gains(k))}
+            for k in ["jev_top3", "oracle_top3"] + random_names]
+    rho = spearman_with_ci([score[n] for n in ADMISSIBLE], [s["gain"] for s in singles])
+    seed_ci = seed_interval(jev_minus_random)
     calls = list(answers.values())
     return {
-        "test_rows": len(y), "fit_rows": {k: len(w[k]) for k in ("dev_fit", "refit")},
-        "singles": singles, "sets": set_rows, "jev_top3": top3, "oracle_top3": oracle3, "random_draws": draws,
-        "spearman_jev_vs_test_gain": rho,
-        "spearman_jev_vs_select_gain": spearman_with_ci([score[n] for n in NAMES], [s["select_gain"] for s in singles]),
-        "jev_top3_minus_random3_mean_loss": jev_vs_random,
-        "jev_top3_rank_among_random": int(sum(fits[f"random3_{d}"]["loss"].mean() < fits["jev_top3"]["loss"].mean()
-                                              for d in range(N_RANDOM))),
-        "availability_accuracy": float(np.mean((np.array([available[n] for n in NAMES]) >= 0.5) == truth)),
-        "win": bool(rho["rho"] >= 0.5 and jev_vs_random["ci_hi"] < 0),
+        "seeds": SEEDS, "test_rows": len(y), "fit_rows": {k: len(w[k]) for k in ("dev_fit", "refit")},
+        "admissible": ADMISSIBLE, "singles": singles, "sets": sets, "jev_top3": top3, "oracle_top3": oracle3,
+        "random_draws": draws, "B_seed_losses": [seed_loss[("B", s)] for s in SEEDS],
+        "spearman_jev_vs_gain": rho,
+        "jev_top3_minus_random3_loss": {"seed_diffs": jev_minus_random, "mean": float(np.mean(jev_minus_random)),
+                                        "seed_ci": seed_ci,
+                                        "char_ci_seed_mean": list(bootstrap_diff(
+                                            chars, row_loss["jev_top3"],
+                                            np.mean([row_loss[k] for k in random_names], axis=0)))},
+        "jev_top3_rank_among_random": int(sum(np.mean([seed_loss[(k, s)] for s in SEEDS])
+                                              < np.mean([seed_loss[("jev_top3", s)] for s in SEEDS])
+                                              for k in random_names)),
+        "availability": {"accuracy": float(np.mean([(available[n] >= 0.5) == z[3] for n, z in zip(NAMES, ZOO)])),
+                         "share_available": available},
+        "win": bool(rho["rho"] >= 0.5 and seed_ci[1] < 0),
         "jev": {"calls": len(calls), "models": sorted({a["model"] for a in calls}),
-                "input_tokens": int(sum(a["tokens_in"] for a in calls)),
-                "call_seconds_sum": float(sum(a["seconds"] for a in calls))},
+                "input_tokens": int(sum(a["tokens_in"] for a in calls))},
     }
 
 
@@ -209,49 +221,16 @@ def seed_interval(gains):
     return [float(g.mean() - half), float(g.mean() + half)]
 
 
-def seed_check(data_dir, answers, seeds=5):
-    """Post-hoc, after the pre-registered run: the same arms refit under 5 LightGBM seeds, gains averaged per seed.
-
-    Added because five pre-registered single-feature arms were bit-identical, so a single seed's gain mostly measured
-    the change in bagging and feature sampling that any extra column causes.
-    """
-    df = add_zoo(add_flags(load(data_dir)))
-    w = windows(df)
-    y, chars = w["test"]["click"].to_numpy(), w["test"]["character_id"]
-    score, _, top3 = jev_ranking(answers)
-    arms = {"B": [], **{n: [n] for n in NAMES}, "jev_top3": top3}
-    loss, splits = {}, {}
-    for s in range(seeds):
-        for name, feats in arms.items():
-            r = b_recipe(w, [f"zoo_{f}" for f in feats], seed=20260920 + s)
-            loss[(name, s)], splits[(name, s)] = _row_loss(y, r["p"]), r["splits"]
-            print(s, name, round(loss[(name, s)].mean(), 6), r["splits"], flush=True)
-    mean = {name: np.mean([loss[(name, s)] for s in range(seeds)], axis=0) for name in arms}
-    singles = [{"feature": n, "jev_score": score[n],
-                "seed_gains": [float(loss[("B", s)].mean() - loss[(n, s)].mean()) for s in range(seeds)],
-                "splits_per_seed": [splits[(n, s)][f"zoo_{n}"] for s in range(seeds)],
-                "seed_ci": seed_interval([loss[("B", s)].mean() - loss[(n, s)].mean() for s in range(seeds)]),
-                **dict(zip(("mean_gain", "ci_lo", "ci_hi"), bootstrap_diff(chars, mean["B"], mean[n])))}
-               for n in NAMES]
-    return {"seeds": seeds, "singles": singles,
-            "spearman_jev_vs_mean_gain": spearman_with_ci([score[n] for n in NAMES], [s["mean_gain"] for s in singles]),
-            "jev_top3": dict(zip(("mean_gain", "ci_lo", "ci_hi"), bootstrap_diff(chars, mean["B"], mean["jev_top3"])))}
-
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("step", choices=["states", "run", "seeds"])
+    parser.add_argument("step", choices=["states", "run"])
     parser.add_argument("--data", default=str(DATA))
     args = parser.parse_args()
     if args.step == "states":
         WORK.mkdir(parents=True, exist_ok=True)
         write_states(WORK / "x03_states.jsonl")
         print("wrote", WORK / "x03_states.jsonl")
-    elif args.step == "seeds":
-        out = seed_check(args.data, read_answers(ANSWERS))
-        Path("reports/x03_feature_triage_seeds.json").write_text(json.dumps(out, indent=1, default=float) + "\n")
-        print(json.dumps(out, indent=1, default=float))
     else:
         out = run(args.data, read_answers(ANSWERS))
-        Path("reports/x03_feature_triage.json").write_text(json.dumps(out, indent=1, default=float) + "\n")
+        Path("reports/x03_feature_triage_v2.json").write_text(json.dumps(out, indent=1, default=float) + "\n")
         print(json.dumps({k: v for k, v in out.items() if k not in ("sets", "random_draws")}, indent=1, default=float))

@@ -55,6 +55,34 @@ def day_bounds(df):
     return start, start + 23
 
 
+def trailing_ctr(df, keys, m, labelled=None):
+    """Per row: CTR of `keys` over strictly earlier days, smoothed with m pseudo-impressions toward the overall CTR of
+    strictly earlier days. Both parts use only labels that exist before the row's day (a day's clicks arrive at its
+    end), so the first day, with no earlier labels, is NaN. `labelled` (0/1 per row) drops rows whose labels may not
+    be used at all, such as the test window.
+    """
+    lo, _ = day_bounds(df)
+    n = np.ones(len(df)) if labelled is None else np.asarray(labelled, dtype=float)
+    tmp = df[keys + ["hour"]].assign(_c=df["click"].to_numpy() * n, _n=n, _all=0)
+    clicks, shown = (range_sum(tmp, keys, -np.inf, lo - 1, v) for v in ("_c", "_n"))
+    all_clicks, all_shown = (range_sum(tmp, ["_all"], -np.inf, lo - 1, v) for v in ("_c", "_n"))
+    prior = np.where(all_shown > 0, all_clicks / np.maximum(all_shown, 1), np.nan)
+    return (clicks + m * prior) / (shown + m)
+
+
+def frozen_decile(values, day):
+    """Decile 0-9 of `values` with cutoffs from the rows of strictly earlier days only; -1 where none exist or the
+    value is missing. A row's decile therefore never depends on its own day or later days."""
+    v, day = pd.Series(np.asarray(values, dtype=float)), np.asarray(day)
+    out = np.full(len(v), -1)
+    for d in np.unique(day):
+        past = v[day < d].dropna()
+        now = (day == d) & v.notna().to_numpy()
+        if len(past):
+            out[now] = np.searchsorted(np.quantile(past, np.arange(1, 10) / 10), v[now], side="right")
+    return out
+
+
 def extend_numeric(columns):
     """Treat new columns as numeric model features (as `simula.jev_ctr` does), without editing features.py."""
     CONTRACT["numeric"] = CONTRACT["numeric"] + [c for c in columns if c not in CONTRACT["numeric"]]
