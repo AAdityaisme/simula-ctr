@@ -14,7 +14,8 @@ Pre-registered before any outcome-bearing run:
 - Clean slice: test rows whose (device_ip, device_model) has at most 2 impressions that day.
 - Win: Jev beats the rule on the clean slice, paired character-cluster interval excluding 0, every arm recalibrated.
   Also reported: kappa(Jev, rule), all-test loss, rows excluded.
-Run: OMP_NUM_THREADS=3 uv run python -m simula.x15_curation [smoke | noise]
+Run: OMP_NUM_THREADS=3 uv run python -m simula.x15_curation [smoke | noise | replay]
+`replay` reruns every arm from the committed answers in reports/x15_jev_answers.jsonl, with no Jev call.
 """
 import json
 import sys
@@ -27,10 +28,12 @@ from sklearn.metrics import cohen_kappa_score
 from simula import xtrain
 from simula.data import split
 from simula.features import FEATURE_SETS
+from simula.rank_pairs import read_answers
 
 SEEDS = (0, 1, 2)
 TREES = 183  # bundle/B best_iteration
 ARMS = ("none", "rule", "iforest", "jev")
+ANSWERS = Path("reports/x15_jev_answers.jsonl")
 NUMERIC = ["impressions", "clicks", "ctr", "hours_active", "distinct_creatives", "distinct_apps", "distinct_sites",
            "site_side_share"]
 EXCLUDE = {"exclude_as_automated": {
@@ -76,17 +79,28 @@ def items(p):
     return [{"id": f"{r.device_id}:{r.day}", "state": state(r), "questions": EXCLUDE} for r in p.itertuples()]
 
 
+def jev_answers(prof, replay=False):
+    """(Noul per profile, answer lines). Live asks Jev with device-id keys; replay reads the committed file, keyed
+    profile:<n> in profiles() order so no device id is committed."""
+    if not replay:
+        answers = xtrain.ask_jev(items(prof), "x15")
+        return np.array([answers[i["id"]]["answers"]["exclude_as_automated"]["noul"] for i in items(prof)]), answers
+    answers = read_answers(ANSWERS)
+    assert sorted(answers) == sorted(f"profile:{n}" for n in range(len(prof))), "answers do not match profiles"
+    return np.array([answers[f"profile:{n}"]["answers"]["exclude_as_automated"]["noul"]
+                     for n in range(len(prof))]), answers
+
+
 def clean_slice(test):
     """Test rows whose (device_ip, device_model) has at most 2 impressions that day."""
     return test.groupby(["device_ip", "device_model", "day"])["click"].transform("size").le(2).to_numpy()
 
 
-def run():
+def run(replay=False):
     df = xtrain.frame()
     refit, cal, test = (split(df, w) for w in ("refit", "calibrate", "test"))
     prof = profiles(refit)
-    answers = xtrain.ask_jev(items(prof), "x15")
-    noul = np.array([answers[i["id"]]["answers"]["exclude_as_automated"]["noul"] for i in items(prof)])
+    noul, answers = jev_answers(prof, replay)
     flags = {"none": np.zeros(len(prof), bool), "rule": rule(prof)}
     flags["iforest"] = iforest(prof, flags["rule"].mean())
     flags["jev"] = noul >= 0.5
@@ -126,9 +140,7 @@ def noise():
     df = xtrain.frame()
     refit, cal, test = (split(df, w) for w in ("refit", "calibrate", "test"))
     prof = profiles(refit)
-    answers = xtrain.ask_jev(items(prof), "x15")
-    flags = {"rule": rule(prof), "jev": np.array([answers[i["id"]]["answers"]["exclude_as_automated"]["noul"]
-                                                   for i in items(prof)]) >= 0.5}
+    flags = {"rule": rule(prof), "jev": jev_answers(prof)[0] >= 0.5}
     key = refit["device_id"].astype(str) + ":" + refit["day"].astype(str)
     prof_key = prof["device_id"].astype(str) + ":" + prof["day"].astype(str)
     drop = {arm: key.isin(set(prof_key[f])) for arm, f in flags.items()}
@@ -155,6 +167,9 @@ if __name__ == "__main__":
         print(len(prof), "profiles")
         for k, a in xtrain.ask_jev(items(prof.sample(3, random_state=0)), "x15_smoke").items():
             print(k, a["tokens_in"], a["answers"])
+        sys.exit()
+    if sys.argv[1:] == ["replay"]:
+        print(json.dumps(run(replay=True)["arms"], indent=1))
         sys.exit()
     out = run()
     Path("reports/x15_curation.json").write_text(json.dumps(out, indent=1, default=float) + "\n")

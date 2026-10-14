@@ -57,16 +57,17 @@ Oct 29–30 log loss. Jev − control is negative when Jev is better.
 
 | Seed | Jev labels spent | Jev | Random | Uncertainty | Unc. + diversity | Jev − random (95% CI) | Jev − uncertainty (95% CI) | Jev − unc. + div. (95% CI) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 0 | 2,559 | 0.42424 | **0.42209** | 0.42511 | 0.42451 | +0.00215 (+0.00169 to +0.00263) | −0.00086 (−0.00128 to −0.00047) | −0.00027 (−0.00073 to +0.00017) |
+| 0 (not comparable) | 2,559 | 0.42424 | 0.42209 | 0.42511 | 0.42451 | +0.00215 (+0.00169 to +0.00263) | −0.00086 (−0.00128 to −0.00047) | −0.00027 (−0.00073 to +0.00017) |
 | 1 | 20,000 | 0.42189 | **0.42092** | 0.42279 | 0.42270 | +0.00098 (+0.00050 to +0.00146) | −0.00090 (−0.00136 to −0.00046) | −0.00080 (−0.00132 to −0.00030) |
 | 2 | 20,000 | 0.42163 | **0.42076** | 0.42285 | 0.42244 | +0.00087 (+0.00036 to +0.00137) | −0.00122 (−0.00166 to −0.00077) | −0.00081 (−0.00132 to −0.00037) |
 
 - **Jev put every quota into one cohort.** In seed 0 it chose c32 (romance, site side, rare ads) 20 times. In seeds 1 and 2 it chose c31 (romance, site side, common ads) 20 times. These are the cohorts with the highest mean entropy and disagreement. Order stability was 100%: the reversed menu gave the same pick every time.
 - **It kept buying from an empty cohort.** c32 had 2,559 unlabeled rows. After three quotas, its state showed `unlabeled_rows: 0` and `coverage: 1.0`, and Jev kept choosing it. So seed 0 spent only 2,559 of the 20,000 labels.
-- **Random sampling wins every seed.** The interval excludes 0 each time. Both uncertainty rules lose to random too: entropy-ranked rows are a biased slice of the traffic.
-- **Jev beats the uncertainty rules.** Against uncertainty it wins in all three seeds; against uncertainty + diversity in two of three, with seed 0 inside the noise despite spending an eighth of the labels.
+- **Seed 0 is not comparable.** The pre-registration promised every arm an equal 20,000 labels. The code still offered an emptied cohort, and a pick of it took zero rows. Seed 0 broke the equal budget, so it is shown for the record and left out of the verdict. Seeds 1 and 2 spent 20,000 in every arm, and the verdict rests on them. No unavailable-option revision was run; a rerun that drops emptied cohorts from the menu would need its own pre-registration and would not replace these numbers.
+- **Random sampling wins both comparable seeds.** Jev − random is +0.00098 and +0.00087 in seeds 1 and 2, intervals excluding 0. Both uncertainty rules lose to random too: entropy-ranked rows are a biased slice of the traffic.
+- **Jev beats the uncertainty rules in both comparable seeds,** with intervals excluding 0: by 0.00090 and 0.00122 against uncertainty, 0.00080 and 0.00081 against uncertainty + diversity.
 
-**Pre-declared win: not met.** The win needed Jev below every control in each seed. Jev loses to random in all three. The verdict is a loss.
+**Pre-declared win: not met.** The win needed Jev below every control in each seed. On the two comparable seeds, Jev loses to random in both. The verdict is a loss, on seeds 1 and 2. (Seed 0 points the same way, but its budget was unequal.)
 
 ## What it means for ranking
 
@@ -80,6 +81,7 @@ Oct 29–30 log loss. Jev − control is negative when Jev is better.
 - The test window was already inspected, so everything is exploratory. Nothing here is a causal CTR lift.
 - Small models: 50,000–70,000 training rows, 49–77 trees. The ranking among arms could differ at full scale.
 - Three seeds share one validation day, one calibration day and one test window.
+- Two comparable seeds, not three: seed 0 broke the equal budget (see Results).
 - One wording after the two pre-registration changes. A question that asked for a spread of labels, or said a cohort was empty, might behave differently; that was not tried.
 
 Full suite: 48 passed in 10.95s at e804154

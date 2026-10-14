@@ -24,7 +24,7 @@ A few devices click far more than anyone else: one device-day has 265 impression
 `jev-latest` resolved to `jev-1.13.0`. One version, written before any outcome; not changed.
 
 - `exclude_as_automated` is a Noul. Statement: "This device-day is automated traffic, such as a click farm or bot, and its impressions should be excluded from the click model's training data."
-- **Cost.** 371 calls, 371 attempts, 0 errors, 29.7 s of summed call time, 139,809 input tokens, $0.0059. Answers: `reports/x15_jev_answers.jsonl`, keyed `profile:<n>` in the order `profiles()` returns them (sorted by device id and day), so no device id is committed.
+- **Cost.** 371 calls, 371 attempts, 0 errors, 29.7 s of summed call time, 139,809 input tokens, $0.0059. Answers: `reports/x15_jev_answers.jsonl`, keyed `profile:<n>` in the order `profiles()` returns them (sorted by device id and day), so no device id is committed. `python -m simula.x15_curation replay` maps them back to profiles locally and reruns every arm with no Jev call; `test_x15_replay_reproduces_published_losses` checks that it reproduces the losses below.
 
 One example state, the device-day Jev scored second highest (Noul 0.67):
 

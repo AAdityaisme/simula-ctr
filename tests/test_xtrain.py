@@ -1,11 +1,14 @@
+import json
+
 import numpy as np
 import pandas as pd
+import pytest
 
 from simula import xtrain
 from simula.x12_stopping import options
 from simula.x13_retrain import hour_z, rule_action
 from simula.x14_labels import largest_remainder
-from simula.x15_curation import clean_slice, profiles, rule
+from simula.x15_curation import clean_slice, profiles, rule, run
 
 
 def test_subsample_caps_rows_and_is_seeded():
@@ -56,3 +59,14 @@ def test_curation_profiles_rule_and_clean_slice():
     assert rule(p).tolist() == [True, False]
     assert clean_slice(df).tolist() == [False] * 25 + [False] * 6 + [False] * 4 + [False] * 9
     assert clean_slice(df.iloc[[0, 25, 26, 31]]).tolist() == [True, True, True, True]
+
+
+@pytest.mark.skipif(not xtrain.DATA.exists(), reason="needs the take-home export")
+def test_x15_replay_reproduces_published_losses():
+    published = json.loads(open("reports/x15_curation.json").read())["arms"]
+    replayed = run(replay=True)["arms"]
+    for arm, row in published.items():
+        assert replayed[arm]["profiles_flagged"] == row["profiles_flagged"]
+        assert replayed[arm]["rows_excluded"] == row["rows_excluded"]
+        for k in ("test_log_loss", "clean_log_loss"):
+            assert replayed[arm][k] == pytest.approx(row[k], rel=1e-9)

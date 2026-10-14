@@ -70,7 +70,7 @@ Jev against the other controls: vs one_se −0.000955 (−0.001245 to −0.00063
 
 ## What it means for ranking
 
-- Keep early stopping on the selection day. No option on this menu, including Jev's, moved test loss by the 0.0003 the win asked for. The curve near argmin is flat enough that the choice of tree count barely matters.
+- Keep early stopping on the selection day. No option within ±20% of argmin, including Jev's, moved test loss by the 0.0003 the win asked for; only one_se (+0.00096) and max (+0.0033) moved it, both for the worse. The curve near argmin is flat enough that the choice of tree count barely matters.
 - Jev's one useful behavior is negative: it never picked one_se or max, the two options that clearly hurt. Argmin avoids them too, at no cost.
 - Ranking order and calibration are not affected by this choice in any way that matters at this size.
 
