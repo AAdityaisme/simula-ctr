@@ -113,22 +113,26 @@ def evaluate(pairs, rows, prior, answers):
 
     flip = {"X1": "X2", "X2": "X1", "tie": "tie"}
     swapped = np.array([flip[answers[f"swap:{p}"]["answers"]["pick"]["choice"]] for p in pairs["pair"]])
+    decided = pick != "tie"
     dup = [answers[f"dup:{i}"]["answers"]["pick"] for i in dup_sample(rows)]
     calls = list(answers.values())
     return {
         "pairs": len(pairs), "groups": int(pairs["context_group"].nunique()),
         "characters": int(pairs["character_id"].nunique()),
-        "ceiling": ceiling(c["pctr"].to_numpy(), u["pctr"].to_numpy()),
+        "b_implied_benchmark": ceiling(c["pctr"].to_numpy(), u["pctr"].to_numpy()),
         "identical_evidence_pairs": int(sum(_candidate(a) == _candidate(b) for (_, a), (_, b) in
                                             zip(c.iterrows(), u.iterrows()))),
         "jev_ties": int((pick == "tie").sum()), "b_exact_ties": int((b == 0.5).sum()),
         "arms": table,
+        "jev_non_tie": {"pairs": int(decided.sum()), "jev_acc": float(arms["jev"][decided].mean()),
+                        "b_acc": float(b[decided].mean())},
         "order_check": {"pairs": len(pairs), "same_choice_share": float(np.mean(swapped == pick)),
+                        "same_ad_share_both_non_tie": float(np.mean((swapped == pick)[decided & (swapped != "tie")])),
                         "ties_original": int((pick == "tie").sum()), "ties_swapped": int((swapped == "tie").sum())},
         "identical_evidence": {"pairs": len(dup), "non_tie_share": float(np.mean([d["choice"] != "tie" for d in dup])),
                                "mean_abs_p_x1_minus_p_x2": float(np.mean(
                                    [abs(d["probabilities"]["X1"] - d["probabilities"]["X2"]) for d in dup]))},
-        "jev": {"calls": len(calls), "models": sorted({a["model"] for a in calls}),
+        "jev": {"calls": len(calls), "attempts": int(sum(a["attempts"] for a in calls)), "models": sorted({a["model"] for a in calls}),
                 "input_tokens": int(sum(a["tokens_in"] for a in calls)),
                 "call_seconds_sum": float(sum(a["seconds"] for a in calls)),
                 "call_seconds_median": float(np.median([a["seconds"] for a in calls]))},

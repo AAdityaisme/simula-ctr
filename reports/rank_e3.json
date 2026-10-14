@@ -1,0 +1,156 @@
+{
+ "pairs": 424,
+ "groups": 327,
+ "characters": 265,
+ "b_implied_benchmark": 0.5588951680028172,
+ "identical_evidence_pairs": 154,
+ "jev_ties": 213,
+ "b_exact_ties": 13,
+ "arms": [
+  {
+   "arm": "coin",
+   "acc": 0.5,
+   "acc_ci": [
+    0.5,
+    0.5
+   ],
+   "diff_vs_B": [
+    -0.036556603773584904,
+    -0.08621518567639258,
+    0.013334821428571429
+   ],
+   "mcnemar_vs_B": null,
+   "diff_vs_count_weighted_mean": [
+    0.02830188679245283,
+    -0.012110999399134991,
+    0.07177063101046947
+   ],
+   "mcnemar_vs_count_weighted_mean": null
+  },
+  {
+   "arm": "B",
+   "acc": 0.5365566037735849,
+   "acc_ci": [
+    0.4866651785714286,
+    0.5862151856763925
+   ],
+   "diff_vs_count_weighted_mean": [
+    0.06485849056603774,
+    -0.0012943872702408255,
+    0.13072507590258065
+   ],
+   "mcnemar_vs_count_weighted_mean": {
+    "decisive_pairs": 269,
+    "wins": 72,
+    "losses": 53,
+    "p": 0.10703141160601275
+   }
+  },
+  {
+   "arm": "lookup",
+   "acc": 0.5224056603773585,
+   "acc_ci": [
+    0.5011840816304194,
+    0.5445246840050294
+   ],
+   "diff_vs_B": [
+    -0.014150943396226415,
+    -0.0709135020239388,
+    0.03683221726190476
+   ],
+   "mcnemar_vs_B": {
+    "decisive_pairs": 74,
+    "wins": 24,
+    "losses": 15,
+    "p": 0.19959086691960698
+   },
+   "diff_vs_count_weighted_mean": [
+    0.05070754716981132,
+    0.0,
+    0.10141509433962265
+   ],
+   "mcnemar_vs_count_weighted_mean": {
+    "decisive_pairs": 75,
+    "wins": 32,
+    "losses": 21,
+    "p": 0.16897782228771874
+   }
+  },
+  {
+   "arm": "count_weighted_mean",
+   "acc": 0.4716981132075472,
+   "acc_ci": [
+    0.42822936898953057,
+    0.512110999399135
+   ],
+   "diff_vs_B": [
+    -0.06485849056603774,
+    -0.13072507590258067,
+    0.0012943872702408038
+   ],
+   "mcnemar_vs_B": {
+    "decisive_pairs": 269,
+    "wins": 53,
+    "losses": 72,
+    "p": 0.10703141160601275
+   }
+  },
+  {
+   "arm": "jev",
+   "acc": 0.5165094339622641,
+   "acc_ci": [
+    0.46428377750232414,
+    0.5652367027146324
+   ],
+   "diff_vs_B": [
+    -0.020047169811320754,
+    -0.0648867351887486,
+    0.02272974308300395
+   ],
+   "mcnemar_vs_B": {
+    "decisive_pairs": 411,
+    "wins": 38,
+    "losses": 46,
+    "p": 0.4452046690465761
+   },
+   "diff_vs_count_weighted_mean": [
+    0.04481132075471698,
+    -0.015589407991678947,
+    0.10026537509520182
+   ],
+   "mcnemar_vs_count_weighted_mean": {
+    "decisive_pairs": 270,
+    "wins": 53,
+    "losses": 42,
+    "p": 0.30488519070227593
+   }
+  }
+ ],
+ "jev_non_tie": {
+  "pairs": 211,
+  "jev_acc": 0.4786729857819905,
+  "b_acc": 0.518957345971564
+ },
+ "order_check": {
+  "pairs": 424,
+  "same_choice_share": 0.6933962264150944,
+  "same_ad_share_both_non_tie": 0.6132596685082873,
+  "ties_original": 213,
+  "ties_swapped": 213
+ },
+ "identical_evidence": {
+  "pairs": 100,
+  "non_tie_share": 0.0,
+  "mean_abs_p_x1_minus_p_x2": 0.0043
+ },
+ "jev": {
+  "calls": 948,
+  "attempts": 948,
+  "models": [
+   "jev-1.13.0"
+  ],
+  "input_tokens": 1157641,
+  "call_seconds_sum": 109.751,
+  "call_seconds_median": 0.105
+ }
+}
