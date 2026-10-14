@@ -130,4 +130,4 @@ The README and `features.py` bar `device_ip` as identity: it is in the `never` l
 - B_sub and B_sub + counter use 300,000-row subsamples, so both trail B by about 0.0035 log loss. Only their difference is the counter's effect.
 - Log loss and AUC across rows measure the multiplier as a probability. They do not measure the within-request choice the discount actually makes. There are no logged candidate sets here, so nothing in this report is a causal CTR lift.
 
-Full suite: 46 passed in 10.47s at e3deb93
+Full suite: 46 passed in 10.19s at 12078fb

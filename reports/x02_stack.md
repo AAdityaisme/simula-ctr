@@ -87,4 +87,4 @@ Stacking Jev's pick on top of B does not help, at least not when Jev reads B's p
 - Pairs are two impressions in one context, not a logged auction. Neither stacker's accuracy is a causal CTR lift.
 - Jev's test answers come from the e12 run, which counted successful attempts only.
 
-Full suite: 46 passed in 10.47s at e3deb93
+Full suite: 46 passed in 10.19s at 12078fb
