@@ -91,4 +91,4 @@ Action sequences (Oct 27, 28, 29, 30):
 - Each fit used at most 300,000 rows and 110 trees, so these models are weaker than the full-data B.
 - One wording. The refit option did not say "unavailable" when the budget was spent; the state did. A clearer option text might have avoided the seed-2 holds, but changing it after seeing the result would be tuning on the test window.
 
-Full suite: 48 passed in 10.95s at e804154
+Full suite: 49 passed in 131.81s at 0dd9271

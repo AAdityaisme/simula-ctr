@@ -85,4 +85,4 @@ The placebo sits inside the no-exclusion range. Every rule and Jev seed sits abo
 - 371 profiles from one week. There is no ground truth for "automated".
 - κ is between flag sets, not against truth.
 
-Full suite: 48 passed in 10.95s at e804154
+Full suite: 49 passed in 131.81s at 0dd9271

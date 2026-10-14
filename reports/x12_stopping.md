@@ -82,4 +82,4 @@ Jev against the other controls: vs one_se −0.000955 (−0.001245 to −0.00063
 - Jev saw the drift table for train, Oct 27 and Oct 28 only. It never saw a test row.
 - One wording, asked once per order. A wording that hid the argmin label might change the picks, but tuning it on this window would overfit the test.
 
-Full suite: 48 passed in 10.95s at e804154
+Full suite: 49 passed in 131.81s at 0dd9271

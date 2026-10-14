@@ -84,4 +84,4 @@ Oct 29–30 log loss. Jev − control is negative when Jev is better.
 - Two comparable seeds, not three: seed 0 broke the equal budget (see Results).
 - One wording after the two pre-registration changes. A question that asked for a spread of labels, or said a cohort was empty, might behave differently; that was not tried.
 
-Full suite: 48 passed in 10.95s at e804154
+Full suite: 49 passed in 131.81s at 0dd9271
