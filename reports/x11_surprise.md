@@ -63,4 +63,4 @@ Exploration budget is best spent on the new creatives whose real click rate will
 - Each creative's attributes are read from its first test row. C18, C19, C20 and slot can vary across a creative's rows.
 - The target is a forecast-quality measure on logged impressions. Nothing here is a causal CTR lift.
 
-Full suite: 46 passed in 10.99s at 33e6565
+Full suite: 47 passed in 9.61s at 3b809c9

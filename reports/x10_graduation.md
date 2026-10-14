@@ -103,4 +103,4 @@ By checkpoint level, log loss of each source on the rows scored at that level:
 - Pairs of sources share most of their information, so the per-level differences are small. They are reported without intervals; only the pooled comparisons have them.
 - These are log-loss changes on logged impressions. Nothing here is a causal CTR lift.
 
-Full suite: 46 passed in 10.99s at 33e6565
+Full suite: 47 passed in 9.61s at 3b809c9
