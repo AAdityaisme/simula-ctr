@@ -1,0 +1,800 @@
+{"id": "sides:0", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.244, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.29}}}
+{"id": "mix:0", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.285, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.25}}}
+{"id": "sides:1", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.367, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.36}}}
+{"id": "mix:1", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.194, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:2", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.287, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.41}}}
+{"id": "mix:2", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.273, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:3", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.398, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.53}}}
+{"id": "mix:3", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.228, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:4", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.151, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.37}}}
+{"id": "mix:4", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.135, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:5", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.103, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.37}}}
+{"id": "mix:5", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.105, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.28}}}
+{"id": "sides:6", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.13, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.15}}}
+{"id": "mix:6", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.144, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.13}}}
+{"id": "sides:7", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.122, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.64}}}
+{"id": "mix:7", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.125, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:8", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.098, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.43}}}
+{"id": "mix:8", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.112, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:9", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.141, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.27}}}
+{"id": "mix:9", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.152, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:10", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.116, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.21}}}
+{"id": "mix:10", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.106, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.16}}}
+{"id": "sides:11", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.105, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.2}}}
+{"id": "mix:11", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.099, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.22}}}
+{"id": "sides:12", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.169, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.4}}}
+{"id": "mix:12", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.099, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.31}}}
+{"id": "sides:13", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.121, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.43}}}
+{"id": "mix:13", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.111, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:14", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.129, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.43}}}
+{"id": "mix:14", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.139, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:15", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.116, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.38}}}
+{"id": "mix:15", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.101, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.29}}}
+{"id": "sides:16", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.111, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.55}}}
+{"id": "mix:16", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.133, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.32}}}
+{"id": "sides:17", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.096, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.53}}}
+{"id": "mix:17", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.118, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:18", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.104, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.38}}}
+{"id": "mix:18", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.111, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.36}}}
+{"id": "sides:19", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.096, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.58}}}
+{"id": "mix:19", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.137, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.37}}}
+{"id": "sides:20", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.096, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.24}}}
+{"id": "mix:20", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.142, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.2}}}
+{"id": "sides:21", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.108, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.44}}}
+{"id": "mix:21", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.123, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:22", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.099, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.52}}}
+{"id": "mix:22", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.1, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:23", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.114, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.55}}}
+{"id": "mix:23", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.114, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:24", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.094, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.28}}}
+{"id": "mix:24", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.308, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:25", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.304, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.47}}}
+{"id": "mix:25", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.098, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.31}}}
+{"id": "sides:26", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.125, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.37}}}
+{"id": "mix:26", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.114, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.36}}}
+{"id": "sides:27", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.108, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.5}}}
+{"id": "mix:27", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.109, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:28", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.105, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.4}}}
+{"id": "mix:28", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.095, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.36}}}
+{"id": "sides:29", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.106, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "mix:29", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.096, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:30", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.101, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.53}}}
+{"id": "mix:30", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.101, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:31", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.137, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.36}}}
+{"id": "mix:31", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.114, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.32}}}
+{"id": "sides:32", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.151, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.41}}}
+{"id": "mix:32", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.105, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:33", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.1, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.37}}}
+{"id": "mix:33", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.105, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:34", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.128, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.51}}}
+{"id": "mix:34", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.099, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.37}}}
+{"id": "sides:35", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.142, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "mix:35", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.107, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:36", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.1, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "mix:36", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.104, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.27}}}
+{"id": "sides:37", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.111, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.3}}}
+{"id": "mix:37", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.113, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:38", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.137, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.38}}}
+{"id": "mix:38", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.144, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.3}}}
+{"id": "sides:39", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.103, "attempts": 2, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "mix:39", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.122, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:40", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.129, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.22}}}
+{"id": "mix:40", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.096, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.25}}}
+{"id": "sides:41", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.086, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.27}}}
+{"id": "mix:41", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.105, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.25}}}
+{"id": "sides:42", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.106, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.24}}}
+{"id": "mix:42", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.096, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.22}}}
+{"id": "sides:43", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.135, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.44}}}
+{"id": "mix:43", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.205, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:44", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.169, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.45}}}
+{"id": "mix:44", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.107, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:45", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.098, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.17}}}
+{"id": "mix:45", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.064, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.24}}}
+{"id": "sides:46", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.124, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.55}}}
+{"id": "mix:46", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.126, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:47", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.1, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.5}}}
+{"id": "mix:47", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.099, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:48", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.106, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.5}}}
+{"id": "mix:48", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.115, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.36}}}
+{"id": "sides:49", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.098, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.61}}}
+{"id": "mix:49", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.096, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.37}}}
+{"id": "sides:50", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.116, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.31}}}
+{"id": "mix:50", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.162, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.23}}}
+{"id": "sides:51", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.102, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.4}}}
+{"id": "mix:51", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.134, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:52", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.096, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.37}}}
+{"id": "mix:52", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.103, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.32}}}
+{"id": "sides:53", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.101, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.44}}}
+{"id": "mix:53", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.122, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.32}}}
+{"id": "sides:54", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.139, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.67}}}
+{"id": "mix:54", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.093, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:55", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.139, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.27}}}
+{"id": "mix:55", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.135, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.31}}}
+{"id": "sides:56", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.129, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "mix:56", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.115, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.27}}}
+{"id": "sides:57", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.097, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.23}}}
+{"id": "mix:57", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.094, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.32}}}
+{"id": "sides:58", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.125, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "mix:58", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.237, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:59", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.125, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.29}}}
+{"id": "mix:59", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.102, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.29}}}
+{"id": "sides:60", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.098, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.06}}}
+{"id": "mix:60", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.092, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.13}}}
+{"id": "sides:61", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.096, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "mix:61", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.105, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.31}}}
+{"id": "sides:62", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.101, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.46}}}
+{"id": "mix:62", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.121, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.37}}}
+{"id": "sides:63", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.096, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "mix:63", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.095, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.27}}}
+{"id": "sides:64", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.094, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.41}}}
+{"id": "mix:64", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.098, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.38}}}
+{"id": "sides:65", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.09, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.39}}}
+{"id": "mix:65", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.138, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.32}}}
+{"id": "sides:66", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.229, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.53}}}
+{"id": "mix:66", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.151, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:67", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.117, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "mix:67", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.161, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:68", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.113, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.58}}}
+{"id": "mix:68", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.143, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:69", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.169, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.52}}}
+{"id": "mix:69", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.095, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:70", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.138, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.51}}}
+{"id": "mix:70", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.114, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.31}}}
+{"id": "sides:71", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.098, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.57}}}
+{"id": "mix:71", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.092, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:72", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.095, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.36}}}
+{"id": "mix:72", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.137, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:73", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.11, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.6}}}
+{"id": "mix:73", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.112, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:74", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.109, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.57}}}
+{"id": "mix:74", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.107, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.38}}}
+{"id": "sides:75", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.133, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.2}}}
+{"id": "mix:75", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.146, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.23}}}
+{"id": "sides:76", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.098, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "mix:76", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.104, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:77", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.173, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.53}}}
+{"id": "mix:77", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.143, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:78", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.115, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.4}}}
+{"id": "mix:78", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.121, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.3}}}
+{"id": "sides:79", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.111, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.6}}}
+{"id": "mix:79", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.124, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.36}}}
+{"id": "sides:80", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.099, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.27}}}
+{"id": "mix:80", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.097, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.25}}}
+{"id": "sides:81", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.142, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.46}}}
+{"id": "mix:81", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.114, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:82", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.141, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.6}}}
+{"id": "mix:82", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.096, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.37}}}
+{"id": "sides:83", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.106, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.56}}}
+{"id": "mix:83", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.098, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.36}}}
+{"id": "sides:84", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.11, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.47}}}
+{"id": "mix:84", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.095, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.36}}}
+{"id": "sides:85", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.064, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.15}}}
+{"id": "mix:85", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.137, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.24}}}
+{"id": "sides:86", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.096, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.38}}}
+{"id": "mix:86", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.105, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.37}}}
+{"id": "sides:87", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.105, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.46}}}
+{"id": "mix:87", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.111, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:88", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.096, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.38}}}
+{"id": "mix:88", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.093, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.39}}}
+{"id": "sides:89", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.096, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "mix:89", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.127, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:90", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.126, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.27}}}
+{"id": "mix:90", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.1, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.29}}}
+{"id": "sides:91", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.097, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.31}}}
+{"id": "mix:91", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.135, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.17}}}
+{"id": "sides:92", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.13, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.56}}}
+{"id": "mix:92", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.142, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:93", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.103, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.52}}}
+{"id": "mix:93", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.104, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:94", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.123, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.66}}}
+{"id": "mix:94", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.122, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.37}}}
+{"id": "sides:95", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.123, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.27}}}
+{"id": "mix:95", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.092, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.23}}}
+{"id": "sides:96", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.116, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.46}}}
+{"id": "mix:96", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.142, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:97", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.129, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.6}}}
+{"id": "mix:97", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.095, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.32}}}
+{"id": "sides:98", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.108, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.32}}}
+{"id": "mix:98", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.118, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.23}}}
+{"id": "sides:99", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.114, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.57}}}
+{"id": "mix:99", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.096, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:100", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.1, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.32}}}
+{"id": "mix:100", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.117, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:101", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.114, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.24}}}
+{"id": "mix:101", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.108, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.25}}}
+{"id": "sides:102", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.133, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.57}}}
+{"id": "mix:102", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.131, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:103", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.113, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.16}}}
+{"id": "mix:103", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.12, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.14}}}
+{"id": "sides:104", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.118, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.54}}}
+{"id": "mix:104", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.15, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:105", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.11, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.13}}}
+{"id": "mix:105", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.125, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.22}}}
+{"id": "sides:106", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.137, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "mix:106", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.125, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:107", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.187, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.25}}}
+{"id": "mix:107", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.118, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.14}}}
+{"id": "sides:108", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.121, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.54}}}
+{"id": "mix:108", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.104, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:109", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.113, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.38}}}
+{"id": "mix:109", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.195, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:110", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.157, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.52}}}
+{"id": "mix:110", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.094, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:111", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.116, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.26}}}
+{"id": "mix:111", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.106, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.29}}}
+{"id": "sides:112", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.142, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "mix:112", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.148, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:113", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.155, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.44}}}
+{"id": "mix:113", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.129, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:114", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.102, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.61}}}
+{"id": "mix:114", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.102, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:115", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.095, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.45}}}
+{"id": "mix:115", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.181, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.22}}}
+{"id": "sides:116", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.098, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.45}}}
+{"id": "mix:116", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.104, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.31}}}
+{"id": "sides:117", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.152, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.36}}}
+{"id": "mix:117", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.105, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:118", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.142, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.47}}}
+{"id": "mix:118", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.058, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.32}}}
+{"id": "sides:119", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.105, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.43}}}
+{"id": "mix:119", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.112, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.32}}}
+{"id": "sides:120", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.097, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.16}}}
+{"id": "mix:120", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.112, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.17}}}
+{"id": "sides:121", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.099, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.53}}}
+{"id": "mix:121", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.116, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:122", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.125, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "mix:122", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.135, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:123", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.111, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.41}}}
+{"id": "mix:123", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.106, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.37}}}
+{"id": "sides:124", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.131, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.61}}}
+{"id": "mix:124", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.095, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:125", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.113, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.45}}}
+{"id": "mix:125", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.093, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:126", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.092, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.16}}}
+{"id": "mix:126", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.273, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.19}}}
+{"id": "sides:127", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.196, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.43}}}
+{"id": "mix:127", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.156, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.32}}}
+{"id": "sides:128", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.239, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.49}}}
+{"id": "mix:128", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.108, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:129", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.098, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.29}}}
+{"id": "mix:129", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.101, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.31}}}
+{"id": "sides:130", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.104, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.13}}}
+{"id": "mix:130", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.074, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.06}}}
+{"id": "sides:131", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.098, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.4}}}
+{"id": "mix:131", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.127, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:132", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.096, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.28}}}
+{"id": "mix:132", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.14, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:133", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.113, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.45}}}
+{"id": "mix:133", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.1, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:134", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.096, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.39}}}
+{"id": "mix:134", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.133, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.31}}}
+{"id": "sides:135", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.184, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.26}}}
+{"id": "mix:135", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.123, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.26}}}
+{"id": "sides:136", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.109, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.27}}}
+{"id": "mix:136", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.105, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:137", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.135, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.39}}}
+{"id": "mix:137", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.119, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.28}}}
+{"id": "sides:138", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.093, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.54}}}
+{"id": "mix:138", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.342, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:139", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.116, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.46}}}
+{"id": "mix:139", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.075, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.37}}}
+{"id": "sides:140", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.166, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.51}}}
+{"id": "mix:140", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.098, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:141", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.107, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.38}}}
+{"id": "mix:141", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.126, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:142", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.098, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "mix:142", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.162, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.28}}}
+{"id": "sides:143", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.103, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.59}}}
+{"id": "mix:143", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.159, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:144", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.111, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.41}}}
+{"id": "mix:144", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.101, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:145", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.179, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.31}}}
+{"id": "mix:145", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.101, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.32}}}
+{"id": "sides:146", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.13, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.24}}}
+{"id": "mix:146", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.105, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:147", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.104, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.06}}}
+{"id": "mix:147", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.128, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.15}}}
+{"id": "sides:148", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.159, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.27}}}
+{"id": "mix:148", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.099, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.27}}}
+{"id": "sides:149", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.171, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.49}}}
+{"id": "mix:149", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.092, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:150", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.134, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.23}}}
+{"id": "mix:150", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.098, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.23}}}
+{"id": "sides:151", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.165, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.27}}}
+{"id": "mix:151", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.108, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.31}}}
+{"id": "sides:152", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.111, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.37}}}
+{"id": "mix:152", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.127, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.31}}}
+{"id": "sides:153", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.096, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.48}}}
+{"id": "mix:153", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.097, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:154", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.1, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.45}}}
+{"id": "mix:154", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.108, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.38}}}
+{"id": "sides:155", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.098, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.16}}}
+{"id": "mix:155", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.117, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.19}}}
+{"id": "sides:156", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.094, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.3}}}
+{"id": "mix:156", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.106, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.32}}}
+{"id": "sides:157", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.116, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.49}}}
+{"id": "mix:157", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.1, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.32}}}
+{"id": "sides:158", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.07, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.46}}}
+{"id": "mix:158", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.098, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.3}}}
+{"id": "sides:159", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.114, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.66}}}
+{"id": "mix:159", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.114, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.37}}}
+{"id": "sides:160", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.095, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.46}}}
+{"id": "mix:160", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.111, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:161", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.097, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.09}}}
+{"id": "mix:161", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.107, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.15}}}
+{"id": "sides:162", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.131, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.45}}}
+{"id": "mix:162", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.126, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:163", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.104, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.46}}}
+{"id": "mix:163", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.102, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:164", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.118, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.36}}}
+{"id": "mix:164", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.104, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:165", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.125, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.37}}}
+{"id": "mix:165", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.106, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:166", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.105, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.39}}}
+{"id": "mix:166", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.065, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.32}}}
+{"id": "sides:167", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.101, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.42}}}
+{"id": "mix:167", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.123, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.27}}}
+{"id": "sides:168", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.119, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "mix:168", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.118, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.17}}}
+{"id": "sides:169", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.13, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.47}}}
+{"id": "mix:169", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.104, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.36}}}
+{"id": "sides:170", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.099, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.57}}}
+{"id": "mix:170", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.108, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:171", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.093, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.29}}}
+{"id": "mix:171", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.124, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.22}}}
+{"id": "sides:172", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.095, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.36}}}
+{"id": "mix:172", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.112, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:173", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.113, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.58}}}
+{"id": "mix:173", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.12, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:174", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.146, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.42}}}
+{"id": "mix:174", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.143, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.36}}}
+{"id": "sides:175", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.112, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.29}}}
+{"id": "mix:175", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.12, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.29}}}
+{"id": "sides:176", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.116, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.52}}}
+{"id": "mix:176", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.096, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:177", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.137, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.46}}}
+{"id": "mix:177", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.1, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:178", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.101, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.4}}}
+{"id": "mix:178", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.107, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:179", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.097, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.41}}}
+{"id": "mix:179", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.1, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:180", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.096, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.42}}}
+{"id": "mix:180", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.099, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.3}}}
+{"id": "sides:181", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.098, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.56}}}
+{"id": "mix:181", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.094, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.31}}}
+{"id": "sides:182", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.113, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.36}}}
+{"id": "mix:182", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.126, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.36}}}
+{"id": "sides:183", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.096, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.4}}}
+{"id": "mix:183", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.109, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:184", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.114, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.6}}}
+{"id": "mix:184", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.105, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.38}}}
+{"id": "sides:185", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.123, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.28}}}
+{"id": "mix:185", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.099, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.32}}}
+{"id": "sides:186", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.157, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.55}}}
+{"id": "mix:186", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.11, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.31}}}
+{"id": "sides:187", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.113, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.28}}}
+{"id": "mix:187", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.118, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.28}}}
+{"id": "sides:188", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.125, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.47}}}
+{"id": "mix:188", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.093, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:189", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.096, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.49}}}
+{"id": "mix:189", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.096, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.37}}}
+{"id": "sides:190", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.171, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.39}}}
+{"id": "mix:190", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.116, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:191", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.122, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.28}}}
+{"id": "mix:191", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.175, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:192", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.113, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.37}}}
+{"id": "mix:192", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.127, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "sides:193", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.108, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.57}}}
+{"id": "mix:193", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.119, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "sides:194", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.092, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.5}}}
+{"id": "mix:194", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.097, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:195", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.11, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.51}}}
+{"id": "mix:195", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.105, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:196", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.161, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.3}}}
+{"id": "mix:196", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.097, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.24}}}
+{"id": "sides:197", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.1, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.36}}}
+{"id": "mix:197", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.116, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "sides:198", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.108, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.46}}}
+{"id": "mix:198", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.071, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.37}}}
+{"id": "sides:199", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.104, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.39}}}
+{"id": "mix:199", "model": "jev-1.13.0", "tokens_in": 406, "seconds": 0.117, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "resides:0", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.094, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.36}}}
+{"id": "resides:1", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.066, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.27}}}
+{"id": "resides:2", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.146, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.32}}}
+{"id": "resides:3", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.138, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.33}}}
+{"id": "resides:4", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.154, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.54}}}
+{"id": "resides:5", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.106, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.34}}}
+{"id": "resides:6", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.122, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.26}}}
+{"id": "resides:7", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.099, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.37}}}
+{"id": "resides:8", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.109, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.39}}}
+{"id": "resides:9", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.13, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.35}}}
+{"id": "resides:10", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.101, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.28}}}
+{"id": "resides:11", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.114, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.1}}}
+{"id": "resides:12", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.15, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.49}}}
+{"id": "resides:13", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.111, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.51}}}
+{"id": "resides:14", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.096, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.5}}}
+{"id": "resides:15", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.098, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.3}}}
+{"id": "resides:16", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.149, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.48}}}
+{"id": "resides:17", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.098, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.51}}}
+{"id": "resides:18", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.128, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.56}}}
+{"id": "resides:19", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.105, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.49}}}
+{"id": "resides:20", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.097, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.15}}}
+{"id": "resides:21", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.158, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.42}}}
+{"id": "resides:22", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.116, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.41}}}
+{"id": "resides:23", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.164, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.61}}}
+{"id": "resides:24", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.11, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.57}}}
+{"id": "resides:25", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.114, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.36}}}
+{"id": "resides:26", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.123, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.48}}}
+{"id": "resides:27", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.109, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.31}}}
+{"id": "resides:28", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.101, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.42}}}
+{"id": "resides:29", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.136, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.46}}}
+{"id": "resides:30", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.127, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.67}}}
+{"id": "resides:31", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.107, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.32}}}
+{"id": "resides:32", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.102, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.37}}}
+{"id": "resides:33", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.118, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.4}}}
+{"id": "resides:34", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.266, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.52}}}
+{"id": "resides:35", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.094, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.5}}}
+{"id": "resides:36", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.153, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.26}}}
+{"id": "resides:37", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.098, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.48}}}
+{"id": "resides:38", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.103, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.31}}}
+{"id": "resides:39", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.117, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.54}}}
+{"id": "resides:40", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.106, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.25}}}
+{"id": "resides:41", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.1, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.31}}}
+{"id": "resides:42", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.078, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.27}}}
+{"id": "resides:43", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.179, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.42}}}
+{"id": "resides:44", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.078, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.28}}}
+{"id": "resides:45", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.077, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.31}}}
+{"id": "resides:46", "model": "jev-1.13.0", "tokens_in": 529, "seconds": 0.138, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.46}}}
+{"id": "resides:47", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.104, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.37}}}
+{"id": "resides:48", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.106, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.65}}}
+{"id": "resides:49", "model": "jev-1.13.0", "tokens_in": 530, "seconds": 0.096, "attempts": 1, "answers": {"ship": {"type": "noul", "noul": 0.55}}}
+{"id": "panel:0", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.108, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.73, "probabilities": {"predictive_diagnostic": 0.11, "rematch": 0.82, "unidentifiable": 0.07}}}}
+{"id": "repanel:0", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.104, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.56, "probabilities": {"unidentifiable": 0.12, "rematch": 0.71, "predictive_diagnostic": 0.17}}}}
+{"id": "panel:1", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.177, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.53, "probabilities": {"unidentifiable": 0.14, "rematch": 0.69, "predictive_diagnostic": 0.17}}}}
+{"id": "panel:2", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.098, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.52, "probabilities": {"unidentifiable": 0.14, "rematch": 0.68, "predictive_diagnostic": 0.17}}}}
+{"id": "panel:3", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.098, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.66, "probabilities": {"unidentifiable": 0.13, "predictive_diagnostic": 0.1, "rematch": 0.77}}}}
+{"id": "panel:4", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.116, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.48, "probabilities": {"unidentifiable": 0.15, "rematch": 0.65, "predictive_diagnostic": 0.2}}}}
+{"id": "panel:5", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.108, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.41, "probabilities": {"predictive_diagnostic": 0.22, "unidentifiable": 0.17, "rematch": 0.61}}}}
+{"id": "panel:6", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.109, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.46, "probabilities": {"rematch": 0.64, "predictive_diagnostic": 0.19, "unidentifiable": 0.17}}}}
+{"id": "repanel:6", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.102, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.59, "probabilities": {"unidentifiable": 0.14, "predictive_diagnostic": 0.13, "rematch": 0.73}}}}
+{"id": "panel:7", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.123, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.46, "probabilities": {"unidentifiable": 0.14, "rematch": 0.64, "predictive_diagnostic": 0.22}}}}
+{"id": "panel:8", "model": "jev-1.13.0", "tokens_in": 763, "seconds": 0.116, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.52, "probabilities": {"unidentifiable": 0.16, "rematch": 0.68, "predictive_diagnostic": 0.16}}}}
+{"id": "panel:9", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.102, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.69, "probabilities": {"unidentifiable": 0.16, "predictive_diagnostic": 0.05, "rematch": 0.79}}}}
+{"id": "panel:10", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.111, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.56, "probabilities": {"unidentifiable": 0.14, "predictive_diagnostic": 0.15, "rematch": 0.71}}}}
+{"id": "panel:11", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.107, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.62, "probabilities": {"unidentifiable": 0.14, "predictive_diagnostic": 0.11, "rematch": 0.75}}}}
+{"id": "panel:12", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.117, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.46, "probabilities": {"rematch": 0.64, "predictive_diagnostic": 0.24, "unidentifiable": 0.12}}}}
+{"id": "repanel:12", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.108, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.62, "probabilities": {"unidentifiable": 0.12, "predictive_diagnostic": 0.13, "rematch": 0.75}}}}
+{"id": "panel:13", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.136, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.56, "probabilities": {"unidentifiable": 0.22, "rematch": 0.71, "predictive_diagnostic": 0.07}}}}
+{"id": "panel:14", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.118, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.66, "probabilities": {"rematch": 0.77, "unidentifiable": 0.05, "predictive_diagnostic": 0.18}}}}
+{"id": "panel:15", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.098, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.53, "probabilities": {"unidentifiable": 0.17, "rematch": 0.69, "predictive_diagnostic": 0.14}}}}
+{"id": "panel:16", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.101, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.43, "probabilities": {"rematch": 0.62, "unidentifiable": 0.1, "predictive_diagnostic": 0.28}}}}
+{"id": "panel:17", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.203, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.62, "probabilities": {"predictive_diagnostic": 0.12, "rematch": 0.75, "unidentifiable": 0.13}}}}
+{"id": "panel:18", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.112, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.58, "probabilities": {"predictive_diagnostic": 0.17, "rematch": 0.72, "unidentifiable": 0.11}}}}
+{"id": "repanel:18", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.136, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.41, "probabilities": {"unidentifiable": 0.14, "rematch": 0.61, "predictive_diagnostic": 0.25}}}}
+{"id": "panel:19", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.142, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.7, "probabilities": {"predictive_diagnostic": 0.09, "rematch": 0.8, "unidentifiable": 0.11}}}}
+{"id": "panel:20", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.112, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.66, "probabilities": {"unidentifiable": 0.12, "predictive_diagnostic": 0.11, "rematch": 0.77}}}}
+{"id": "panel:21", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.099, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.59, "probabilities": {"unidentifiable": 0.16, "predictive_diagnostic": 0.11, "rematch": 0.73}}}}
+{"id": "panel:22", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.106, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.69, "probabilities": {"predictive_diagnostic": 0.12, "rematch": 0.79, "unidentifiable": 0.09}}}}
+{"id": "panel:23", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.12, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.52, "probabilities": {"predictive_diagnostic": 0.13, "unidentifiable": 0.19, "rematch": 0.68}}}}
+{"id": "panel:24", "model": "jev-1.13.0", "tokens_in": 781, "seconds": 0.134, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.46, "probabilities": {"predictive_diagnostic": 0.22, "unidentifiable": 0.14, "rematch": 0.64}}}}
+{"id": "repanel:24", "model": "jev-1.13.0", "tokens_in": 781, "seconds": 0.096, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.51, "probabilities": {"rematch": 0.67, "unidentifiable": 0.06, "predictive_diagnostic": 0.27}}}}
+{"id": "panel:25", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.105, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.73, "probabilities": {"rematch": 0.82, "unidentifiable": 0.09, "predictive_diagnostic": 0.09}}}}
+{"id": "panel:26", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.133, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.62, "probabilities": {"predictive_diagnostic": 0.14, "rematch": 0.75, "unidentifiable": 0.11}}}}
+{"id": "panel:27", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.36, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.62, "probabilities": {"rematch": 0.75, "unidentifiable": 0.1, "predictive_diagnostic": 0.15}}}}
+{"id": "panel:28", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.156, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.37, "probabilities": {"rematch": 0.58, "predictive_diagnostic": 0.23, "unidentifiable": 0.19}}}}
+{"id": "panel:29", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.097, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.51, "probabilities": {"unidentifiable": 0.18, "rematch": 0.67, "predictive_diagnostic": 0.15}}}}
+{"id": "panel:30", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.176, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.62, "probabilities": {"unidentifiable": 0.12, "predictive_diagnostic": 0.13, "rematch": 0.75}}}}
+{"id": "repanel:30", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.115, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.56, "probabilities": {"rematch": 0.71, "predictive_diagnostic": 0.15, "unidentifiable": 0.14}}}}
+{"id": "panel:31", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.115, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.48, "probabilities": {"predictive_diagnostic": 0.14, "unidentifiable": 0.21, "rematch": 0.65}}}}
+{"id": "panel:32", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.134, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.64, "probabilities": {"unidentifiable": 0.12, "predictive_diagnostic": 0.12, "rematch": 0.76}}}}
+{"id": "panel:33", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.095, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.7, "probabilities": {"predictive_diagnostic": 0.1, "rematch": 0.8, "unidentifiable": 0.1}}}}
+{"id": "panel:34", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.164, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.52, "probabilities": {"rematch": 0.68, "unidentifiable": 0.06, "predictive_diagnostic": 0.26}}}}
+{"id": "panel:35", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.16, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.69, "probabilities": {"rematch": 0.79, "unidentifiable": 0.09, "predictive_diagnostic": 0.12}}}}
+{"id": "panel:36", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.159, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.48, "probabilities": {"unidentifiable": 0.16, "rematch": 0.65, "predictive_diagnostic": 0.19}}}}
+{"id": "repanel:36", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.101, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.66, "probabilities": {"predictive_diagnostic": 0.13, "rematch": 0.77, "unidentifiable": 0.1}}}}
+{"id": "panel:37", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.113, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.58, "probabilities": {"predictive_diagnostic": 0.09, "unidentifiable": 0.19, "rematch": 0.72}}}}
+{"id": "panel:38", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.098, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.37, "probabilities": {"unidentifiable": 0.14, "rematch": 0.58, "predictive_diagnostic": 0.28}}}}
+{"id": "panel:39", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.119, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.38, "probabilities": {"unidentifiable": 0.16, "rematch": 0.59, "predictive_diagnostic": 0.25}}}}
+{"id": "panel:40", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.112, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.61, "probabilities": {"rematch": 0.74, "unidentifiable": 0.06, "predictive_diagnostic": 0.2}}}}
+{"id": "panel:41", "model": "jev-1.13.0", "tokens_in": 765, "seconds": 0.119, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.51, "probabilities": {"rematch": 0.67, "unidentifiable": 0.08, "predictive_diagnostic": 0.25}}}}
+{"id": "panel:42", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.099, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.49, "probabilities": {"unidentifiable": 0.15, "rematch": 0.66, "predictive_diagnostic": 0.19}}}}
+{"id": "repanel:42", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.126, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.67, "probabilities": {"predictive_diagnostic": 0.1, "rematch": 0.78, "unidentifiable": 0.12}}}}
+{"id": "panel:43", "model": "jev-1.13.0", "tokens_in": 780, "seconds": 0.167, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.64, "probabilities": {"rematch": 0.76, "predictive_diagnostic": 0.15, "unidentifiable": 0.09}}}}
+{"id": "panel:44", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.103, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.55, "probabilities": {"rematch": 0.7, "unidentifiable": 0.06, "predictive_diagnostic": 0.24}}}}
+{"id": "panel:45", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.144, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.48, "probabilities": {"rematch": 0.65, "predictive_diagnostic": 0.21, "unidentifiable": 0.14}}}}
+{"id": "panel:46", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.169, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.49, "probabilities": {"rematch": 0.66, "unidentifiable": 0.07, "predictive_diagnostic": 0.27}}}}
+{"id": "panel:47", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.121, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.55, "probabilities": {"rematch": 0.7, "unidentifiable": 0.09, "predictive_diagnostic": 0.21}}}}
+{"id": "panel:48", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.109, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.52, "probabilities": {"predictive_diagnostic": 0.16, "unidentifiable": 0.16, "rematch": 0.68}}}}
+{"id": "repanel:48", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.113, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.61, "probabilities": {"rematch": 0.74, "unidentifiable": 0.06, "predictive_diagnostic": 0.2}}}}
+{"id": "panel:49", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.144, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.67, "probabilities": {"predictive_diagnostic": 0.1, "rematch": 0.78, "unidentifiable": 0.12}}}}
+{"id": "panel:50", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.112, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.58, "probabilities": {"unidentifiable": 0.13, "predictive_diagnostic": 0.15, "rematch": 0.72}}}}
+{"id": "panel:51", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.104, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.77, "probabilities": {"predictive_diagnostic": 0.06, "rematch": 0.85, "unidentifiable": 0.09}}}}
+{"id": "panel:52", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.13, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.4, "probabilities": {"predictive_diagnostic": 0.22, "unidentifiable": 0.18, "rematch": 0.6}}}}
+{"id": "panel:53", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.114, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.69, "probabilities": {"unidentifiable": 0.14, "predictive_diagnostic": 0.07, "rematch": 0.79}}}}
+{"id": "panel:54", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.123, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.59, "probabilities": {"predictive_diagnostic": 0.16, "rematch": 0.73, "unidentifiable": 0.11}}}}
+{"id": "repanel:54", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.091, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.38, "probabilities": {"unidentifiable": 0.15, "rematch": 0.59, "predictive_diagnostic": 0.26}}}}
+{"id": "panel:55", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.106, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.66, "probabilities": {"predictive_diagnostic": 0.12, "rematch": 0.77, "unidentifiable": 0.11}}}}
+{"id": "panel:56", "model": "jev-1.13.0", "tokens_in": 765, "seconds": 0.097, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.59, "probabilities": {"unidentifiable": 0.14, "predictive_diagnostic": 0.13, "rematch": 0.73}}}}
+{"id": "panel:57", "model": "jev-1.13.0", "tokens_in": 781, "seconds": 0.107, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.48, "probabilities": {"unidentifiable": 0.17, "rematch": 0.65, "predictive_diagnostic": 0.18}}}}
+{"id": "panel:58", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.098, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.55, "probabilities": {"rematch": 0.7, "unidentifiable": 0.06, "predictive_diagnostic": 0.24}}}}
+{"id": "panel:59", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.119, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.66, "probabilities": {"unidentifiable": 0.16, "predictive_diagnostic": 0.07, "rematch": 0.77}}}}
+{"id": "panel:60", "model": "jev-1.13.0", "tokens_in": 778, "seconds": 0.136, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.55, "probabilities": {"predictive_diagnostic": 0.2, "rematch": 0.7, "unidentifiable": 0.1}}}}
+{"id": "repanel:60", "model": "jev-1.13.0", "tokens_in": 778, "seconds": 0.102, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.37, "probabilities": {"unidentifiable": 0.15, "rematch": 0.58, "predictive_diagnostic": 0.27}}}}
+{"id": "panel:61", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.095, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.58, "probabilities": {"predictive_diagnostic": 0.09, "unidentifiable": 0.19, "rematch": 0.72}}}}
+{"id": "panel:62", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.107, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.46, "probabilities": {"predictive_diagnostic": 0.17, "unidentifiable": 0.19, "rematch": 0.64}}}}
+{"id": "panel:63", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.106, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.56, "probabilities": {"unidentifiable": 0.15, "rematch": 0.71, "predictive_diagnostic": 0.14}}}}
+{"id": "panel:64", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.112, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.45, "probabilities": {"unidentifiable": 0.16, "rematch": 0.63, "predictive_diagnostic": 0.21}}}}
+{"id": "panel:65", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.159, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.43, "probabilities": {"rematch": 0.62, "unidentifiable": 0.12, "predictive_diagnostic": 0.26}}}}
+{"id": "panel:66", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.109, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.49, "probabilities": {"predictive_diagnostic": 0.2, "unidentifiable": 0.14, "rematch": 0.66}}}}
+{"id": "repanel:66", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.122, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.51, "probabilities": {"rematch": 0.67, "unidentifiable": 0.06, "predictive_diagnostic": 0.27}}}}
+{"id": "panel:67", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.096, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.64, "probabilities": {"unidentifiable": 0.14, "predictive_diagnostic": 0.1, "rematch": 0.76}}}}
+{"id": "panel:68", "model": "jev-1.13.0", "tokens_in": 765, "seconds": 0.138, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.52, "probabilities": {"unidentifiable": 0.15, "predictive_diagnostic": 0.17, "rematch": 0.6799999999999999}}}}
+{"id": "panel:69", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.13, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.76, "probabilities": {"rematch": 0.84, "unidentifiable": 0.07, "predictive_diagnostic": 0.09}}}}
+{"id": "panel:70", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.13, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.62, "probabilities": {"predictive_diagnostic": 0.15, "rematch": 0.75, "unidentifiable": 0.1}}}}
+{"id": "panel:71", "model": "jev-1.13.0", "tokens_in": 754, "seconds": 0.112, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.52, "probabilities": {"predictive_diagnostic": 0.16, "unidentifiable": 0.16, "rematch": 0.68}}}}
+{"id": "panel:72", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.172, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.56, "probabilities": {"predictive_diagnostic": 0.16, "unidentifiable": 0.13, "rematch": 0.71}}}}
+{"id": "repanel:72", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.236, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.59, "probabilities": {"rematch": 0.73, "unidentifiable": 0.05, "predictive_diagnostic": 0.22}}}}
+{"id": "panel:73", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.136, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.7, "probabilities": {"rematch": 0.8, "predictive_diagnostic": 0.09, "unidentifiable": 0.11}}}}
+{"id": "panel:74", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.112, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.4, "probabilities": {"predictive_diagnostic": 0.21, "unidentifiable": 0.19, "rematch": 0.6}}}}
+{"id": "panel:75", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.144, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.61, "probabilities": {"unidentifiable": 0.16, "rematch": 0.74, "predictive_diagnostic": 0.1}}}}
+{"id": "panel:76", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.104, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.35, "probabilities": {"rematch": 0.57, "predictive_diagnostic": 0.28, "unidentifiable": 0.15}}}}
+{"id": "panel:77", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.174, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.53, "probabilities": {"predictive_diagnostic": 0.12, "unidentifiable": 0.19, "rematch": 0.69}}}}
+{"id": "panel:78", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.139, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.64, "probabilities": {"predictive_diagnostic": 0.14, "rematch": 0.76, "unidentifiable": 0.1}}}}
+{"id": "repanel:78", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.123, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.4, "probabilities": {"unidentifiable": 0.18, "rematch": 0.6, "predictive_diagnostic": 0.22}}}}
+{"id": "panel:79", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.104, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.55, "probabilities": {"predictive_diagnostic": 0.17, "unidentifiable": 0.13, "rematch": 0.7}}}}
+{"id": "panel:80", "model": "jev-1.13.0", "tokens_in": 765, "seconds": 0.172, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.55, "probabilities": {"rematch": 0.7, "unidentifiable": 0.07, "predictive_diagnostic": 0.23}}}}
+{"id": "panel:81", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.162, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.55, "probabilities": {"rematch": 0.7, "unidentifiable": 0.08, "predictive_diagnostic": 0.22}}}}
+{"id": "panel:82", "model": "jev-1.13.0", "tokens_in": 778, "seconds": 0.131, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.49, "probabilities": {"predictive_diagnostic": 0.22, "rematch": 0.66, "unidentifiable": 0.12}}}}
+{"id": "panel:83", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.143, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.72, "probabilities": {"rematch": 0.81, "unidentifiable": 0.07, "predictive_diagnostic": 0.12}}}}
+{"id": "panel:84", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.11, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.53, "probabilities": {"unidentifiable": 0.12, "predictive_diagnostic": 0.19, "rematch": 0.69}}}}
+{"id": "repanel:84", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.322, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.37, "probabilities": {"rematch": 0.58, "predictive_diagnostic": 0.27, "unidentifiable": 0.15}}}}
+{"id": "panel:85", "model": "jev-1.13.0", "tokens_in": 779, "seconds": 0.108, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.64, "probabilities": {"rematch": 0.76, "unidentifiable": 0.05, "predictive_diagnostic": 0.19}}}}
+{"id": "panel:86", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.137, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.45, "probabilities": {"rematch": 0.63, "predictive_diagnostic": 0.22, "unidentifiable": 0.15}}}}
+{"id": "panel:87", "model": "jev-1.13.0", "tokens_in": 780, "seconds": 0.11, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.48, "probabilities": {"predictive_diagnostic": 0.15, "unidentifiable": 0.2, "rematch": 0.65}}}}
+{"id": "panel:88", "model": "jev-1.13.0", "tokens_in": 761, "seconds": 0.074, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.51, "probabilities": {"rematch": 0.67, "unidentifiable": 0.09, "predictive_diagnostic": 0.24}}}}
+{"id": "panel:89", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.134, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.7, "probabilities": {"unidentifiable": 0.13, "predictive_diagnostic": 0.07, "rematch": 0.8}}}}
+{"id": "panel:90", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.113, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.34, "probabilities": {"unidentifiable": 0.16, "rematch": 0.56, "predictive_diagnostic": 0.28}}}}
+{"id": "repanel:90", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.118, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.53, "probabilities": {"predictive_diagnostic": 0.2, "rematch": 0.69, "unidentifiable": 0.11}}}}
+{"id": "panel:91", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.174, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.61, "probabilities": {"rematch": 0.74, "unidentifiable": 0.1, "predictive_diagnostic": 0.16}}}}
+{"id": "panel:92", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.103, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.64, "probabilities": {"unidentifiable": 0.12, "predictive_diagnostic": 0.12, "rematch": 0.76}}}}
+{"id": "panel:93", "model": "jev-1.13.0", "tokens_in": 781, "seconds": 0.105, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.51, "probabilities": {"unidentifiable": 0.19, "predictive_diagnostic": 0.14, "rematch": 0.67}}}}
+{"id": "panel:94", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.124, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.61, "probabilities": {"unidentifiable": 0.14, "predictive_diagnostic": 0.12, "rematch": 0.74}}}}
+{"id": "panel:95", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.113, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.67, "probabilities": {"unidentifiable": 0.14, "predictive_diagnostic": 0.08, "rematch": 0.78}}}}
+{"id": "panel:96", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.106, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.67, "probabilities": {"predictive_diagnostic": 0.13, "rematch": 0.78, "unidentifiable": 0.09}}}}
+{"id": "repanel:96", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.112, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.41, "probabilities": {"unidentifiable": 0.15, "rematch": 0.61, "predictive_diagnostic": 0.24}}}}
+{"id": "panel:97", "model": "jev-1.13.0", "tokens_in": 756, "seconds": 0.106, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.67, "probabilities": {"predictive_diagnostic": 0.11, "rematch": 0.78, "unidentifiable": 0.11}}}}
+{"id": "panel:98", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.118, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.61, "probabilities": {"rematch": 0.74, "unidentifiable": 0.06, "predictive_diagnostic": 0.2}}}}
+{"id": "panel:99", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.138, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.53, "probabilities": {"predictive_diagnostic": 0.14, "unidentifiable": 0.17, "rematch": 0.69}}}}
+{"id": "panel:100", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.115, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.46, "probabilities": {"rematch": 0.64, "predictive_diagnostic": 0.2, "unidentifiable": 0.16}}}}
+{"id": "panel:101", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.141, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.67, "probabilities": {"rematch": 0.78, "predictive_diagnostic": 0.09, "unidentifiable": 0.13}}}}
+{"id": "panel:102", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.105, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.51, "probabilities": {"rematch": 0.67, "unidentifiable": 0.07, "predictive_diagnostic": 0.26}}}}
+{"id": "repanel:102", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.1, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.52, "probabilities": {"predictive_diagnostic": 0.16, "unidentifiable": 0.16, "rematch": 0.6799999999999999}}}}
+{"id": "panel:103", "model": "jev-1.13.0", "tokens_in": 764, "seconds": 0.152, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.48, "probabilities": {"unidentifiable": 0.19, "rematch": 0.65, "predictive_diagnostic": 0.16}}}}
+{"id": "panel:104", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.17, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.74, "probabilities": {"predictive_diagnostic": 0.07, "rematch": 0.83, "unidentifiable": 0.1}}}}
+{"id": "panel:105", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.092, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.58, "probabilities": {"unidentifiable": 0.14, "rematch": 0.72, "predictive_diagnostic": 0.14}}}}
+{"id": "panel:106", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.1, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.53, "probabilities": {"rematch": 0.69, "unidentifiable": 0.07, "predictive_diagnostic": 0.24}}}}
+{"id": "panel:107", "model": "jev-1.13.0", "tokens_in": 765, "seconds": 0.143, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.51, "probabilities": {"unidentifiable": 0.2, "rematch": 0.67, "predictive_diagnostic": 0.13}}}}
+{"id": "panel:108", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.115, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.52, "probabilities": {"unidentifiable": 0.15, "rematch": 0.6799999999999999, "predictive_diagnostic": 0.17}}}}
+{"id": "repanel:108", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.102, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.73, "probabilities": {"predictive_diagnostic": 0.09, "rematch": 0.82, "unidentifiable": 0.09}}}}
+{"id": "panel:109", "model": "jev-1.13.0", "tokens_in": 780, "seconds": 0.108, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.34, "probabilities": {"unidentifiable": 0.17, "predictive_diagnostic": 0.27, "rematch": 0.56}}}}
+{"id": "panel:110", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.099, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.52, "probabilities": {"predictive_diagnostic": 0.18, "rematch": 0.6799999999999999, "unidentifiable": 0.14}}}}
+{"id": "panel:111", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.124, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.72, "probabilities": {"unidentifiable": 0.13, "predictive_diagnostic": 0.06, "rematch": 0.81}}}}
+{"id": "panel:112", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.108, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.49, "probabilities": {"unidentifiable": 0.14, "rematch": 0.66, "predictive_diagnostic": 0.2}}}}
+{"id": "panel:113", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.121, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.52, "probabilities": {"unidentifiable": 0.16, "rematch": 0.68, "predictive_diagnostic": 0.16}}}}
+{"id": "panel:114", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.102, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.61, "probabilities": {"unidentifiable": 0.13, "predictive_diagnostic": 0.13, "rematch": 0.74}}}}
+{"id": "repanel:114", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.114, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.55, "probabilities": {"rematch": 0.7, "predictive_diagnostic": 0.16, "unidentifiable": 0.14}}}}
+{"id": "panel:115", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.104, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.67, "probabilities": {"unidentifiable": 0.15, "predictive_diagnostic": 0.07, "rematch": 0.78}}}}
+{"id": "panel:116", "model": "jev-1.13.0", "tokens_in": 780, "seconds": 0.106, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.43, "probabilities": {"rematch": 0.62, "predictive_diagnostic": 0.24, "unidentifiable": 0.14}}}}
+{"id": "panel:117", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.08, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.55, "probabilities": {"predictive_diagnostic": 0.12, "unidentifiable": 0.18, "rematch": 0.7}}}}
+{"id": "panel:118", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.139, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.55, "probabilities": {"rematch": 0.7, "predictive_diagnostic": 0.19, "unidentifiable": 0.11}}}}
+{"id": "panel:119", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.125, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.55, "probabilities": {"rematch": 0.7, "predictive_diagnostic": 0.16, "unidentifiable": 0.14}}}}
+{"id": "panel:120", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.102, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.62, "probabilities": {"unidentifiable": 0.12, "predictive_diagnostic": 0.13, "rematch": 0.75}}}}
+{"id": "repanel:120", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.099, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.45, "probabilities": {"rematch": 0.63, "predictive_diagnostic": 0.21, "unidentifiable": 0.16}}}}
+{"id": "panel:121", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.108, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.72, "probabilities": {"rematch": 0.81, "predictive_diagnostic": 0.1, "unidentifiable": 0.09}}}}
+{"id": "panel:122", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.12, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.52, "probabilities": {"rematch": 0.68, "predictive_diagnostic": 0.17, "unidentifiable": 0.14}}}}
+{"id": "panel:123", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.107, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.55, "probabilities": {"predictive_diagnostic": 0.13, "unidentifiable": 0.17, "rematch": 0.7}}}}
+{"id": "panel:124", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.117, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.61, "probabilities": {"rematch": 0.74, "unidentifiable": 0.06, "predictive_diagnostic": 0.2}}}}
+{"id": "panel:125", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.127, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.64, "probabilities": {"rematch": 0.76, "predictive_diagnostic": 0.07, "unidentifiable": 0.17}}}}
+{"id": "panel:126", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.105, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.52, "probabilities": {"rematch": 0.68, "predictive_diagnostic": 0.19, "unidentifiable": 0.13}}}}
+{"id": "repanel:126", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.108, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.62, "probabilities": {"unidentifiable": 0.12, "predictive_diagnostic": 0.13, "rematch": 0.75}}}}
+{"id": "panel:127", "model": "jev-1.13.0", "tokens_in": 778, "seconds": 0.113, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.53, "probabilities": {"rematch": 0.69, "unidentifiable": 0.06, "predictive_diagnostic": 0.25}}}}
+{"id": "panel:128", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.103, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.56, "probabilities": {"unidentifiable": 0.14, "predictive_diagnostic": 0.15, "rematch": 0.71}}}}
+{"id": "panel:129", "model": "jev-1.13.0", "tokens_in": 765, "seconds": 0.101, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.58, "probabilities": {"predictive_diagnostic": 0.15, "unidentifiable": 0.13, "rematch": 0.72}}}}
+{"id": "panel:130", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.124, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.67, "probabilities": {"predictive_diagnostic": 0.13, "rematch": 0.78, "unidentifiable": 0.09}}}}
+{"id": "panel:131", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.186, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.67, "probabilities": {"unidentifiable": 0.13, "predictive_diagnostic": 0.09, "rematch": 0.78}}}}
+{"id": "panel:132", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.11, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.56, "probabilities": {"unidentifiable": 0.15, "predictive_diagnostic": 0.14, "rematch": 0.71}}}}
+{"id": "repanel:132", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.106, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.55, "probabilities": {"rematch": 0.7, "predictive_diagnostic": 0.14, "unidentifiable": 0.16}}}}
+{"id": "panel:133", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.104, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.69, "probabilities": {"unidentifiable": 0.13, "predictive_diagnostic": 0.08, "rematch": 0.79}}}}
+{"id": "panel:134", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.077, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.41, "probabilities": {"rematch": 0.61, "predictive_diagnostic": 0.21, "unidentifiable": 0.18}}}}
+{"id": "panel:135", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.111, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.74, "probabilities": {"predictive_diagnostic": 0.05, "rematch": 0.83, "unidentifiable": 0.12}}}}
+{"id": "panel:136", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.075, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.55, "probabilities": {"unidentifiable": 0.12, "predictive_diagnostic": 0.18, "rematch": 0.7}}}}
+{"id": "panel:137", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.103, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.64, "probabilities": {"unidentifiable": 0.14, "predictive_diagnostic": 0.1, "rematch": 0.76}}}}
+{"id": "panel:138", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.108, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.66, "probabilities": {"unidentifiable": 0.12, "predictive_diagnostic": 0.11, "rematch": 0.77}}}}
+{"id": "repanel:138", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.097, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.49, "probabilities": {"rematch": 0.66, "predictive_diagnostic": 0.19, "unidentifiable": 0.15}}}}
+{"id": "panel:139", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.103, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.59, "probabilities": {"predictive_diagnostic": 0.08, "unidentifiable": 0.19, "rematch": 0.73}}}}
+{"id": "panel:140", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.104, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.66, "probabilities": {"unidentifiable": 0.12, "predictive_diagnostic": 0.11, "rematch": 0.77}}}}
+{"id": "panel:141", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.175, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.66, "probabilities": {"rematch": 0.77, "predictive_diagnostic": 0.1, "unidentifiable": 0.13}}}}
+{"id": "panel:142", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.105, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.53, "probabilities": {"unidentifiable": 0.14, "rematch": 0.69, "predictive_diagnostic": 0.17}}}}
+{"id": "panel:143", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.118, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.61, "probabilities": {"unidentifiable": 0.14, "predictive_diagnostic": 0.12, "rematch": 0.74}}}}
+{"id": "panel:144", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.118, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.59, "probabilities": {"rematch": 0.73, "predictive_diagnostic": 0.15, "unidentifiable": 0.12}}}}
+{"id": "repanel:144", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.129, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.64, "probabilities": {"unidentifiable": 0.13, "predictive_diagnostic": 0.11, "rematch": 0.76}}}}
+{"id": "panel:145", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.132, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.45, "probabilities": {"rematch": 0.63, "predictive_diagnostic": 0.22, "unidentifiable": 0.15}}}}
+{"id": "panel:146", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.102, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.61, "probabilities": {"predictive_diagnostic": 0.16, "rematch": 0.74, "unidentifiable": 0.1}}}}
+{"id": "panel:147", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.137, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.82, "probabilities": {"predictive_diagnostic": 0.04, "rematch": 0.88, "unidentifiable": 0.08}}}}
+{"id": "panel:148", "model": "jev-1.13.0", "tokens_in": 778, "seconds": 0.123, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.52, "probabilities": {"predictive_diagnostic": 0.21, "rematch": 0.68, "unidentifiable": 0.11}}}}
+{"id": "panel:149", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.076, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.67, "probabilities": {"unidentifiable": 0.13, "predictive_diagnostic": 0.09, "rematch": 0.78}}}}
+{"id": "panel:150", "model": "jev-1.13.0", "tokens_in": 765, "seconds": 0.149, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.45, "probabilities": {"predictive_diagnostic": 0.22, "unidentifiable": 0.15, "rematch": 0.63}}}}
+{"id": "repanel:150", "model": "jev-1.13.0", "tokens_in": 765, "seconds": 0.109, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.51, "probabilities": {"rematch": 0.67, "unidentifiable": 0.07, "predictive_diagnostic": 0.26}}}}
+{"id": "panel:151", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.127, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.64, "probabilities": {"unidentifiable": 0.2, "predictive_diagnostic": 0.04, "rematch": 0.76}}}}
+{"id": "panel:152", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.155, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.67, "probabilities": {"rematch": 0.78, "unidentifiable": 0.05, "predictive_diagnostic": 0.17}}}}
+{"id": "panel:153", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.113, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.59, "probabilities": {"predictive_diagnostic": 0.14, "rematch": 0.73, "unidentifiable": 0.13}}}}
+{"id": "panel:154", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.155, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.41, "probabilities": {"unidentifiable": 0.14, "rematch": 0.61, "predictive_diagnostic": 0.25}}}}
+{"id": "panel:155", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.109, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.49, "probabilities": {"unidentifiable": 0.15, "rematch": 0.66, "predictive_diagnostic": 0.19}}}}
+{"id": "panel:156", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.26, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.62, "probabilities": {"unidentifiable": 0.13, "predictive_diagnostic": 0.12, "rematch": 0.75}}}}
+{"id": "repanel:156", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.134, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.48, "probabilities": {"rematch": 0.65, "predictive_diagnostic": 0.2, "unidentifiable": 0.15}}}}
+{"id": "panel:157", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.129, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.62, "probabilities": {"rematch": 0.75, "unidentifiable": 0.07, "predictive_diagnostic": 0.18}}}}
+{"id": "panel:158", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.099, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.52, "probabilities": {"predictive_diagnostic": 0.18, "unidentifiable": 0.14, "rematch": 0.6799999999999999}}}}
+{"id": "panel:159", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.119, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.59, "probabilities": {"rematch": 0.73, "unidentifiable": 0.09, "predictive_diagnostic": 0.18}}}}
+{"id": "panel:160", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.099, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.51, "probabilities": {"rematch": 0.67, "unidentifiable": 0.09, "predictive_diagnostic": 0.24}}}}
+{"id": "panel:161", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.153, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.45, "probabilities": {"predictive_diagnostic": 0.14, "unidentifiable": 0.23, "rematch": 0.63}}}}
+{"id": "panel:162", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.108, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.69, "probabilities": {"unidentifiable": 0.11, "predictive_diagnostic": 0.1, "rematch": 0.79}}}}
+{"id": "repanel:162", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.133, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.59, "probabilities": {"rematch": 0.73, "predictive_diagnostic": 0.16, "unidentifiable": 0.11}}}}
+{"id": "panel:163", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.143, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.69, "probabilities": {"rematch": 0.79, "unidentifiable": 0.08, "predictive_diagnostic": 0.13}}}}
+{"id": "panel:164", "model": "jev-1.13.0", "tokens_in": 757, "seconds": 0.135, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.62, "probabilities": {"rematch": 0.75, "unidentifiable": 0.09, "predictive_diagnostic": 0.16}}}}
+{"id": "panel:165", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.122, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.77, "probabilities": {"predictive_diagnostic": 0.05, "rematch": 0.85, "unidentifiable": 0.1}}}}
+{"id": "panel:166", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.131, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.46, "probabilities": {"predictive_diagnostic": 0.23, "unidentifiable": 0.13, "rematch": 0.64}}}}
+{"id": "panel:167", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.146, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.7, "probabilities": {"predictive_diagnostic": 0.09, "rematch": 0.8, "unidentifiable": 0.11}}}}
+{"id": "panel:168", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.139, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.61, "probabilities": {"unidentifiable": 0.12, "predictive_diagnostic": 0.14, "rematch": 0.74}}}}
+{"id": "repanel:168", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.13, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.56, "probabilities": {"rematch": 0.71, "predictive_diagnostic": 0.17, "unidentifiable": 0.12}}}}
+{"id": "panel:169", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.142, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.67, "probabilities": {"unidentifiable": 0.14, "predictive_diagnostic": 0.08, "rematch": 0.78}}}}
+{"id": "panel:170", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.099, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.48, "probabilities": {"rematch": 0.65, "predictive_diagnostic": 0.21, "unidentifiable": 0.14}}}}
+{"id": "panel:171", "model": "jev-1.13.0", "tokens_in": 765, "seconds": 0.099, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.53, "probabilities": {"predictive_diagnostic": 0.14, "unidentifiable": 0.17, "rematch": 0.69}}}}
+{"id": "panel:172", "model": "jev-1.13.0", "tokens_in": 753, "seconds": 0.121, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.31, "probabilities": {"predictive_diagnostic": 0.27, "unidentifiable": 0.19, "rematch": 0.54}}}}
+{"id": "panel:173", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.113, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.51, "probabilities": {"unidentifiable": 0.18, "rematch": 0.67, "predictive_diagnostic": 0.15}}}}
+{"id": "panel:174", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.135, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.35, "probabilities": {"rematch": 0.57, "predictive_diagnostic": 0.28, "unidentifiable": 0.15}}}}
+{"id": "repanel:174", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.114, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.59, "probabilities": {"unidentifiable": 0.1, "predictive_diagnostic": 0.17, "rematch": 0.73}}}}
+{"id": "panel:175", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.132, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.72, "probabilities": {"predictive_diagnostic": 0.08, "rematch": 0.81, "unidentifiable": 0.11}}}}
+{"id": "panel:176", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.124, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.67, "probabilities": {"predictive_diagnostic": 0.11, "rematch": 0.78, "unidentifiable": 0.11}}}}
+{"id": "panel:177", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.111, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.66, "probabilities": {"predictive_diagnostic": 0.09, "rematch": 0.77, "unidentifiable": 0.14}}}}
+{"id": "panel:178", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.066, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.59, "probabilities": {"rematch": 0.73, "unidentifiable": 0.08, "predictive_diagnostic": 0.19}}}}
+{"id": "panel:179", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.112, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.67, "probabilities": {"rematch": 0.78, "unidentifiable": 0.06, "predictive_diagnostic": 0.16}}}}
+{"id": "panel:180", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.118, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.46, "probabilities": {"unidentifiable": 0.15, "rematch": 0.64, "predictive_diagnostic": 0.21}}}}
+{"id": "repanel:180", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.116, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.62, "probabilities": {"predictive_diagnostic": 0.15, "rematch": 0.75, "unidentifiable": 0.1}}}}
+{"id": "panel:181", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.096, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.53, "probabilities": {"unidentifiable": 0.15, "rematch": 0.69, "predictive_diagnostic": 0.16}}}}
+{"id": "panel:182", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.114, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.56, "probabilities": {"unidentifiable": 0.17, "rematch": 0.71, "predictive_diagnostic": 0.12}}}}
+{"id": "panel:183", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.125, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.51, "probabilities": {"unidentifiable": 0.16, "rematch": 0.67, "predictive_diagnostic": 0.17}}}}
+{"id": "panel:184", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.109, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.53, "probabilities": {"rematch": 0.69, "unidentifiable": 0.07, "predictive_diagnostic": 0.24}}}}
+{"id": "panel:185", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.116, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.79, "probabilities": {"predictive_diagnostic": 0.06, "rematch": 0.86, "unidentifiable": 0.08}}}}
+{"id": "panel:186", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.104, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.53, "probabilities": {"predictive_diagnostic": 0.17, "unidentifiable": 0.14, "rematch": 0.69}}}}
+{"id": "repanel:186", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.114, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.62, "probabilities": {"rematch": 0.75, "unidentifiable": 0.05, "predictive_diagnostic": 0.2}}}}
+{"id": "panel:187", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.146, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.72, "probabilities": {"predictive_diagnostic": 0.07, "rematch": 0.81, "unidentifiable": 0.12}}}}
+{"id": "panel:188", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.111, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.52, "probabilities": {"rematch": 0.68, "unidentifiable": 0.07, "predictive_diagnostic": 0.25}}}}
+{"id": "panel:189", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.129, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.62, "probabilities": {"rematch": 0.75, "unidentifiable": 0.06, "predictive_diagnostic": 0.19}}}}
+{"id": "panel:190", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.128, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.72, "probabilities": {"predictive_diagnostic": 0.1, "rematch": 0.81, "unidentifiable": 0.09}}}}
+{"id": "panel:191", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.1, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.72, "probabilities": {"predictive_diagnostic": 0.09, "rematch": 0.81, "unidentifiable": 0.1}}}}
+{"id": "panel:192", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.129, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.51, "probabilities": {"rematch": 0.67, "unidentifiable": 0.07, "predictive_diagnostic": 0.26}}}}
+{"id": "repanel:192", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.098, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.51, "probabilities": {"predictive_diagnostic": 0.21, "unidentifiable": 0.12, "rematch": 0.67}}}}
+{"id": "panel:193", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.116, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.62, "probabilities": {"rematch": 0.75, "predictive_diagnostic": 0.13, "unidentifiable": 0.12}}}}
+{"id": "panel:194", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.104, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.61, "probabilities": {"unidentifiable": 0.12, "predictive_diagnostic": 0.14, "rematch": 0.74}}}}
+{"id": "panel:195", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.113, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.59, "probabilities": {"unidentifiable": 0.17, "predictive_diagnostic": 0.1, "rematch": 0.73}}}}
+{"id": "panel:196", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.101, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.64, "probabilities": {"unidentifiable": 0.12, "predictive_diagnostic": 0.12, "rematch": 0.76}}}}
+{"id": "panel:197", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.126, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.61, "probabilities": {"unidentifiable": 0.2, "rematch": 0.74, "predictive_diagnostic": 0.06}}}}
+{"id": "panel:198", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.122, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.51, "probabilities": {"unidentifiable": 0.16, "rematch": 0.67, "predictive_diagnostic": 0.17}}}}
+{"id": "repanel:198", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.128, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.67, "probabilities": {"predictive_diagnostic": 0.11, "rematch": 0.78, "unidentifiable": 0.11}}}}
+{"id": "panel:199", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.138, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.67, "probabilities": {"rematch": 0.78, "predictive_diagnostic": 0.1, "unidentifiable": 0.12}}}}
+{"id": "panel:200", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.098, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.64, "probabilities": {"predictive_diagnostic": 0.15, "rematch": 0.76, "unidentifiable": 0.09}}}}
+{"id": "panel:201", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.129, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.56, "probabilities": {"predictive_diagnostic": 0.09, "unidentifiable": 0.2, "rematch": 0.71}}}}
+{"id": "panel:202", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.13, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.69, "probabilities": {"predictive_diagnostic": 0.12, "rematch": 0.79, "unidentifiable": 0.09}}}}
+{"id": "panel:203", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.104, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.69, "probabilities": {"rematch": 0.79, "unidentifiable": 0.06, "predictive_diagnostic": 0.15}}}}
+{"id": "panel:204", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.103, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.66, "probabilities": {"rematch": 0.77, "unidentifiable": 0.06, "predictive_diagnostic": 0.17}}}}
+{"id": "repanel:204", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.103, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.56, "probabilities": {"predictive_diagnostic": 0.13, "unidentifiable": 0.16, "rematch": 0.71}}}}
+{"id": "panel:205", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.161, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.56, "probabilities": {"predictive_diagnostic": 0.14, "unidentifiable": 0.15, "rematch": 0.71}}}}
+{"id": "panel:206", "model": "jev-1.13.0", "tokens_in": 781, "seconds": 0.116, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.48, "probabilities": {"unidentifiable": 0.13, "rematch": 0.65, "predictive_diagnostic": 0.22}}}}
+{"id": "panel:207", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.13, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.53, "probabilities": {"unidentifiable": 0.19, "rematch": 0.69, "predictive_diagnostic": 0.12}}}}
+{"id": "panel:208", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.142, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.43, "probabilities": {"unidentifiable": 0.15, "rematch": 0.62, "predictive_diagnostic": 0.23}}}}
+{"id": "panel:209", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.078, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.76, "probabilities": {"predictive_diagnostic": 0.06, "rematch": 0.84, "unidentifiable": 0.1}}}}
+{"id": "panel:210", "model": "jev-1.13.0", "tokens_in": 764, "seconds": 0.101, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.59, "probabilities": {"predictive_diagnostic": 0.16, "rematch": 0.73, "unidentifiable": 0.11}}}}
+{"id": "repanel:210", "model": "jev-1.13.0", "tokens_in": 764, "seconds": 0.103, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.35, "probabilities": {"unidentifiable": 0.18, "rematch": 0.57, "predictive_diagnostic": 0.25}}}}
+{"id": "panel:211", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.138, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.8, "probabilities": {"predictive_diagnostic": 0.05, "rematch": 0.87, "unidentifiable": 0.08}}}}
+{"id": "panel:212", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.114, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.53, "probabilities": {"unidentifiable": 0.15, "rematch": 0.69, "predictive_diagnostic": 0.16}}}}
+{"id": "panel:213", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.101, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.58, "probabilities": {"predictive_diagnostic": 0.06, "unidentifiable": 0.22, "rematch": 0.72}}}}
+{"id": "panel:214", "model": "jev-1.13.0", "tokens_in": 781, "seconds": 0.102, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.48, "probabilities": {"predictive_diagnostic": 0.21, "unidentifiable": 0.14, "rematch": 0.65}}}}
+{"id": "panel:215", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.077, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.67, "probabilities": {"rematch": 0.78, "unidentifiable": 0.08, "predictive_diagnostic": 0.14}}}}
+{"id": "panel:216", "model": "jev-1.13.0", "tokens_in": 765, "seconds": 0.106, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.62, "probabilities": {"rematch": 0.75, "unidentifiable": 0.06, "predictive_diagnostic": 0.19}}}}
+{"id": "repanel:216", "model": "jev-1.13.0", "tokens_in": 765, "seconds": 0.098, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.61, "probabilities": {"predictive_diagnostic": 0.11, "unidentifiable": 0.15, "rematch": 0.74}}}}
+{"id": "panel:217", "model": "jev-1.13.0", "tokens_in": 780, "seconds": 0.112, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.67, "probabilities": {"rematch": 0.78, "predictive_diagnostic": 0.13, "unidentifiable": 0.09}}}}
+{"id": "panel:218", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.105, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.64, "probabilities": {"unidentifiable": 0.14, "predictive_diagnostic": 0.1, "rematch": 0.76}}}}
+{"id": "panel:219", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.135, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.8, "probabilities": {"predictive_diagnostic": 0.06, "rematch": 0.87, "unidentifiable": 0.07}}}}
+{"id": "panel:220", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.121, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.51, "probabilities": {"rematch": 0.67, "predictive_diagnostic": 0.19, "unidentifiable": 0.14}}}}
+{"id": "panel:221", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.148, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.59, "probabilities": {"predictive_diagnostic": 0.13, "unidentifiable": 0.14, "rematch": 0.73}}}}
+{"id": "panel:222", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.097, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.45, "probabilities": {"rematch": 0.63, "predictive_diagnostic": 0.22, "unidentifiable": 0.15}}}}
+{"id": "repanel:222", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.099, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.58, "probabilities": {"unidentifiable": 0.15, "predictive_diagnostic": 0.13, "rematch": 0.72}}}}
+{"id": "panel:223", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.111, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.55, "probabilities": {"predictive_diagnostic": 0.1, "unidentifiable": 0.2, "rematch": 0.7}}}}
+{"id": "panel:224", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.105, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.43, "probabilities": {"unidentifiable": 0.14, "rematch": 0.62, "predictive_diagnostic": 0.24}}}}
+{"id": "panel:225", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.113, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.56, "probabilities": {"unidentifiable": 0.15, "rematch": 0.71, "predictive_diagnostic": 0.14}}}}
+{"id": "panel:226", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.1, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.27, "probabilities": {"predictive_diagnostic": 0.2, "unidentifiable": 0.29, "rematch": 0.51}}}}
+{"id": "panel:227", "model": "jev-1.13.0", "tokens_in": 765, "seconds": 0.102, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.4, "probabilities": {"unidentifiable": 0.21, "rematch": 0.6, "predictive_diagnostic": 0.19}}}}
+{"id": "panel:228", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.112, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.51, "probabilities": {"rematch": 0.67, "predictive_diagnostic": 0.21, "unidentifiable": 0.12}}}}
+{"id": "repanel:228", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.127, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.61, "probabilities": {"unidentifiable": 0.1, "predictive_diagnostic": 0.16, "rematch": 0.74}}}}
+{"id": "panel:229", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.2, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.66, "probabilities": {"rematch": 0.77, "predictive_diagnostic": 0.13, "unidentifiable": 0.1}}}}
+{"id": "panel:230", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.12, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.56, "probabilities": {"predictive_diagnostic": 0.19, "rematch": 0.71, "unidentifiable": 0.1}}}}
+{"id": "panel:231", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.123, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.51, "probabilities": {"predictive_diagnostic": 0.12, "unidentifiable": 0.21, "rematch": 0.67}}}}
+{"id": "panel:232", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.133, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.56, "probabilities": {"unidentifiable": 0.18, "predictive_diagnostic": 0.11, "rematch": 0.71}}}}
+{"id": "panel:233", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.102, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.73, "probabilities": {"predictive_diagnostic": 0.08, "rematch": 0.82, "unidentifiable": 0.1}}}}
+{"id": "panel:234", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.102, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.55, "probabilities": {"predictive_diagnostic": 0.18, "rematch": 0.7, "unidentifiable": 0.12}}}}
+{"id": "repanel:234", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.12, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.45, "probabilities": {"unidentifiable": 0.13, "rematch": 0.63, "predictive_diagnostic": 0.24}}}}
+{"id": "panel:235", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.098, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.66, "probabilities": {"rematch": 0.77, "predictive_diagnostic": 0.08, "unidentifiable": 0.15}}}}
+{"id": "panel:236", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.094, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.56, "probabilities": {"rematch": 0.71, "unidentifiable": 0.06, "predictive_diagnostic": 0.23}}}}
+{"id": "panel:237", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.138, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.38, "probabilities": {"predictive_diagnostic": 0.24, "unidentifiable": 0.17, "rematch": 0.59}}}}
+{"id": "panel:238", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.116, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.31, "probabilities": {"unidentifiable": 0.16, "rematch": 0.54, "predictive_diagnostic": 0.3}}}}
+{"id": "panel:239", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.132, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.45, "probabilities": {"unidentifiable": 0.18, "rematch": 0.63, "predictive_diagnostic": 0.19}}}}
+{"id": "panel:240", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.13, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.53, "probabilities": {"predictive_diagnostic": 0.09, "unidentifiable": 0.22, "rematch": 0.69}}}}
+{"id": "repanel:240", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.107, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.72, "probabilities": {"rematch": 0.81, "unidentifiable": 0.06, "predictive_diagnostic": 0.13}}}}
+{"id": "panel:241", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.099, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.59, "probabilities": {"unidentifiable": 0.18, "predictive_diagnostic": 0.09, "rematch": 0.73}}}}
+{"id": "panel:242", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.127, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.49, "probabilities": {"predictive_diagnostic": 0.2, "unidentifiable": 0.14, "rematch": 0.66}}}}
+{"id": "panel:243", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.122, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.53, "probabilities": {"predictive_diagnostic": 0.12, "unidentifiable": 0.19, "rematch": 0.69}}}}
+{"id": "panel:244", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.114, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.67, "probabilities": {"unidentifiable": 0.12, "predictive_diagnostic": 0.1, "rematch": 0.78}}}}
+{"id": "panel:245", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.108, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.69, "probabilities": {"rematch": 0.79, "unidentifiable": 0.06, "predictive_diagnostic": 0.15}}}}
+{"id": "panel:246", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.815, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.64, "probabilities": {"predictive_diagnostic": 0.14, "rematch": 0.76, "unidentifiable": 0.1}}}}
+{"id": "repanel:246", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.114, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.43, "probabilities": {"unidentifiable": 0.15, "rematch": 0.62, "predictive_diagnostic": 0.23}}}}
+{"id": "panel:247", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.068, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.72, "probabilities": {"rematch": 0.81, "unidentifiable": 0.07, "predictive_diagnostic": 0.12}}}}
+{"id": "panel:248", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.137, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.37, "probabilities": {"unidentifiable": 0.15, "rematch": 0.58, "predictive_diagnostic": 0.27}}}}
+{"id": "panel:249", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.114, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.55, "probabilities": {"unidentifiable": 0.16, "rematch": 0.7, "predictive_diagnostic": 0.14}}}}
+{"id": "panel:250", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.11, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.58, "probabilities": {"predictive_diagnostic": 0.16, "rematch": 0.72, "unidentifiable": 0.12}}}}
+{"id": "panel:251", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.116, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.64, "probabilities": {"unidentifiable": 0.19, "predictive_diagnostic": 0.05, "rematch": 0.76}}}}
+{"id": "panel:252", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.114, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.58, "probabilities": {"unidentifiable": 0.14, "rematch": 0.72, "predictive_diagnostic": 0.14}}}}
+{"id": "repanel:252", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.103, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.7, "probabilities": {"predictive_diagnostic": 0.08, "rematch": 0.8, "unidentifiable": 0.12}}}}
+{"id": "panel:253", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.077, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.7, "probabilities": {"rematch": 0.8, "predictive_diagnostic": 0.08, "unidentifiable": 0.12}}}}
+{"id": "panel:254", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.364, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.64, "probabilities": {"rematch": 0.76, "unidentifiable": 0.05, "predictive_diagnostic": 0.19}}}}
+{"id": "panel:255", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.131, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.72, "probabilities": {"unidentifiable": 0.14, "predictive_diagnostic": 0.05, "rematch": 0.81}}}}
+{"id": "panel:256", "model": "jev-1.13.0", "tokens_in": 765, "seconds": 0.158, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.45, "probabilities": {"predictive_diagnostic": 0.19, "unidentifiable": 0.18, "rematch": 0.63}}}}
+{"id": "panel:257", "model": "jev-1.13.0", "tokens_in": 765, "seconds": 0.164, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.76, "probabilities": {"predictive_diagnostic": 0.06, "rematch": 0.84, "unidentifiable": 0.1}}}}
+{"id": "panel:258", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.101, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.35, "probabilities": {"unidentifiable": 0.18, "rematch": 0.57, "predictive_diagnostic": 0.25}}}}
+{"id": "repanel:258", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.155, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.56, "probabilities": {"predictive_diagnostic": 0.18, "rematch": 0.71, "unidentifiable": 0.11}}}}
+{"id": "panel:259", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.153, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.45, "probabilities": {"predictive_diagnostic": 0.23, "unidentifiable": 0.14, "rematch": 0.63}}}}
+{"id": "panel:260", "model": "jev-1.13.0", "tokens_in": 764, "seconds": 0.135, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.51, "probabilities": {"predictive_diagnostic": 0.19, "unidentifiable": 0.14, "rematch": 0.67}}}}
+{"id": "panel:261", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.129, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.76, "probabilities": {"rematch": 0.84, "unidentifiable": 0.05, "predictive_diagnostic": 0.11}}}}
+{"id": "panel:262", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.104, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.52, "probabilities": {"rematch": 0.68, "unidentifiable": 0.08, "predictive_diagnostic": 0.24}}}}
+{"id": "panel:263", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.15, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.73, "probabilities": {"predictive_diagnostic": 0.05, "rematch": 0.82, "unidentifiable": 0.13}}}}
+{"id": "panel:264", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.15, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.55, "probabilities": {"predictive_diagnostic": 0.15, "unidentifiable": 0.15, "rematch": 0.7}}}}
+{"id": "repanel:264", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.122, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.59, "probabilities": {"rematch": 0.73, "unidentifiable": 0.06, "predictive_diagnostic": 0.21}}}}
+{"id": "panel:265", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.112, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.67, "probabilities": {"unidentifiable": 0.16, "predictive_diagnostic": 0.06, "rematch": 0.78}}}}
+{"id": "panel:266", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.122, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.51, "probabilities": {"rematch": 0.67, "predictive_diagnostic": 0.19, "unidentifiable": 0.14}}}}
+{"id": "panel:267", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.121, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.52, "probabilities": {"rematch": 0.68, "unidentifiable": 0.07, "predictive_diagnostic": 0.25}}}}
+{"id": "panel:268", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.114, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.64, "probabilities": {"rematch": 0.76, "unidentifiable": 0.08, "predictive_diagnostic": 0.16}}}}
+{"id": "panel:269", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.122, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.52, "probabilities": {"predictive_diagnostic": 0.13, "unidentifiable": 0.19, "rematch": 0.68}}}}
+{"id": "panel:270", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.15, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.69, "probabilities": {"predictive_diagnostic": 0.13, "rematch": 0.79, "unidentifiable": 0.08}}}}
+{"id": "repanel:270", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.129, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.48, "probabilities": {"unidentifiable": 0.16, "rematch": 0.65, "predictive_diagnostic": 0.19}}}}
+{"id": "panel:271", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.095, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.61, "probabilities": {"predictive_diagnostic": 0.09, "unidentifiable": 0.17, "rematch": 0.74}}}}
+{"id": "panel:272", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.112, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.49, "probabilities": {"unidentifiable": 0.15, "rematch": 0.66, "predictive_diagnostic": 0.19}}}}
+{"id": "panel:273", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.112, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.74, "probabilities": {"predictive_diagnostic": 0.07, "rematch": 0.83, "unidentifiable": 0.1}}}}
+{"id": "panel:274", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.169, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.69, "probabilities": {"predictive_diagnostic": 0.12, "rematch": 0.79, "unidentifiable": 0.09}}}}
+{"id": "panel:275", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.1, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.66, "probabilities": {"rematch": 0.77, "predictive_diagnostic": 0.11, "unidentifiable": 0.12}}}}
+{"id": "panel:276", "model": "jev-1.13.0", "tokens_in": 780, "seconds": 0.25, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.46, "probabilities": {"unidentifiable": 0.12, "rematch": 0.64, "predictive_diagnostic": 0.24}}}}
+{"id": "repanel:276", "model": "jev-1.13.0", "tokens_in": 780, "seconds": 0.135, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.61, "probabilities": {"predictive_diagnostic": 0.17, "rematch": 0.74, "unidentifiable": 0.09}}}}
+{"id": "panel:277", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.154, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.64, "probabilities": {"rematch": 0.76, "unidentifiable": 0.08, "predictive_diagnostic": 0.16}}}}
+{"id": "panel:278", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.099, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.58, "probabilities": {"unidentifiable": 0.12, "predictive_diagnostic": 0.16, "rematch": 0.72}}}}
+{"id": "panel:279", "model": "jev-1.13.0", "tokens_in": 780, "seconds": 0.11, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.52, "probabilities": {"unidentifiable": 0.13, "rematch": 0.68, "predictive_diagnostic": 0.19}}}}
+{"id": "panel:280", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.1, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.55, "probabilities": {"rematch": 0.7, "predictive_diagnostic": 0.18, "unidentifiable": 0.12}}}}
+{"id": "panel:281", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.123, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.69, "probabilities": {"rematch": 0.79, "predictive_diagnostic": 0.09, "unidentifiable": 0.12}}}}
+{"id": "panel:282", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.117, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.51, "probabilities": {"rematch": 0.67, "predictive_diagnostic": 0.2, "unidentifiable": 0.13}}}}
+{"id": "repanel:282", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.135, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.66, "probabilities": {"unidentifiable": 0.12, "predictive_diagnostic": 0.11, "rematch": 0.77}}}}
+{"id": "panel:283", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.11, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.58, "probabilities": {"rematch": 0.72, "predictive_diagnostic": 0.15, "unidentifiable": 0.13}}}}
+{"id": "panel:284", "model": "jev-1.13.0", "tokens_in": 781, "seconds": 0.098, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.49, "probabilities": {"rematch": 0.66, "unidentifiable": 0.06, "predictive_diagnostic": 0.28}}}}
+{"id": "panel:285", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.118, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.66, "probabilities": {"rematch": 0.77, "predictive_diagnostic": 0.1, "unidentifiable": 0.13}}}}
+{"id": "panel:286", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.117, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.64, "probabilities": {"predictive_diagnostic": 0.13, "unidentifiable": 0.11, "rematch": 0.76}}}}
+{"id": "panel:287", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.069, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.62, "probabilities": {"unidentifiable": 0.16, "predictive_diagnostic": 0.09, "rematch": 0.75}}}}
+{"id": "panel:288", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.104, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.43, "probabilities": {"rematch": 0.62, "predictive_diagnostic": 0.23, "unidentifiable": 0.15}}}}
+{"id": "repanel:288", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.105, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.56, "probabilities": {"unidentifiable": 0.12, "predictive_diagnostic": 0.17, "rematch": 0.71}}}}
+{"id": "panel:289", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.106, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.73, "probabilities": {"rematch": 0.82, "predictive_diagnostic": 0.04, "unidentifiable": 0.14}}}}
+{"id": "panel:290", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.109, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.59, "probabilities": {"predictive_diagnostic": 0.17, "rematch": 0.73, "unidentifiable": 0.1}}}}
+{"id": "panel:291", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.095, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.61, "probabilities": {"rematch": 0.74, "predictive_diagnostic": 0.12, "unidentifiable": 0.14}}}}
+{"id": "panel:292", "model": "jev-1.13.0", "tokens_in": 770, "seconds": 0.134, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.51, "probabilities": {"rematch": 0.67, "unidentifiable": 0.08, "predictive_diagnostic": 0.25}}}}
+{"id": "panel:293", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.121, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.66, "probabilities": {"rematch": 0.77, "predictive_diagnostic": 0.12, "unidentifiable": 0.11}}}}
+{"id": "panel:294", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.118, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.4, "probabilities": {"predictive_diagnostic": 0.24, "unidentifiable": 0.16, "rematch": 0.6}}}}
+{"id": "repanel:294", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.186, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.55, "probabilities": {"rematch": 0.7, "unidentifiable": 0.07, "predictive_diagnostic": 0.23}}}}
+{"id": "panel:295", "model": "jev-1.13.0", "tokens_in": 769, "seconds": 0.117, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.7, "probabilities": {"rematch": 0.8, "unidentifiable": 0.08, "predictive_diagnostic": 0.12}}}}
+{"id": "panel:296", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.107, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.34, "probabilities": {"unidentifiable": 0.2, "rematch": 0.56, "predictive_diagnostic": 0.24}}}}
+{"id": "panel:297", "model": "jev-1.13.0", "tokens_in": 766, "seconds": 0.154, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.45, "probabilities": {"unidentifiable": 0.17, "rematch": 0.63, "predictive_diagnostic": 0.2}}}}
+{"id": "panel:298", "model": "jev-1.13.0", "tokens_in": 768, "seconds": 0.102, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.62, "probabilities": {"unidentifiable": 0.12, "predictive_diagnostic": 0.13, "rematch": 0.75}}}}
+{"id": "panel:299", "model": "jev-1.13.0", "tokens_in": 767, "seconds": 0.11, "attempts": 1, "answers": {"use": {"type": "choice", "choice": "rematch", "confidence": 0.74, "probabilities": {"rematch": 0.83, "predictive_diagnostic": 0.06, "unidentifiable": 0.11}}}}

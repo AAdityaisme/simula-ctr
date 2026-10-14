@@ -1,0 +1,118 @@
+{
+ "readouts": {
+  "auroc": {
+   "naive_z": 0.8310416666666667,
+   "cmh_z": 0.8851041666666667,
+   "jev_sides": 0.7629166666666667,
+   "jev_mix": 0.8009895833333333
+  },
+  "auroc_nonzero_delta": {
+   "naive_z": 0.88890625,
+   "cmh_z": 0.9468749999999999,
+   "jev_sides": 0.791953125,
+   "jev_mix": 0.8532031250000001
+  },
+  "diffs": {
+   "jev_sides_minus_cmh_z": [
+    -0.1221875,
+    -0.18238447730315188,
+    -0.06399797049900613
+   ],
+   "jev_sides_minus_naive_z": [
+    -0.06812499999999999,
+    -0.12120926196565586,
+    -0.017358072916666734
+   ],
+   "jev_mix_minus_naive_z": [
+    -0.030052083333333424,
+    -0.0651564645920904,
+    0.004221637228260911
+   ],
+   "cmh_z_minus_naive_z": [
+    0.05406250000000001,
+    0.015222531786094973,
+    0.09539738964346342
+   ]
+  },
+  "mean_noul_by_delta": {
+   "-0.01": {
+    "jev_sides": 0.32,
+    "jev_mix": 0.26225000000000004
+   },
+   "-0.005": {
+    "jev_sides": 0.3075,
+    "jev_mix": 0.2665
+   },
+   "0.0": {
+    "jev_sides": 0.3525,
+    "jev_mix": 0.30250000000000005
+   },
+   "0.005": {
+    "jev_sides": 0.4255,
+    "jev_mix": 0.32675
+   },
+   "0.01": {
+    "jev_sides": 0.46225000000000005,
+    "jev_mix": 0.33625
+   }
+  },
+  "reshuffle_mean_abs_change": 0.06860000000000001,
+  "win": false
+ },
+ "panels": {
+  "panels": {
+   "genuine": 150,
+   "false": 150
+  },
+  "checklist": {
+   "retention_genuine": 0.4533333333333333,
+   "rejection_false": 0.9266666666666666
+  },
+  "jev_at_checklist_retention": {
+   "rejection_false": 0.8533333333333334
+  },
+  "jev_rejection_minus_checklist": [
+   -0.07333333333333325,
+   -0.12903774412991,
+   -0.019480519480519543
+  ],
+  "jev_argmax": {
+   "genuine": {
+    "rematch": 150
+   },
+   "false": {
+    "rematch": 150
+   }
+  },
+  "auroc_genuine": {
+   "jev": 0.8285111111111111,
+   "exact_request_z": 0.6159333333333333,
+   "accuracy_gap_vs_request_only": 0.9416888888888889
+  },
+  "reorder_same_choice_share": 1.0,
+  "medians": {
+   "genuine": {
+    "pairs": 426.0,
+    "ranker_accuracy": 0.5763,
+    "request_only_ranker_accuracy": 0.54045,
+    "request_identical_pairs": 16.0
+   },
+   "false": {
+    "pairs": 445.5,
+    "ranker_accuracy": 0.5398499999999999,
+    "request_only_ranker_accuracy": 0.5708,
+    "request_identical_pairs": 15.0
+   }
+  },
+  "win": false
+ },
+ "jev": {
+  "calls": 800,
+  "attempts": 800,
+  "models": [
+   "jev-1.13.0"
+  ],
+  "input_tokens": 482649,
+  "call_seconds_median": 0.072
+ }
+}

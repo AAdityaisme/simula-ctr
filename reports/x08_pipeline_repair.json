@@ -1,0 +1,195 @@
+{
+ "incidents": {
+  "none": 40,
+  "join": 40,
+  "sentinel": 40,
+  "both": 40
+ },
+ "mean_lost_log_loss_by_fault": {
+  "none": 0.0,
+  "join": 0.00730378493907506,
+  "sentinel": 0.0002878500408004012,
+  "both": 0.007213703513931693
+ },
+ "policies": {
+  "hold": {
+   "restored_share": 0.0,
+   "restored_share_by_fault": {
+    "join": 0.0,
+    "sentinel": 0.0,
+    "both": 0.0
+   },
+   "false_repair_rate": 0.0,
+   "retrain_rate": 0.0,
+   "loss_change_on_clean_incidents": -0.0,
+   "first_actions": {
+    "both": {
+     "hold": 40
+    },
+    "join": {
+     "hold": 40
+    },
+    "none": {
+     "hold": 40
+    },
+    "sentinel": {
+     "hold": 40
+    }
+   }
+  },
+  "invariants": {
+   "restored_share": 1.0,
+   "restored_share_by_fault": {
+    "join": 1.0,
+    "sentinel": 1.0,
+    "both": 1.0
+   },
+   "false_repair_rate": 0.15,
+   "retrain_rate": 0.0,
+   "loss_change_on_clean_incidents": -0.0,
+   "first_actions": {
+    "both": {
+     "hold": 0,
+     "restore_join": 40,
+     "restore_missing_encoding": 0
+    },
+    "join": {
+     "hold": 0,
+     "restore_join": 40,
+     "restore_missing_encoding": 0
+    },
+    "none": {
+     "hold": 28,
+     "restore_join": 0,
+     "restore_missing_encoding": 12
+    },
+    "sentinel": {
+     "hold": 0,
+     "restore_join": 0,
+     "restore_missing_encoding": 40
+    }
+   }
+  },
+  "tree": {
+   "restored_share": 0.997841322333329,
+   "restored_share_by_fault": {
+    "join": 1.0,
+    "sentinel": 0.8956304323313486,
+    "both": 0.9997342323206599
+   },
+   "false_repair_rate": 0.0,
+   "retrain_rate": 0.0,
+   "loss_change_on_clean_incidents": -0.0,
+   "first_actions": {
+    "both": {
+     "hold": 0,
+     "restore_join": 40,
+     "restore_missing_encoding": 0
+    },
+    "join": {
+     "hold": 0,
+     "restore_join": 40,
+     "restore_missing_encoding": 0
+    },
+    "none": {
+     "hold": 40,
+     "restore_join": 0,
+     "restore_missing_encoding": 0
+    },
+    "sentinel": {
+     "hold": 3,
+     "restore_join": 0,
+     "restore_missing_encoding": 37
+    }
+   }
+  },
+  "oracle": {
+   "restored_share": 1.0,
+   "restored_share_by_fault": {
+    "join": 1.0,
+    "sentinel": 1.0,
+    "both": 1.0
+   },
+   "false_repair_rate": 0.0,
+   "retrain_rate": 0.0,
+   "loss_change_on_clean_incidents": -0.0,
+   "first_actions": {
+    "both": {
+     "hold": 0,
+     "restore_join": 40,
+     "restore_missing_encoding": 0
+    },
+    "join": {
+     "hold": 0,
+     "restore_join": 40,
+     "restore_missing_encoding": 0
+    },
+    "none": {
+     "hold": 40,
+     "restore_join": 0,
+     "restore_missing_encoding": 0
+    },
+    "sentinel": {
+     "hold": 0,
+     "restore_join": 0,
+     "restore_missing_encoding": 40
+    }
+   }
+  },
+  "jev": {
+   "restored_share": 1.0,
+   "restored_share_by_fault": {
+    "join": 1.0,
+    "sentinel": 1.0,
+    "both": 1.0
+   },
+   "false_repair_rate": 0.43125,
+   "retrain_rate": 0.0,
+   "loss_change_on_clean_incidents": -0.0,
+   "first_actions": {
+    "both": {
+     "hold": 0,
+     "restore_join": 40,
+     "restore_missing_encoding": 0
+    },
+    "join": {
+     "hold": 0,
+     "restore_join": 40,
+     "restore_missing_encoding": 0
+    },
+    "none": {
+     "hold": 1,
+     "restore_join": 0,
+     "restore_missing_encoding": 39
+    },
+    "sentinel": {
+     "hold": 0,
+     "restore_join": 0,
+     "restore_missing_encoding": 40
+    }
+   }
+  }
+ },
+ "jev_restored_share_minus": {
+  "invariants": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "tree": [
+   0.0021586776666710386,
+   -2.791021974041367e-05,
+   0.0051234769651662265
+  ]
+ },
+ "win": false,
+ "jev": {
+  "calls": 320,
+  "attempts": 320,
+  "models": [
+   "jev-1.13.0"
+  ],
+  "input_tokens": 216824,
+  "call_seconds_median": 0.074
+ }
+}
