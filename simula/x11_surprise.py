@@ -110,8 +110,8 @@ def evaluate(table, answers, n_boot=1000):
             "jev_minus_best_partial": float(jp - stats[best]["partial_spearman_given_log_rows"]),
             "jev_minus_best_partial_ci": [float(lo[1]), float(hi[1])],
             "win": bool(jp >= 0.3 and jp > stats[best]["partial_spearman_given_log_rows"]),
-            "jev_rung_counts": pd.Series([first[c]["answers"]["uncertainty"]["score"] for c in table.index])
-                                 .value_counts().sort_index().to_dict(),
+            "jev_top_rung_counts": pd.Series([max(p := first[c]["answers"]["uncertainty"]["probabilities"], key=p.get)
+                                              for c in table.index]).value_counts().sort_index().to_dict(),
             "recheck": {"creatives": len(rechecked), "mean_abs_change_expected_rung": float(np.mean(
                 [abs(expected_rung(first[c]) - expected_rung(again[c])) for c in rechecked]))},
             "jev": {"calls": len(calls), "input_tokens": int(sum(c["tokens_in"] for c in calls)),
