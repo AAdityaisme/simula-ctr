@@ -94,3 +94,5 @@ Example state (`edit:368`, a broken edit to C17; the dependency list is shortene
   dependency that holds on the full data.
 - The post-hoc control was added after outcomes and is reported as such, next to the pre-registered one.
 - One wording, asked once.
+
+Full suite: 58 passed in 9.20s at 9086c93

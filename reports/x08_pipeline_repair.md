@@ -113,3 +113,5 @@ Example state (`s1:3`, step 1; the `both` fault on block 0, Oct 29 00:00–02:59
 - The window was already inspected, so everything is exploratory. Clicks enter only the loss.
 - Redundant repairs cost nothing in loss here; the false-repair rate is the only place they show.
 - One wording, asked once.
+
+Full suite: 58 passed in 9.20s at 9086c93

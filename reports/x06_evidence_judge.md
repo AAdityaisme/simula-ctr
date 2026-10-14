@@ -142,3 +142,5 @@ Example state (`panel:0`, the contract lists are shortened here; Jev saw them in
   This flatters the accuracy-gap score. A real audit would not have the generator.
 - The mix shift in (a) always flatters the candidate, with a random size. δ = 0 counts as no-ship.
 - One wording per question, asked once. A different rubric might do better, but tuning it here would overfit.
+
+Full suite: 58 passed in 9.20s at 9086c93
