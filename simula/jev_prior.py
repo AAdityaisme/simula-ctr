@@ -90,12 +90,12 @@ def write_states(tables, path, cells=None):
 
 
 def read_answers(path):
-    """{cell: prior} from a jev_ask.py output file; error lines are dropped."""
+    """{cell: prior} from a jev_ask.py output file. A repeated id keeps its last line; error lines are dropped."""
+    last = {row["id"]: row for row in map(json.loads, Path(path).read_text().splitlines())}
     out = {}
-    for line in Path(path).read_text().splitlines():
-        row = json.loads(line)
+    for key, row in last.items():
         if "answers" in row:
-            genre, c18, app = json.loads(row["id"])
+            genre, c18, app = json.loads(key)
             out[(genre, int(c18), app)] = jev_prior(row)
     return out
 
