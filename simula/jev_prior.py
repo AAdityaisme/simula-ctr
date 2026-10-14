@@ -68,7 +68,7 @@ def table_prior(cell, tables, m=20):
 
 
 def jev_prior(answer):
-    """Expected CTR under Jev's rung probabilities."""
+    """Expected CTR under Jev's rung probabilities, normalized by their sum (rounding makes some sum to 0.99)."""
     probs = answer["answers"]["ctr"]["probabilities"]
     return float(sum(p * MIDPOINTS[int(i)] for i, p in probs.items()) / sum(probs.values()))
 

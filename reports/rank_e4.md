@@ -23,7 +23,7 @@ A new creative (C14) has no history, so model B sends its C14 down LightGBM's mi
    "global_ctr": 0.185}
   ```
 
-- **Jev question.** One Score question, `ctr`: "What click-through rate should we expect for ads in this cell? Use the cell's history and its neighbours." Rungs: under 5%, 5–10%, 10–15%, 15–25%, over 25%. Prior = Σ p(rung) × midpoint, with midpoints 0.025, 0.075, 0.125, 0.20, 0.30. The question and state were fixed in code before any arm was scored. They were not changed after.
+- **Jev question.** One Score question, `ctr`: "What click-through rate should we expect for ads in this cell? Use the cell's history and its neighbours." Rungs: under 5%, 5–10%, 10–15%, 15–25%, over 25%. Prior = Σ p(rung) × midpoint, with midpoints 0.025, 0.075, 0.125, 0.20, 0.30, normalized by the probability sum (13 of 584 answers sum to 0.99 from rounding). The question and state were fixed in code before any arm was scored. They were not changed after.
 - **Table prior (control).** A hierarchical m-estimate with m = 20 at each level, from the same numbers: cell shrinks to genre × C18, which shrinks to C18, which shrinks to the global CTR.
 - **Blend.** The same rule for both priors: `p = (1 − b(1−w))·pB + b(1−w)·prior`, with `w = n/(n + k)` and n the creative's refit impressions (0 if unseen). k ∈ {50, 500} and b ∈ {0.1, 0.25, 0.5} were picked per prior on Oct 28 only. Both priors picked k = 500, b = 0.1.
 - **Test.** Oct 29–30, 127,406 rows. The unseen-C14 slice has 54,602 rows. 13 test rows fall in a cell not seen in refit; they keep pB.
@@ -59,9 +59,9 @@ The unseen slice's observed click rate is 0.1457.
 
 ## What it means for ranking
 
-- **Ship the table, not Jev, for this job.** A hierarchical cell prior blended into B's pCTR for new creatives lowers log loss by 0.0005 on unseen creatives and lifts AUC by 0.002. It costs a dict lookup per candidate and needs no model call.
+- **The table prior beat Jev here; it is not yet proven to ship.** A hierarchical cell prior blended into B's pCTR for new creatives lowered log loss by 0.0005 on unseen creatives and lifted AUC by 0.002 on logged impressions, in a window we had already inspected. Next step: validate it on a fresh window and inside `rank()` before shipping. It costs a dict lookup per candidate and needs no model call.
 - **Jev adds nothing on counts.** When the input is a table of impressions and clicks, the right answer is arithmetic. Jev's typed rungs throw away precision the table keeps. Its value, if any, is on inputs a table cannot read, such as text. This repeats the `jev_ctr` pattern.
-- **The graduation rule works as a serving mechanism.** `w = n/(n + k)` fades the prior as a creative gathers impressions. It is the cold-start path the README said was not implemented, and it fits inside the latency budget.
+- **The graduation rule is a candidate serving mechanism, not a shipped one.** `w = n/(n + k)` fades the prior as a creative gathers impressions. It would be the cold-start path the README said was not implemented; it has not been tested inside `rank()` yet.
 
 ## Limits
 
