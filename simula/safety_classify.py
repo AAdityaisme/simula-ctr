@@ -81,8 +81,8 @@ def llm_label(frame, model="claude-haiku-5-5", batch=25):
         answer = json.loads(text[text.index("{"):text.rindex("}") + 1])
         for cid, _ in chunk:
             tier = str(answer.get(cid, "")).strip().lower()
-            # ponytail: an unparsed row fails closed to the strictest tier, same as rank.py
-            labels[cid] = tier if tier in TIERS else "mature"
+            # an unparsed row fails closed: sfw is the strictest ad ceiling in rank.py (mature allows the most ads)
+            labels[cid] = tier if tier in TIERS else "sfw"
     return labels, cost, time.monotonic() - start, -(-len(rows) // batch)
 
 

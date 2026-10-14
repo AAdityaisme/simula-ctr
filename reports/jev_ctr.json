@@ -1,0 +1,100 @@
+{
+ "diagnostics": {
+  "genre_accuracy": 0.8476,
+  "tier_accuracy": 0.561,
+  "tier_kappa": -0.0026295845066459655,
+  "jev_tier_counts": {
+   "sfw": 4666,
+   "suggestive": 185,
+   "mature": 149
+  },
+  "true_tier_counts": {
+   "sfw": 2936,
+   "suggestive": 1302,
+   "mature": 762
+  }
+ },
+ "calibration": "one_day_half",
+ "test_rows": 127406,
+ "unseen_char_rows": 1478,
+ "arms": [
+  {
+   "arm": "B_submitted",
+   "trees": 183,
+   "test_log_loss": 0.4094500739187825,
+   "test_auc": 0.7289605163058022,
+   "unseen_char_log_loss": 0.4107571245565505,
+   "unseen_char_auc": 0.7174589325569161
+  },
+  {
+   "arm": "A_no_character",
+   "trees": 161,
+   "test_log_loss": 0.41918889580115937,
+   "test_auc": 0.7056269606627943,
+   "unseen_char_log_loss": 0.41306367600584104,
+   "unseen_char_auc": 0.7096980272595672
+  },
+  {
+   "arm": "B_minus_genre",
+   "trees": 175,
+   "test_log_loss": 0.4181206459352534,
+   "test_auc": 0.7086476417826902,
+   "unseen_char_log_loss": 0.41357833536076577,
+   "unseen_char_auc": 0.7084758889095847
+  },
+  {
+   "arm": "B_minus_genre_plus_text",
+   "trees": 242,
+   "test_log_loss": 0.4097900878868994,
+   "test_auc": 0.728365250521075,
+   "unseen_char_log_loss": 0.41239674344271765,
+   "unseen_char_auc": 0.7136748785214087
+  },
+  {
+   "arm": "B_minus_genre_plus_jev",
+   "trees": 224,
+   "test_log_loss": 0.40968500311429873,
+   "test_auc": 0.7284363917422958,
+   "unseen_char_log_loss": 0.4092977631800101,
+   "unseen_char_auc": 0.7210420199920919
+  },
+  {
+   "arm": "B_plus_jev",
+   "trees": 211,
+   "test_log_loss": 0.4093566784373636,
+   "test_auc": 0.7291330072380535,
+   "unseen_char_log_loss": 0.41150531810016827,
+   "unseen_char_auc": 0.7160799422261871
+  }
+ ],
+ "comparisons": [
+  {
+   "candidate": "B_minus_genre_plus_jev",
+   "baseline": "B_minus_genre",
+   "diff": -0.008435642820954737,
+   "ci_lo": -0.009434159351259986,
+   "ci_hi": -0.00745609312957148
+  },
+  {
+   "candidate": "B_minus_genre_plus_jev",
+   "baseline": "B_submitted",
+   "diff": 0.00023492919551614777,
+   "ci_lo": -0.00021557140806563078,
+   "ci_hi": 0.0008025172135381384
+  },
+  {
+   "candidate": "B_minus_genre_plus_jev",
+   "baseline": "B_minus_genre_plus_text",
+   "diff": -0.00010508477260076742,
+   "ci_lo": -0.0005701620541753446,
+   "ci_hi": 0.000481137712483188
+  },
+  {
+   "candidate": "B_plus_jev",
+   "baseline": "B_submitted",
+   "diff": -9.339548141899059e-05,
+   "ci_lo": -0.00027682714583165176,
+   "ci_hi": 7.791324468175565e-05
+  }
+ ]
+}

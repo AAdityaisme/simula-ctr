@@ -2,6 +2,12 @@
 
 Branch `exp/ad-classify`, written 2026-10-14. Reproduce: `uv run python -m simula.safety_classify` (it reuses the cached LLM labels in `reports/ad_classify_llm_labels.json`; `--relabel` calls the LLM again).
 
+> **Corrections 2026-10-14 01:35 PT (after Aadi's review and second opinions from Fable 5.1 and GPT-6 Astra). The original text below is left as written.**
+> 1. **The question was the wrong one.** `safety_tier` is independent of everything in the file (Fable: chi² p=0.89 against genre, p=0.52 against sentence frame). So the null was settled before any model ran. A permutation check would have shown it in ten minutes. The tier is a policy input to a hard gate, not something a model should guess. The follow-up asks the question the data can answer: does a text classifier reading the description help predict clicks? See `reports/jev_ctr.md`.
+> 2. **I had the costly error backwards.** In `rank.py:75-77` the character tier is a **ceiling** on ad content. An unknown character gets `sfw`, the strictest ceiling, and `mature` allows the most ads. So missing a mature character only narrows the ads shown. The dangerous error is calling an `sfw` character `mature`, because that lets mature ads run next to it. "Recall on mature" was the wrong headline metric. The sentence under "What it means" claiming a miss "would put brand-sensitive ads next to mature characters" is wrong for this gate.
+> 3. **The fallback was backwards too.** `safety_classify.py` mapped an unparsed LLM answer to `mature` and called that fail-closed. That opens the gate. It now maps to `sfw`. The single `mature` among the 300 cached Haiku labels may be that fallback. The cache does not record which.
+> 4. **Wrong tool, as Aadi said.** Haiku through `claude -p` returns one label with no probabilities. Jev (TypeSafe) is built for typed classification: it gives per-option probabilities in about 0.3 s. The follow-up uses it. On tier, Jev also cannot beat chance, because the label is noise (numbers in `reports/jev_ctr.md`).
+
 ## Question
 
 The ranking policy in `simula/rank.py` uses a character's `safety_tier` (`sfw`, `suggestive`, `mature`) to decide which ads may run next to it. A new character has no tier yet. Can a classifier assign one? The setup is "an LLM labels, a cheap LightGBM model serves."
