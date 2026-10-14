@@ -217,4 +217,4 @@ Example state (`panel:0`, the contract lists are shortened here; Jev saw them in
 - One wording per question, asked once. A different rubric might do better, but tuning it here would overfit.
 
 
-Full suite: 67 passed in 207.08s at 77d68bb
+Full suite: 67 passed in 120.87s at e352a95

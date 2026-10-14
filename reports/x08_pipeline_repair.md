@@ -195,4 +195,4 @@ Example state (`s1:3`, step 1; the `both` fault on block 0, Oct 29 00:00–02:59
 - One wording, asked once.
 
 
-Full suite: 67 passed in 207.08s at 77d68bb
+Full suite: 67 passed in 120.87s at e352a95
