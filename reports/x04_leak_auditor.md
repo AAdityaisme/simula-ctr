@@ -159,4 +159,4 @@ Jev cannot serve as the gate that admits features to B. It misses the two leaks 
 - 75 cards is a small set, and the intervals are wide. One card is 3.8 points of recall.
 - This tests feature admission, not CTR. The test window (Oct 29–30) was not read, and nothing here is a CTR lift. The test window was already inspected by earlier work, so this is exploratory.
 
-Full suite: 48 passed, 2 warnings in 9.92s at bab7abc
+Full suite: 49 passed, 2 warnings in 14.00s at 9af6cda
