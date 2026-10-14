@@ -3,6 +3,7 @@ import pandas as pd
 
 from simula.x06_evidence import checklist, cmh_z, naive_z, readout
 from simula.x07_surgery import FIELDS, accept_at_detection, closure_ok, dependencies
+from simula.x08_repair import correct, inject, invariants, repair
 
 
 def test_mix_shift_fools_naive_but_not_cmh():
@@ -50,3 +51,31 @@ def test_accept_at_detection():
     real = np.array([True, True, True, False, False, False])
     assert accept_at_detection(score, real, 2 / 3) == 2 / 3  # t = 0.8 rejects 0.1 and 0.3
     assert accept_at_detection(score, real, 1.0) == 1 / 3  # only t = 0.9 rejects all broken
+
+
+def test_inject_then_repair_restores_the_clean_batch():
+    batch = pd.DataFrame({"character_id": ["a", "a", "b"], "safety_tier": ["sfw"] * 3, "creator_type": ["user"] * 3,
+                          "genre": ["romance"] * 3, "created_at": pd.to_datetime(["2014-10-01"] * 3),
+                          "character_age_days": [28] * 3, "day": [141029] * 3, "C20": ["-1", "100", "-1"],
+                          "device_id": ["a99f214a", "x", "a99f214a"], "is_null_device": [True, False, True]})
+    chars = pd.DataFrame({"character_id": ["z"], "safety_tier": ["mature"], "creator_type": ["studio"],
+                          "character_name": ["horror_x"], "created_at": pd.to_datetime(["2014-10-20"])})
+    bad = inject(batch, "both", 1.0, chars, np.random.default_rng(0))
+    assert bad["C20"].tolist() == ["-1.0", "100", "-1.0"] and not bad["is_null_device"].any()
+    assert set(bad["genre"]) == {"horror"} and bad["character_age_days"].eq(9).all()
+    fixed = repair(repair(bad, batch, "restore_join"), batch, "restore_missing_encoding")
+    pd.testing.assert_frame_equal(fixed, batch, check_dtype=False)
+
+
+def test_invariants_and_correct_repair_order():
+    def s(multi=0.0, unseen=0.0, null=0.8):
+        return {"share_of_repeat_characters_with_several_metadata_rows": {"batch": multi, "reference": 0.0},
+                "share_C20_unseen_by_model": {"batch": unseen, "reference": 0.0},
+                "share_null_device": {"batch": null, "reference": 0.8}}
+    assert invariants(s(), []) == "hold"
+    assert invariants(s(multi=0.2, unseen=0.3), []) == "restore_join"
+    assert invariants(s(multi=0.2, unseen=0.3), ["restore_join"]) == "restore_missing_encoding"
+    assert invariants(s(null=0.7), []) == "restore_missing_encoding"
+    assert correct("both", []) == "restore_join"
+    assert correct("both", ["restore_join"]) == "restore_missing_encoding"
+    assert correct("none", ["hold"]) == "hold"
