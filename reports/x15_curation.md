@@ -84,3 +84,5 @@ The placebo sits inside the no-exclusion range. Every rule and Jev seed sits abo
 - The placebo and per-seed check came after the result. It is a diagnostic; it does not replace the pre-registered numbers.
 - 371 profiles from one week. There is no ground truth for "automated".
 - κ is between flag sets, not against truth.
+
+Full suite: 48 passed in 10.95s at e804154

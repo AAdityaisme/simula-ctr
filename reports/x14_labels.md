@@ -81,3 +81,5 @@ Oct 29–30 log loss. Jev − control is negative when Jev is better.
 - Small models: 50,000–70,000 training rows, 49–77 trees. The ranking among arms could differ at full scale.
 - Three seeds share one validation day, one calibration day and one test window.
 - One wording after the two pre-registration changes. A question that asked for a spread of labels, or said a cohort was empty, might behave differently; that was not tried.
+
+Full suite: 48 passed in 10.95s at e804154
