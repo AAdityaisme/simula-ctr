@@ -43,6 +43,17 @@ QUESTIONS = {f"ratio_k{k}": {"type": "score", "criteria": RUNGS, "instructions":
              "What is its click-through rate relative to the click-through rate of that device's first impression "
              "of that creative that day?"} for k in BUCKETS}
 N_ASKS = 3
+# Post-hoc re-ask (red team on e780a65): the original wording said "2nd time", which does not match the code's k.
+POSTHOC_ANSWERS = Path("reports/x01_fatigue_posthoc_jev_answers.jsonl")
+EXACT_K = ("k = 1 + the number of impressions of the same ad creative (C14) shown to the same device (device_ip plus "
+           "device_model) on the same day in strictly earlier hours. Impressions in the same hour have no order: they do "
+           "not count each other and share the same k. k=1 means the device saw no impression of that creative in any "
+           "earlier hour that day.")
+K_LABEL = {2: "k = 2", 3: "k = 3", 4: "k of 4 or more"}
+POSTHOC_QUESTIONS = {f"ratio_k{k}": {"type": "score", "criteria": [r.replace("first-impression", "k = 1") for r in RUNGS],
+                     "instructions": f"Consider impressions with {K_LABEL[k]}, with k as defined in the state. What is "
+                     "their click-through rate relative to the click-through rate of impressions with k = 1?"}
+                     for k in BUCKETS}
 SHRINK = 0.5  # bundle/B's calibration recipe: one day (Oct 28), half shift
 N_SUB = 300_000
 TOLERANCE = 0.05
@@ -96,6 +107,44 @@ def jev_state(assignment_text):
     return {"assignment_goal_2_candidate_ranking": goal2, "data_schema": schema,
             "definition": "k counts how many times a device (device_ip plus device_model) has been shown the same ad "
                           "creative (C14) so far that day, including the current impression; k=1 is the first."}
+
+
+def posthoc_state(assignment_text):
+    """The original state with k defined exactly as `repeat_count` computes it."""
+    return {**jev_state(assignment_text), "definition": EXACT_K}
+
+
+def posthoc(df, answers, posthoc_answers):
+    """Exploratory: the exact-k re-ask curve, and a shipped discount capped at k=4, on repeat-slice log loss."""
+    refit, test = split(df, "refit"), split(df, "test")
+    fitted = {k: v["ratio"] for k, v in fitted_curve(refit).items() if k in BUCKETS}
+    curves = {"jev": jev_curve(answers), "jev_posthoc": jev_curve(posthoc_answers), "fitted": fitted}
+    p_b = train.predict(train.load_bundle("bundle/B"), test)
+    k = test["k"].to_numpy()
+    arms = {"B": p_b, "B_x_shipped": p_b * shipped_multiplier(k), "B_x_shipped_capped": p_b * shipped_multiplier(bucket(k)),
+            **{f"B_x_{n}": p_b * curve_multiplier(k, c) for n, c in curves.items()}}
+    y, groups, repeat = test["click"].to_numpy(), test["character_id"].to_numpy(), k >= 2
+    losses = {n: _row_loss(y, p) for n, p in arms.items()}
+    pairs = [("B_x_jev_posthoc", "B_x_shipped"), ("B_x_jev_posthoc", "B"), ("B_x_jev_posthoc", "B_x_jev"),
+             ("B_x_shipped_capped", "B_x_shipped"), ("B_x_jev", "B_x_shipped_capped"), ("B_x_fitted", "B_x_shipped_capped")]
+    diffs = [{"a": a, "b": b, "slice": s, "log_loss_diff": bootstrap_diff(groups[m], losses[a][m], losses[b][m])}
+             for a, b in pairs for s, m in (("all", np.ones(len(y), bool)), ("repeat", repeat))]
+    rep = {n: float(losses[n][repeat].mean()) for n in arms}
+    gain = rep["B_x_shipped"] - rep["B_x_shipped_capped"]
+    within = {kk: abs(curves["jev_posthoc"][kk] - fitted[kk]) <= TOLERANCE for kk in BUCKETS}
+    vs_shipped = diffs[1]["log_loss_diff"]
+    return {
+        "curves": curves, "repeat_log_loss": rep, "all_log_loss": {n: float(v.mean()) for n, v in losses.items()},
+        "diffs": diffs,
+        "cap_share_of_gain_over_shipped": {"jev": gain / (rep["B_x_shipped"] - rep["B_x_jev"]),
+                                           "fitted": gain / (rep["B_x_shipped"] - rep["B_x_fitted"])},
+        "posthoc_against_original_win_rule": {"ratios_within_0.05": {str(kk): bool(v) for kk, v in within.items()},
+                                              "beats_shipped_repeat": vs_shipped[2] < 0,
+                                              "would_be": "win" if all(within.values()) and vs_shipped[2] < 0 else "null"},
+        "jev_posthoc": {"calls": len(posthoc_answers), "models": sorted({a["model"] for a in posthoc_answers}),
+                        "input_tokens": int(sum(a["tokens_in"] for a in posthoc_answers)),
+                        "raw": [{kk: a["answers"][f"ratio_k{kk}"] for kk in BUCKETS} for a in posthoc_answers]},
+    }
 
 
 def retrain(df, features, seed=0):
@@ -180,7 +229,7 @@ def evaluate(df, answers):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("step", choices=["states", "report"])
+    parser.add_argument("step", choices=["states", "report", "posthoc-states", "posthoc"])
     parser.add_argument("--data", default=str(Path.home() / "Desktop/Simula/ml-takehome/data"))
     args = parser.parse_args()
     if args.step == "states":
@@ -190,9 +239,24 @@ if __name__ == "__main__":
             for i in range(1, N_ASKS + 1):
                 f.write(json.dumps({"id": f"ask:{i}", "state": state, "questions": QUESTIONS}) + "\n")
         print("wrote", WORK / "x01_states.jsonl")
+    elif args.step == "posthoc-states":
+        WORK.mkdir(parents=True, exist_ok=True)
+        state = posthoc_state(ASSIGNMENT.read_text())
+        with open(WORK / "x01_posthoc_states.jsonl", "w") as f:
+            for i in range(1, N_ASKS + 1):
+                f.write(json.dumps({"id": f"posthoc:{i}", "state": state, "questions": POSTHOC_QUESTIONS}) + "\n")
+        print("wrote", WORK / "x01_posthoc_states.jsonl")
     else:
-        answers = list({a["id"]: a for a in map(json.loads, ANSWERS.read_text().splitlines())}.values())
-        assert not any("error" in a for a in answers), "rerun jev_ask.py"
-        out = evaluate(prepare(args.data), answers)
-        Path("reports/x01_fatigue.json").write_text(json.dumps(out, indent=1, default=float) + "\n")
-        print(pd.DataFrame(out["arms"]).round(5).to_string(index=False))
+        answers, posthoc_answers = (
+            list({a["id"]: a for a in map(json.loads, path.read_text().splitlines())}.values())
+            for path in (ANSWERS, POSTHOC_ANSWERS if args.step == "posthoc" else ANSWERS))
+        assert not any("error" in a for a in answers + posthoc_answers), "rerun jev_ask.py"
+        if args.step == "posthoc":
+            out = posthoc(prepare(args.data), answers, posthoc_answers)
+            Path("reports/x01_fatigue_posthoc.json").write_text(json.dumps(out, indent=1, default=float) + "\n")
+            print(json.dumps({k: out[k] for k in ("curves", "repeat_log_loss", "cap_share_of_gain_over_shipped",
+                                                  "posthoc_against_original_win_rule")}, indent=1))
+        else:
+            out = evaluate(prepare(args.data), answers)
+            Path("reports/x01_fatigue.json").write_text(json.dumps(out, indent=1, default=float) + "\n")
+            print(pd.DataFrame(out["arms"]).round(5).to_string(index=False))

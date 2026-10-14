@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from simula.x01_fatigue import curve_multiplier, jev_curve, repeat_count, shipped_multiplier
+from simula.x01_fatigue import bucket, curve_multiplier, jev_curve, repeat_count, shipped_multiplier
 
 
 def test_repeat_count_counts_only_earlier_hours_of_the_same_creative_device_and_day():
@@ -18,6 +18,7 @@ def test_repeat_count_counts_only_earlier_hours_of_the_same_creative_device_and_
 def test_multipliers():
     k = np.array([1, 2, 3, 4, 7])
     assert np.allclose(shipped_multiplier(k), [1, 2 / 3, 0.5, 0.4, 0.25])
+    assert np.allclose(shipped_multiplier(bucket(k)), [1, 2 / 3, 0.5, 0.4, 0.4])
     assert np.allclose(curve_multiplier(k, {2: 0.8, 3: 0.7, 4: 0.6}), [1, 0.8, 0.7, 0.6, 0.6])
 
 
