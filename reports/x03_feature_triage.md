@@ -135,3 +135,5 @@ Jev's top pick, a lagged character CTR, carries the least signal of the twelve. 
 - Five seeds on a 300,000-row subsample. A full-data run with more seeds might separate the top two features from 0.
 - Fable built the zoo knowing which two features work. I added the 12th feature and the "safety tier" reading.
 - Click-derived features use no test-window label, but the test window was already inspected by earlier work. Everything here is exploratory, and nothing is a CTR lift.
+
+Full suite: 48 passed, 2 warnings in 9.92s at bab7abc

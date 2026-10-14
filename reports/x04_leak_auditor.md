@@ -98,3 +98,5 @@ Jev cannot serve as the gate that admits features to B. It misses the two leaks 
 - The two real leaks have one-line definitions taken verbatim from the assignment schema. "Total messages in the session" does not say when the total is taken, and the README itself calls `session_msg_count`'s availability ambiguous. A fuller definition might change Jev's answer. I did not try one after seeing the results.
 - 75 cards is a small set, and the intervals are wide. One card is 3.8 points of recall.
 - This tests feature admission, not CTR. The test window (Oct 29–30) was not read, and nothing here is a CTR lift. The test window was already inspected by earlier work, so this is exploratory.
+
+Full suite: 48 passed, 2 warnings in 9.92s at bab7abc

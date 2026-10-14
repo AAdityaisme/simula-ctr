@@ -84,3 +84,5 @@ On these two origins, chronological validation is the right exam for choosing B'
 - There are two origins, three close recipes and one random draw of held-out values per split. Recipe gaps are 0.001–0.005 in log loss. This is a pilot, not a reliability estimate.
 - There is no calibration and no refit after selection, so these are raw-loss comparisons of fitted models.
 - The later windows (Oct 25–28) contain no test-window rows, but the test window was already inspected by earlier work. Everything here is exploratory and nothing is a CTR lift.
+
+Full suite: 48 passed, 2 warnings in 9.92s at bab7abc
