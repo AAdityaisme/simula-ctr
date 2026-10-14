@@ -116,7 +116,9 @@ def state(pair, with_pctr):
 
 
 def ceiling(p_a, p_b):
-    """Pairwise accuracy if the pCTRs were the truth: P(the higher one is the click | exactly one click)."""
+    """B-implied benchmark: pairwise accuracy if these pCTRs were the true rates, P(higher is the click | one click).
+
+    It is not an upper bound on other rankers; a better-informed ranker can score above it."""
     hi, lo = np.maximum(p_a, p_b), np.minimum(p_a, p_b)
     return float(np.mean(hi * (1 - lo) / (hi * (1 - lo) + lo * (1 - hi))))
 
@@ -159,8 +161,10 @@ def _scored(a, b):
 
 
 def _mcnemar(arm, ref):
+    """Exact McNemar, conditional on pairs where both arms pick decisively (no 0.5 tie)."""
     wins, losses = int(((arm == 1) & (ref == 0)).sum()), int(((arm == 0) & (ref == 1)).sum())
-    return wins, losses, float(binomtest(wins, wins + losses).pvalue) if wins + losses else 1.0
+    return {"decisive_pairs": int(((arm != 0.5) & (ref != 0.5)).sum()), "wins": wins, "losses": losses,
+            "p": float(binomtest(wins, wins + losses).pvalue) if wins + losses else 1.0}
 
 
 def _auc_diff(groups, y, a, b, n_boot=1000, seed=0):
@@ -198,7 +202,7 @@ def evaluate(pairs, rows, answers):
                "acc_ci": bootstrap_diff(groups, score, np.zeros(len(score)))[1:]}
         if name != "B":
             row["diff_vs_B"] = bootstrap_diff(groups, score, arms["B"])
-            row["mcnemar_wins_losses_p"] = _mcnemar(score, arms["B"]) if name != "coin" else None
+            row["mcnemar_decisive"] = _mcnemar(score, arms["B"]) if name != "coin" else None
         exp1.append(row)
     swap = swap_sample(pairs)
     same = [answers[f"swap:{p}"]["answers"]["pick"]["choice"] != pick["with"][i]
