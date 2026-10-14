@@ -95,4 +95,4 @@ Jev AUROC − logistic AUROC = **−0.029 (−0.055 to −0.004)**. **Pre-declar
 - The questions were asked once, in one wording. A different rubric might do better, but tuning it on this window would overfit the test.
 - The 300-pair order check uses only the with-pCTR state. The without-pCTR state was not checked for order effects.
 
-Full suite: 36 passed in 9.69s at 03bb842
+Full suite: 36 passed in 8.85s at 90bb6c5
