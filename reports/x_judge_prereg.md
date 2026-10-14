@@ -5,6 +5,9 @@ controls are the constants and functions in `simula/x03_triage.py`, `simula/x04_
 at this commit. In all three, Jev reads definitions and process descriptions, never rows. The test window (Oct 29–30)
 was already inspected by earlier work, so every result is exploratory.
 
+> Correction, 2026-10-14 (red team on `1d613cd`): for x04 the claim above is false. The v1 card statistics, including
+> MI with click, were written to the work directory 46 s before this commit. The x04 v2 section below re-runs it in order.
+
 ## x03: feature triage from definitions alone (Fable E1)
 
 - **Zoo.** Fable lists 11 features: six candidates (prior impressions today for any ad and for this creative, hours
