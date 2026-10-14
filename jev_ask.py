@@ -2,7 +2,8 @@
 
 Each input line is {"id", "state", "questions": {name: {"type": "choice"|"score"|"noul", "instructions",
 "criteria"}}}. Each output line is {"id", "model", "tokens_in", "seconds", "answers"}, or {"id", "error"} after one
-retry. Ids already in OUT are skipped, so a run resumes where it stopped.
+retry. Ids with a successful line in OUT are skipped, so a run resumes where it stopped and retries errors. OUT is
+append-only: readers keep the last line per id.
 
 Run (throwaway env, key loaded from the agent repo's .env at runtime, never printed):
   uv run --no-project --with typesafe-sdk==0.7.2 --with python-dotenv python jev_ask.py IN.jsonl OUT.jsonl
@@ -48,7 +49,8 @@ def ask(client, item):
 def main(src, dst):
     load_dotenv(ENV, override=False)
     dst = Path(dst)
-    done = {json.loads(line)["id"] for line in dst.read_text().splitlines()} if dst.exists() else set()
+    rows = map(json.loads, dst.read_text().splitlines()) if dst.exists() else []
+    done = {row["id"] for row in rows if "error" not in row}
     todo = [item for item in map(json.loads, Path(src).read_text().splitlines()) if item["id"] not in done]
     start, tokens, errors = time.monotonic(), 0, 0
     with TypeSafeClient(api_key=os.environ["TYPESAFE_API_KEY"]) as client, ThreadPoolExecutor(8) as pool, \
