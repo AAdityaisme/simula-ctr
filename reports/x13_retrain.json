@@ -1,0 +1,467 @@
+{
+ "policies": {
+  "jev": {
+   "oct27_29_log_loss": 0.4146942495298532,
+   "oct30_log_loss": 0.4134775768831708,
+   "per_seed": {
+    "0": {
+     "actions": {
+      "Oct 27": "refit_recent_three_days",
+      "Oct 28": "refit_recent_three_days",
+      "Oct 29": "intercept_update",
+      "Oct 30": "intercept_update"
+     },
+     "refits": 2,
+     "oct27_29": 0.41529952787502283,
+     "oct30": 0.41641504458888556,
+     "jev": {
+      "Oct 27": {
+       "choice": "refit_recent_three_days",
+       "probabilities": {
+        "hold": 0.34,
+        "intercept_update": 0.29,
+        "refit_recent_three_days": 0.37
+       },
+       "reversed_choice": "intercept_update"
+      },
+      "Oct 28": {
+       "choice": "refit_recent_three_days",
+       "probabilities": {
+        "hold": 0.17,
+        "intercept_update": 0.24,
+        "refit_recent_three_days": 0.59
+       },
+       "reversed_choice": "refit_recent_three_days"
+      },
+      "Oct 29": {
+       "choice": "intercept_update",
+       "probabilities": {
+        "hold": 0.15,
+        "intercept_update": 0.45,
+        "refit_recent_three_days": 0.4
+       },
+       "reversed_choice": "refit_recent_three_days"
+      },
+      "Oct 30": {
+       "choice": "intercept_update",
+       "probabilities": {
+        "hold": 0.13,
+        "intercept_update": 0.45999999999999996,
+        "refit_recent_three_days": 0.41
+       },
+       "reversed_choice": "refit_recent_three_days"
+      }
+     },
+     "budget_violations": 0
+    },
+    "1": {
+     "actions": {
+      "Oct 27": "intercept_update",
+      "Oct 28": "intercept_update",
+      "Oct 29": "refit_recent_three_days",
+      "Oct 30": "refit_recent_three_days"
+     },
+     "refits": 2,
+     "oct27_29": 0.4133154389778289,
+     "oct30": 0.4055554760322589,
+     "jev": {
+      "Oct 27": {
+       "choice": "intercept_update",
+       "probabilities": {
+        "hold": 0.3,
+        "intercept_update": 0.35,
+        "refit_recent_three_days": 0.35
+       },
+       "reversed_choice": "refit_recent_three_days"
+      },
+      "Oct 28": {
+       "choice": "intercept_update",
+       "probabilities": {
+        "hold": 0.17,
+        "intercept_update": 0.42,
+        "refit_recent_three_days": 0.41
+       },
+       "reversed_choice": "intercept_update"
+      },
+      "Oct 29": {
+       "choice": "refit_recent_three_days",
+       "probabilities": {
+        "hold": 0.1,
+        "intercept_update": 0.35,
+        "refit_recent_three_days": 0.55
+       },
+       "reversed_choice": "refit_recent_three_days"
+      },
+      "Oct 30": {
+       "choice": "refit_recent_three_days",
+       "probabilities": {
+        "hold": 0.1,
+        "intercept_update": 0.27,
+        "refit_recent_three_days": 0.63
+       },
+       "reversed_choice": "refit_recent_three_days"
+      }
+     },
+     "budget_violations": 0
+    },
+    "2": {
+     "actions": {
+      "Oct 27": "refit_recent_three_days",
+      "Oct 28": "refit_recent_three_days",
+      "Oct 29": "hold",
+      "Oct 30": "hold"
+     },
+     "refits": 2,
+     "oct27_29": 0.4154677817367076,
+     "oct30": 0.4184622100283681,
+     "jev": {
+      "Oct 27": {
+       "choice": "refit_recent_three_days",
+       "probabilities": {
+        "hold": 0.27,
+        "intercept_update": 0.33,
+        "refit_recent_three_days": 0.4
+       },
+       "reversed_choice": "refit_recent_three_days"
+      },
+      "Oct 28": {
+       "choice": "refit_recent_three_days",
+       "probabilities": {
+        "hold": 0.12,
+        "intercept_update": 0.27,
+        "refit_recent_three_days": 0.61
+       },
+       "reversed_choice": "refit_recent_three_days"
+      },
+      "Oct 29": {
+       "choice": "refit_recent_three_days",
+       "probabilities": {
+        "hold": 0.11,
+        "intercept_update": 0.35,
+        "refit_recent_three_days": 0.54
+       },
+       "reversed_choice": "refit_recent_three_days"
+      },
+      "Oct 30": {
+       "choice": "refit_recent_three_days",
+       "probabilities": {
+        "hold": 0.22,
+        "intercept_update": 0.27,
+        "refit_recent_three_days": 0.51
+       },
+       "reversed_choice": "refit_recent_three_days"
+      }
+     },
+     "budget_violations": 2
+    }
+   }
+  },
+  "scheduled": {
+   "oct27_29_log_loss": 0.41315780530454,
+   "oct30_log_loss": 0.41041995061262637,
+   "per_seed": {
+    "0": {
+     "actions": {
+      "Oct 27": "refit_recent_three_days",
+      "Oct 28": "intercept_update",
+      "Oct 29": "refit_recent_three_days",
+      "Oct 30": "intercept_update"
+     },
+     "refits": 2,
+     "oct27_29": 0.413156747188518,
+     "oct30": 0.4106811671905438
+    },
+    "1": {
+     "actions": {
+      "Oct 27": "refit_recent_three_days",
+      "Oct 28": "intercept_update",
+      "Oct 29": "refit_recent_three_days",
+      "Oct 30": "intercept_update"
+     },
+     "refits": 2,
+     "oct27_29": 0.41317052258929243,
+     "oct30": 0.4092611671358686
+    },
+    "2": {
+     "actions": {
+      "Oct 27": "refit_recent_three_days",
+      "Oct 28": "intercept_update",
+      "Oct 29": "refit_recent_three_days",
+      "Oct 30": "intercept_update"
+     },
+     "refits": 2,
+     "oct27_29": 0.41314614613580936,
+     "oct30": 0.41131751751146683
+    }
+   }
+  },
+  "ewma": {
+   "oct27_29_log_loss": 0.41434596501454096,
+   "oct30_log_loss": 0.4056067011532033,
+   "per_seed": {
+    "0": {
+     "actions": {
+      "Oct 27": "intercept_update",
+      "Oct 28": "intercept_update",
+      "Oct 29": "intercept_update",
+      "Oct 30": "intercept_update"
+     },
+     "refits": 0,
+     "oct27_29": 0.41382135868367576,
+     "oct30": 0.4041319686566852
+    },
+    "1": {
+     "actions": {
+      "Oct 27": "intercept_update",
+      "Oct 28": "intercept_update",
+      "Oct 29": "intercept_update",
+      "Oct 30": "intercept_update"
+     },
+     "refits": 0,
+     "oct27_29": 0.414265310889267,
+     "oct30": 0.406763101098002
+    },
+    "2": {
+     "actions": {
+      "Oct 27": "intercept_update",
+      "Oct 28": "intercept_update",
+      "Oct 29": "intercept_update",
+      "Oct 30": "intercept_update"
+     },
+     "refits": 0,
+     "oct27_29": 0.4149512254706803,
+     "oct30": 0.4059250337049225
+    }
+   }
+  },
+  "hour_z": {
+   "oct27_29_log_loss": 0.4134100893711195,
+   "oct30_log_loss": 0.4055021946068172,
+   "per_seed": {
+    "0": {
+     "actions": {
+      "Oct 27": "hold",
+      "Oct 28": "hold",
+      "Oct 29": "refit_recent_three_days",
+      "Oct 30": "refit_recent_three_days"
+     },
+     "refits": 2,
+     "oct27_29": 0.4130624540197774,
+     "oct30": 0.40568708953353266
+    },
+    "1": {
+     "actions": {
+      "Oct 27": "hold",
+      "Oct 28": "hold",
+      "Oct 29": "refit_recent_three_days",
+      "Oct 30": "refit_recent_three_days"
+     },
+     "refits": 2,
+     "oct27_29": 0.41330976524271285,
+     "oct30": 0.4055554760322589
+    },
+    "2": {
+     "actions": {
+      "Oct 27": "hold",
+      "Oct 28": "hold",
+      "Oct 29": "refit_recent_three_days",
+      "Oct 30": "refit_recent_three_days"
+     },
+     "refits": 2,
+     "oct27_29": 0.413858048850868,
+     "oct30": 0.4052640182546601
+    }
+   }
+  },
+  "always_hold": {
+   "oct27_29_log_loss": 0.4143916084418848,
+   "oct30_log_loss": 0.4058480329330756,
+   "per_seed": {
+    "0": {
+     "actions": {
+      "Oct 27": "hold",
+      "Oct 28": "hold",
+      "Oct 29": "hold",
+      "Oct 30": "hold"
+     },
+     "refits": 0,
+     "oct27_29": 0.4138495365800535,
+     "oct30": 0.40434547289557443
+    },
+    "1": {
+     "actions": {
+      "Oct 27": "hold",
+      "Oct 28": "hold",
+      "Oct 29": "hold",
+      "Oct 30": "hold"
+     },
+     "refits": 0,
+     "oct27_29": 0.41432468345838125,
+     "oct30": 0.4069663350847738
+    },
+    "2": {
+     "actions": {
+      "Oct 27": "hold",
+      "Oct 28": "hold",
+      "Oct 29": "hold",
+      "Oct 30": "hold"
+     },
+     "refits": 0,
+     "oct27_29": 0.4150006052872193,
+     "oct30": 0.40623229081887874
+    }
+   }
+  },
+  "always_intercept": {
+   "oct27_29_log_loss": 0.41434596501454096,
+   "oct30_log_loss": 0.4056067011532033,
+   "per_seed": {
+    "0": {
+     "actions": {
+      "Oct 27": "intercept_update",
+      "Oct 28": "intercept_update",
+      "Oct 29": "intercept_update",
+      "Oct 30": "intercept_update"
+     },
+     "refits": 0,
+     "oct27_29": 0.41382135868367576,
+     "oct30": 0.4041319686566852
+    },
+    "1": {
+     "actions": {
+      "Oct 27": "intercept_update",
+      "Oct 28": "intercept_update",
+      "Oct 29": "intercept_update",
+      "Oct 30": "intercept_update"
+     },
+     "refits": 0,
+     "oct27_29": 0.414265310889267,
+     "oct30": 0.406763101098002
+    },
+    "2": {
+     "actions": {
+      "Oct 27": "intercept_update",
+      "Oct 28": "intercept_update",
+      "Oct 29": "intercept_update",
+      "Oct 30": "intercept_update"
+     },
+     "refits": 0,
+     "oct27_29": 0.4149512254706803,
+     "oct30": 0.4059250337049225
+    }
+   }
+  }
+ },
+ "comparisons": [
+  {
+   "candidate": "jev",
+   "baseline": "scheduled",
+   "span": "oct27_29",
+   "char_ci": [
+    0.0015364442253131857,
+    0.0012864424751975756,
+    0.001799644858440953
+   ]
+  },
+  {
+   "candidate": "jev",
+   "baseline": "scheduled",
+   "span": "oct30",
+   "char_ci": [
+    0.003057626270544432,
+    0.0014429310776807884,
+    0.004695101168094621
+   ]
+  },
+  {
+   "candidate": "jev",
+   "baseline": "ewma",
+   "span": "oct27_29",
+   "char_ci": [
+    0.00034828451531214975,
+    -2.799211248297186e-06,
+    0.0007051955768147039
+   ]
+  },
+  {
+   "candidate": "jev",
+   "baseline": "ewma",
+   "span": "oct30",
+   "char_ci": [
+    0.007870875729967617,
+    0.006129360108161562,
+    0.009703012123566248
+   ]
+  },
+  {
+   "candidate": "jev",
+   "baseline": "hour_z",
+   "span": "oct27_29",
+   "char_ci": [
+    0.0012841601587336977,
+    0.000993045426106042,
+    0.001589178421642899
+   ]
+  },
+  {
+   "candidate": "jev",
+   "baseline": "hour_z",
+   "span": "oct30",
+   "char_ci": [
+    0.007975382276353636,
+    0.006400146355738061,
+    0.009525344792486918
+   ]
+  },
+  {
+   "candidate": "jev",
+   "baseline": "always_hold",
+   "span": "oct27_29",
+   "char_ci": [
+    0.00030264108796841817,
+    -4.696904825439571e-05,
+    0.0006604987192180264
+   ]
+  },
+  {
+   "candidate": "jev",
+   "baseline": "always_hold",
+   "span": "oct30",
+   "char_ci": [
+    0.007629543950095233,
+    0.005919662704546797,
+    0.009426758694163423
+   ]
+  },
+  {
+   "candidate": "jev",
+   "baseline": "always_intercept",
+   "span": "oct27_29",
+   "char_ci": [
+    0.00034828451531214975,
+    -2.799211248297186e-06,
+    0.0007051955768147039
+   ]
+  },
+  {
+   "candidate": "jev",
+   "baseline": "always_intercept",
+   "span": "oct30",
+   "char_ci": [
+    0.007870875729967617,
+    0.006129360108161562,
+    0.009703012123566248
+   ]
+  }
+ ],
+ "jev": {
+  "calls": 24,
+  "attempts": 24,
+  "models": [
+   "jev-1.13.0"
+  ],
+  "input_tokens": 23072,
+  "usd": 0.000969024,
+  "call_seconds_sum": 4.589
+ }
+}
