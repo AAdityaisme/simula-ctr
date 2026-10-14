@@ -28,3 +28,15 @@ def test_jev_curve_is_the_mean_expected_rung_midpoint():
     curve = jev_curve([ask({"0": 0.0, "1": 0.0, "2": 0.0, "3": 1.0, "4": 0.0}),
                        ask({"0": 0.0, "1": 0.0, "2": 0.5, "3": 0.0, "4": 0.5})])
     assert np.isclose(curve[2], (0.825 + (0.675 + 0.95) / 2) / 2)
+
+
+def test_b_pair_prob_and_unpenalized_fit():
+    from simula.x02_stack import b_pair_prob, fit
+
+    assert b_pair_prob(0.2, 0.2) == 0.5
+    assert np.isclose(b_pair_prob(0.3, 0.1) + b_pair_prob(0.1, 0.3), 1)
+    rng = np.random.default_rng(0)
+    X = rng.normal(size=(20_000, 1))
+    y = (rng.random(20_000) < 1 / (1 + np.exp(-(0.5 + 2 * X[:, 0])))).astype(int)
+    _, coef = fit(X, y)
+    assert abs(coef["coef"][1] - 2) < 4 * coef["se"][1] and 0 < coef["se"][1] < 0.1
