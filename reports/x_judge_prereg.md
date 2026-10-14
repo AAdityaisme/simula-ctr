@@ -105,3 +105,28 @@ labels. v1 results stay in the reports, marked superseded.
 - **Scope of the masked arm:** definitions keep their provenance words ("click plus Gaussian noise", "same day",
   "next 24 hours", `session_msg_count`), so the masked arm tests reading explicit provenance prose, not detecting
   hidden lineage.
+
+## x03 v2: target (after the red team on `1d613cd`)
+
+Written 2026-10-14, committed before the v2 reruns. Why a v2: the v1 target was one LightGBM seed's gain, which
+mostly measured the change in random draws that any extra column causes; it ranked the three inadmissible features
+alongside the rest; and `character_trailing_ctr` smoothed toward the CTR of all of Oct 21–28, so earlier rows saw
+later clicks.
+
+- **Feature fix.** `character_trailing_ctr` smooths toward the overall click rate of strictly earlier days (no test-
+  window label); rows on Oct 21 are missing. The card Jev read ("uses clicks from strictly earlier days only") is
+  unchanged and now matches the feature, so Jev's 36 v1 answers are reused and no new call is made.
+- **Admissible features only.** The 9 features available at decision time by construction. `turn_share_of_session`,
+  `num_interactions` and `session_msg_count` are not fitted, ranked or drawn.
+- **Estimand.** Every arm is refit under 5 LightGBM seeds (20260920–20260924) on the same 300,000-row subsamples and
+  train.py's recipe. A feature's gain = the mean over seeds of (B's test log loss − B + f's), with a 95% t-interval
+  over seeds. The character bootstrap on seed-averaged row losses is reported as secondary.
+- **Arms.** B; the 9 singles; Jev-top-3 = the 3 admissible features with the highest mean Jev score, ties in zoo order;
+  oracle-3 = the top 3 by v2 gain; 20 random-3 sets drawn (seed 0) from the 9. 160 fits, OMP_NUM_THREADS=3.
+- **Win.** Spearman(Jev mean score, v2 gain) over the 9 ≥ 0.5, **and** the 95% seed t-interval of the per-seed
+  difference (Jev-top-3 test loss − mean of the 20 random-3 test losses) lies entirely below 0.
+- **Availability is scored separately:** accuracy of Jev's `available_at_decision_time` (share ≥ 0.5 = available)
+  over all 12 cards, outside the win.
+- **Not blind.** This target was defined after the v1 single-seed and post-hoc 5-seed results were seen; those used
+  the same seeds and already showed 8 of the 9 admissible singles. New data here: the fixed trailing CTR and the
+  5-seed set arms. Exploratory.
