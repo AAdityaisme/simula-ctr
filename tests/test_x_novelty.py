@@ -43,3 +43,14 @@ def test_running_counts_use_strictly_earlier_hours_only():
     for name, p in sources(r).items():
         assert np.array_equal(p[same_hour], sources(r2)[name][same_hour]), name
     assert np.isclose(sources(r)["beta"][-1], (13 + 20 * 0.1) / (15 + 20))
+
+
+def test_partial_spearman_removes_a_shared_driver():
+    from simula.x11_surprise import partial_spearman
+
+    rng = np.random.default_rng(0)
+    z = rng.normal(size=2000)
+    x, y = z + 0.1 * rng.normal(size=2000), z + 0.1 * rng.normal(size=2000)
+    assert abs(partial_spearman(x, y, z)) < 0.1  # correlated only through z
+    w = rng.normal(size=2000)
+    assert partial_spearman(w + 0.1 * z, w + 0.1 * z + 0.1 * rng.normal(size=2000), z) > 0.9
