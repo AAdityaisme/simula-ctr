@@ -58,12 +58,12 @@ def _hit(values, salt):
     return values.map(draws).to_numpy(bool)
 
 
-def mask(rows, fields, coordinated):
+def mask(rows, fields, coordinated, draw=0):
     """Set `fields` to missing on the rows of 10% of creatives (C14): one draw per creative shared by every field
-    (coordinated), or one draw per creative and field (independent)."""
+    (coordinated), or one draw per creative and field (independent). `draw` picks another set of creatives."""
     out = rows.copy()
     for f in fields:
-        hit = _hit(rows["C14"], "C14" if coordinated else f)
+        hit = _hit(rows["C14"], ("C14" if coordinated else f) + (f"#{draw}" if draw else ""))
         out[f] = out[f].astype("string")
         out.loc[hit, f] = pd.NA
     return out
@@ -76,18 +76,18 @@ def windows(df):
             **{w: split(df, w) for w in ("select", "calibrate", "test")}}
 
 
-def dev_fit(w, fields, coordinated):
+def dev_fit(w, fields, coordinated, draw=0):
     """Dev fit with early stopping on Oct 27. Returns Oct 27 raw predictions and the tree count."""
-    dev = mask(w["dev"], fields, coordinated)
+    dev = mask(w["dev"], fields, coordinated, draw)
     encoder = fit_encoder(dev, B)
     booster, rounds = fit(dev, w["select"], B, encoder)
     return booster.predict(transform(w["select"], encoder)), rounds
 
 
-def run_scheme(w, fields, coordinated):
+def run_scheme(w, fields, coordinated, draw=0):
     """Fit one masking scheme through B's recipe. Returns Oct 27 raw predictions, test predictions and trees."""
-    select_p, rounds = dev_fit(w, fields, coordinated)
-    rows = mask(w["refit"], fields, coordinated)
+    select_p, rounds = dev_fit(w, fields, coordinated, draw)
+    rows = mask(w["refit"], fields, coordinated, draw)
     encoder = fit_encoder(rows, B)
     booster = refit(rows, B, encoder, rounds)
     cal = w["calibrate"]
@@ -205,12 +205,20 @@ def run(data_dir, answers=ANSWERS):
             "unseen_vs_strongest": diff(jev_scheme, strongest, unseen), "all_vs_ordinary_B": vs_b[jev_scheme]["all"]}
     u, a = gate["unseen_vs_strongest"], gate["all_vs_ordinary_B"]
     gate["win"] = bool(u["diff"] <= -0.001 and u["ci_hi"] < 0 and a["diff"] <= OVERALL_SLACK)
+    # post hoc, added after the first run: do other masking draws repeat the C14+C17 gain over ordinary B?
+    draws = {}
+    for s in ("coord:C14+C17", "indep:C14+C17"):
+        for d in (1, 2, 3):
+            loss[f"{s}#{d}"] = _row_loss(y, run_scheme(w, *SCHEMES[s], d)[1])
+            draws[f"{s}#{d}"] = {"unseen_C14": diff(f"{s}#{d}", "none", unseen),
+                                 "all": diff(f"{s}#{d}", "none", everything)}
+            print(s, d, draws[f"{s}#{d}"], flush=True)
     shipped = predict("bundle/B", test)
     return {"rows": {"dev_fit": N_ROWS, "refit": N_ROWS, "test": len(test), "unseen_C14": int(unseen.sum()),
                      "oct27_new_C14": int(new27.sum())},
             "masked_share_of_refit_rows": float(np.mean(_hit(w["refit"]["C14"], "C14"))),
             "jev": {"pick": pick, **jev}, "controls": controls, "trees": trees, "validation_oct27": val,
-            "test": test_loss, "vs_ordinary_B": vs_b, "gate": gate,
+            "test": test_loss, "vs_ordinary_B": vs_b, "gate": gate, "post_hoc_other_draws": draws,
             "shipped_B_full_refit": {"all": float(log_loss(y, shipped)),
                                      "unseen_C14": float(log_loss(y[unseen], shipped[unseen]))}}
 
