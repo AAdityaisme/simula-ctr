@@ -101,6 +101,8 @@ def evaluate(fit_pairs, fit_rows, fit_answers, test_pairs, test_rows, test_answe
                                                 "S0": float(_row_loss(y_fit, s0.predict_proba(X_fit[:, :4])[:, 1]).mean()),
                                                 "S1": float(_row_loss(y_fit, s1.predict_proba(X_fit)[:, 1]).mean())}},
         "test": {"pairs": len(test_pairs), "characters": int(test_pairs["character_id"].nunique())},
+        "jev_follows_b": {day: float(np.mean(np.sign(X[:, 4]) == np.sign(X[:, 0]))) for day, X in
+                          (("fit", X_fit[X_fit[:, 4] != 0]), ("test", X_test[X_test[:, 4] != 0]))},
         "features": S0 + ["jev_p_x1_minus_half"],
         "S0": s0_coef, "S1": s1_coef, "jev_coef": {"coef": s1_coef["coef"][-1], "se": s1_coef["se"][-1]},
         "arms": arms, "diffs": diffs,
