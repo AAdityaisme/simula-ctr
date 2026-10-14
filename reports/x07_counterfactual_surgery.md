@@ -35,6 +35,55 @@ Branch `exp/x-evidence`, 2026-10-14. Code: `simula/x07_surgery.py`. After Astra'
 - Files: answers `reports/x07_v2_jev_answers.jsonl`, numbers `reports/x07_counterfactual_surgery_v2.json`. The v1
   files are kept unchanged.
 
+### v2 results
+
+`jev-latest` resolved to `jev-1.13.0`. 650 calls in 650 attempts with 0 errors, 746,042 input tokens, $0.031.
+Answers: `reports/x07_v2_jev_answers.jsonl`; numbers: `reports/x07_counterfactual_surgery_v2.json`.
+
+300 real and 300 broken C14 edits. In each kind, 289 originals have a refit-seen creative and 11 a new one.
+
+| Arm | Real edits accepted | Broken edits detected |
+| --- | --- | --- |
+| Exact-tuple lookup | 74.7% | 100% |
+| Dependency closure with the original row (registered) | **100%** | **100%** |
+| Jev, top choice `single_field` | 99.3% | 99.7% |
+
+Jev at each control's detection rate (bootstrap over the 600 items, 2,000 resamples):
+
+| Matched to | Detection | Control accepts | Jev accepts | Jev − control (95% CI) |
+| --- | --- | --- | --- | --- |
+| Dependency closure with the original row | 100% | 100% | 99.3% | −0.7 pp (−1.6 to 0.0) |
+| Exact-tuple lookup | 100% | 74.7% | 99.3% | +24.7 pp (+19.9 to +30.0) |
+
+- **Null against the registered control.** The closure is perfect on both kinds, so no judge can beat it. Jev is
+  within 2 of 300 real edits of it, and the interval touches 0.
+- Jev's AUROC between real and broken edits is 0.99994. Its top choices: on real edits, 298 `single_field` and 2
+  `dependency_closure`; on broken edits, 299 `dependency_closure` and 1 `single_field`.
+- Jev beats exact-tuple lookup by 25 points at full detection. That is a weaker control: it rejects every coherent
+  ad not seen in refit.
+- With the field-name cue gone, Jev still reads the dependency evidence almost perfectly. But the state lists each
+  dependency's refit value next to the proposed one, so the task reduces to a string comparison the closure does
+  exactly.
+- **Order sensitivity.** The top choice was the first-listed option on 24.7% of items (chance 25%). Reversing an
+  item's order kept the top choice on 50 of 50 rechecks and moved its probability by 0.050 on average. Mean
+  P(`single_field`) on real edits is 0.79 / 0.76 / 0.76 / 0.79 by its position: no position effect.
+
+Example state (`edit:0`, a real edit; the dependency evidence is shortened here):
+
+```json
+{"original": {"banner_pos": "1", "C14": "21882", "C15": "320", "C16": "50", "C17": "2526", "C18": "0", "C19": "167", "C20": "100079", "C21": "221"},
+ "proposal": {"field": "C14", "new_value": "21877"}, "result_training_impressions": 5,
+ "dependency_evidence": [{"rule": "C14 -> C17", "determinant": "21877", "determinant_training_impressions": 1497,
+                          "dependent_values_in_training": {"2526": 1497}, "proposed_dependent": "2526"}, "..."]}
+```
+
+### v2: what it means for ranking
+
+- Gate counterfactual edits for B's robustness tests with dependency closure from the original row. It is exact
+  here and free. Jev nearly matches it, so it adds nothing but cost and a small error rate.
+
+The Oct 29–30 window was already inspected, so every v2 result is still exploratory. One wording per question.
+
 ## v1 pre-registration (superseded)
 
 - **Constraints, refit only.** X → Y is a dependency when every refit (Oct 21–27) value of X has exactly one Y.
@@ -117,7 +166,9 @@ Example state (`edit:368`, a broken edit to C17; the dependency list is shortene
   from the original row. That rule is exact here and costs nothing. Jev adds errors, mainly by blocking creative
   swaps that are coherent.
 - Jev does reason with the dependency list: it caught 91% of the violations my weak control missed. That is a
-  sign the typed judge reads structure. It is not a reason to put it in the loop, because the right rule is simpler.
+  sign the typed judge reads structure. *(Correction, 2026-10-14: this was not isolated from the field-name cue,
+  which separated v1's items on its own. v2 removes the cue; there Jev still reads the evidence, but only as well as
+  the closure.)* It is not a reason to put it in the loop, because the right rule is simpler.
 
 ## v1 limits (superseded)
 

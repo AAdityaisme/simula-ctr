@@ -1,0 +1,124 @@
+{
+ "readouts": {
+  "auroc": {
+   "naive_z": 0.7922916666666666,
+   "cmh_z": 0.9116666666666667,
+   "jev_sides": 0.71234375,
+   "jev_mix": 0.76828125
+  },
+  "auroc_nonzero_delta": {
+   "naive_z": 0.8340625,
+   "cmh_z": 0.9359375,
+   "jev_sides": 0.754296875,
+   "jev_mix": 0.811484375
+  },
+  "diffs": {
+   "jev_sides_minus_cmh_z": [
+    -0.19932291666666668,
+    -0.27285081796223093,
+    -0.1299743050609664
+   ],
+   "jev_sides_minus_naive_z": [
+    -0.07994791666666656,
+    -0.14763597885527824,
+    -0.01626577488981071
+   ],
+   "jev_mix_minus_naive_z": [
+    -0.02401041666666659,
+    -0.06833650275577705,
+    0.020386150594913954
+   ],
+   "cmh_z_minus_naive_z": [
+    0.11937500000000012,
+    0.0681211106772904,
+    0.17877868420676066
+   ]
+  },
+  "mean_noul_by_delta": {
+   "-0.01": {
+    "jev_sides": 0.32075,
+    "jev_mix": 0.26975000000000005
+   },
+   "-0.005": {
+    "jev_sides": 0.36225,
+    "jev_mix": 0.29900000000000004
+   },
+   "0.0": {
+    "jev_sides": 0.40625,
+    "jev_mix": 0.31799999999999995
+   },
+   "0.005": {
+    "jev_sides": 0.4462499999999999,
+    "jev_mix": 0.32575000000000004
+   },
+   "0.01": {
+    "jev_sides": 0.46624999999999994,
+    "jev_mix": 0.34950000000000003
+   }
+  },
+  "reshuffle_mean_abs_change": 0.09820000000000001,
+  "win": false
+ },
+ "panels": {
+  "panels": {
+   "genuine": 150,
+   "false": 150
+  },
+  "checklist": {
+   "retention_genuine": 0.4533333333333333,
+   "rejection_false": 0.9266666666666666
+  },
+  "jev_at_checklist_retention": {
+   "rejection_false": 0.86
+  },
+  "jev_rejection_minus_checklist": [
+   -0.06666666666666665,
+   -0.130718954248366,
+   0.0
+  ],
+  "jev_argmax": {
+   "genuine": {
+    "rematch": 150
+   },
+   "false": {
+    "rematch": 150
+   }
+  },
+  "auroc_genuine": {
+   "jev": 0.8014222222222223,
+   "exact_request_z": 0.6159333333333333,
+   "accuracy_gap_vs_request_only": 0.9416888888888889
+  },
+  "option_order": {
+   "top_choice_is_first_listed": 0.3233333333333333,
+   "chance_first_listed": 0.3333333333333333,
+   "rechecks": 50,
+   "recheck_same_choice_share": 1.0,
+   "recheck_mean_abs_change_in_top_probability": 0.087
+  },
+  "medians": {
+   "genuine": {
+    "pairs": 426.0,
+    "ranker_accuracy": 0.5763,
+    "request_only_ranker_accuracy": 0.54045,
+    "request_identical_pairs": 16.0
+   },
+   "false": {
+    "pairs": 445.5,
+    "ranker_accuracy": 0.5398499999999999,
+    "request_only_ranker_accuracy": 0.5708,
+    "request_identical_pairs": 15.0
+   }
+  },
+  "win": false
+ },
+ "jev": {
+  "calls": 800,
+  "attempts": 801,
+  "models": [
+   "jev-1.13.0"
+  ],
+  "input_tokens": 482661,
+  "call_seconds_median": 0.113
+ }
+}

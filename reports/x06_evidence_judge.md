@@ -26,6 +26,53 @@ Everything in the v1 pre-registration below still holds, except:
 - Files: answers `reports/x06_v2_jev_answers.jsonl`, numbers `reports/x06_evidence_judge_v2.json`. The v1 files are
   kept unchanged.
 
+### v2 results
+
+`jev-latest` resolved to `jev-1.13.0`. 800 calls in 801 attempts with 0 errors, 482,661 input tokens, $0.020.
+Answers: `reports/x06_v2_jev_answers.jsonl`; numbers: `reports/x06_evidence_judge_v2.json`.
+
+**(a) Readouts from refit rows: loss.** 200 readouts, 40 per δ, paired bootstrap over readouts (2,000 resamples).
+
+| Arm | AUROC, all 200 | AUROC, δ ≠ 0 | vs naive z (95% CI) | vs CMH (95% CI) |
+| --- | --- | --- | --- | --- |
+| Naive z on overall CTR | 0.792 | 0.834 | | |
+| CMH by side | **0.912** | **0.936** | +0.119 (+0.068 to +0.179) | |
+| Jev, per-side table | 0.712 | 0.754 | −0.080 (−0.148 to −0.016) | −0.199 (−0.273 to −0.130) |
+| Jev, overall rows + mix note | 0.768 | 0.811 | −0.024 (−0.068 to +0.020) | |
+
+- Jev with the per-side table is below the naive test, and the interval excludes 0. The pattern matches v1: given
+  the per-side rows, Jev does worse than with the overall rows alone.
+- Mean Jev Noul by δ (−1, −0.5, 0, +0.5, +1 pp): per-side 0.32, 0.36, 0.41, 0.45, 0.47; mix note 0.27, 0.30, 0.32,
+  0.33, 0.35. Reshuffling the rows changes the Noul by 0.098 on average (50 readouts).
+
+**(b) Benchmark on trial: null.** The panels are the same 150 genuine and 150 false panels as in v1. Only the option
+order changed.
+
+| Arm | Genuine panels kept | False panels rejected | AUROC (genuine vs false) |
+| --- | --- | --- | --- |
+| Checklist after exact-request rematch | 45.3% | **92.7%** | |
+| Jev, thresholded to keep 45.3% of genuine | 45.3% | 86.0% | 0.801 |
+| B z on request-identical pairs alone | | | 0.616 |
+| B accuracy minus request-only accuracy | | | **0.942** |
+
+- Jev minus checklist, false-panel rejection at equal retention: −6.7 pp (95% CI −13.1 to 0.0), bootstrap over
+  panels. The upper end touches 0, so under the registered rule this is **null**, not a loss. The point estimate
+  still favours the checklist, and the plain accuracy gap ranks panels better than Jev.
+- Jev's top choice was `rematch` on all 300 panels again.
+- **Order sensitivity.** The top choice was the first-listed option on 32.3% of panels (chance 33.3%; it is always
+  `rematch`). Reversing a panel's order kept the top choice on 50 of 50 rechecks and moved its probability by 0.087 on
+  average. The score itself is order-sensitive: mean P(`predictive_diagnostic`) is 0.137 / 0.134 / 0.190 when that
+  option is listed first / second / last. Against v1's fixed order (listed first, mean 0.115), the per-panel scores
+  correlate at only 0.67. The AUROC moved from 0.829 to 0.801.
+
+### v2: what it means for ranking
+
+- With clean inputs the conclusion is unchanged. At the deploy gate a stratified test (CMH) beats Jev clearly, and
+  Jev is below even the naive test. On benchmark validity, the hand-written checklist and the one-line accuracy gap
+  do at least as well as Jev, whose score also shifts with option order.
+
+The Oct 29–30 window was already inspected, so every v2 result is still exploratory. One wording per question.
+
 ## v1 pre-registration (superseded)
 
 The questions, state formats, controls and wins below are fixed in code. Both tasks are synthetic and their truth

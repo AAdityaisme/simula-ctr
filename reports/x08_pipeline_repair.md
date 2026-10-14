@@ -25,6 +25,59 @@ show" was too broad. The tree's misses were 3 sentinel-only incidents (held twic
 - Files: answers `reports/x08_v2_jev_answers.jsonl`, numbers `reports/x08_pipeline_repair_v2.json`. The v1 files are
   kept unchanged.
 
+### v2 results
+
+`jev-latest` resolved to `jev-1.13.0`. 400 calls (160 per step plus 40 rechecks per step) in 400 attempts with 0
+errors, 270,906 input tokens, $0.011. Answers: `reports/x08_v2_jev_answers.jsonl`; numbers:
+`reports/x08_pipeline_repair_v2.json`. The control arms do not depend on the option order, so their numbers equal v1.
+
+| Policy | Restored share | `join` | `sentinel` | `both` | False-repair rate (of 160) | Unnecessary restores (of 320 steps) | Incidents with one |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Hold | 0% | 0% | 0% | 0% | 0% | 0 | 0% |
+| Invariant checks | **100%** | 100% | 100% | 100% | 15.0% | 24 | 15.0% |
+| Diagnostic tree | 99.8% | 100% | 89.6% | 100.0% | **0%** | **0** | **0%** |
+| Jev | 99.8% | 100% | 100% | 99.5% | 30.6% | 153 | 74.4% |
+| Oracle | 100% | 100% | 100% | 100% | 0% | 0 | 0% |
+
+Jev minus each control, restored share, paired bootstrap over the 120 faulty incidents (2,000 resamples):
+
+- vs invariant checks: −0.2 pp (−0.5 to 0.0).
+- vs the tree: −0.01 pp (−0.4 to +0.4).
+
+Jev's two-step sequences:
+
+| Fault | Step 1 → step 2 | Incidents |
+| --- | --- | --- |
+| `none` | `restore_missing_encoding` → `restore_missing_encoding` | 34 |
+| `none` | `hold` → `hold` | 6 |
+| `join` | `restore_join` → `restore_join` | 27 |
+| `join` | `restore_join` → `restore_missing_encoding` | 13 |
+| `sentinel` | `restore_missing_encoding` → `restore_missing_encoding` | 38 |
+| `sentinel` | `restore_missing_encoding` → `restore_join` | 2 |
+| `both` | `restore_join` → `restore_missing_encoding` | 35 |
+| `both` | `restore_join` → `restore_join` | 5 |
+
+- **Loss.** Jev restores no more than either control, and its false-repair rate (30.6%) is above both controls'
+  (15.0% and 0%).
+- The added metric shows the reflex more fully. Jev runs 153 unnecessary restores in 320 steps and touches 74% of
+  incidents. Its most common error is repeating a repair it has already made. The declared rate does not count
+  those repeats.
+- On 5 `both` incidents, Jev repeated the join restore and left the encoding fault in place.
+- The tree's misses, corrected from v1: it held on 3 `sentinel` incidents (both steps), and on 3 `both` incidents it
+  restored the join, then held, leaving the encoding fault.
+- **Order sensitivity.** In step 1, the top choice was the first-listed option on 28.1% of calls (chance 25%), and
+  reversing the order kept it on 33 of 40 rechecks (82.5%), with a mean probability change of 0.080. In step 2: 16.9%
+  first-listed, 40 of 40 kept, 0.052 change. Against v1's fixed order, Jev's clean-batch behaviour moved from 39/40
+  to 34/40 encoding restores. The order changes its actions, not just its probabilities.
+- No policy chose `retrain`.
+
+### v2: what it means for ranking
+
+- Unchanged from v1. Run invariant checks or a small trained tree before retraining B on a bad day. Jev finds the
+  join fault but over-repairs, and its actions move with the option order.
+
+The Oct 29–30 window was already inspected, so every v2 result is still exploratory. One wording per question.
+
 ## v1 pre-registration (superseded)
 
 - **Incidents.** 160 serving batches, each a 3-hour block of Oct 29–30 rows (10 blocks; each block gets every fault
@@ -82,7 +135,8 @@ B, so the restored share is driven by the join.
 Jev minus each control, restored share, paired bootstrap over the 120 faulty incidents (2,000 resamples):
 
 - vs invariant checks: 0.0 pp (0.0 to 0.0). They are identical on every faulty incident.
-- vs the tree: +0.2 pp (−0.003 to +0.5). The tree held on 3 sentinel incidents.
+- vs the tree: +0.2 pp (−0.003 to +0.5). The tree held on 3 sentinel incidents. *(Correction, 2026-10-14:
+  incomplete. It also left the encoding fault on 3 `both` incidents, restoring the join and then holding.)*
 
 Jev's two-step sequences:
 
@@ -134,6 +188,7 @@ Example state (`s1:3`, step 1; the `both` fault on block 0, Oct 29 00:00–02:59
   would be harder to keep neutral.
 - The incidents reuse 10 blocks, four faults each, so they are not independent. The intervals resample incidents.
 - The window was already inspected, so everything is exploratory. Clicks enter only the loss.
-- Redundant repairs cost nothing in loss here; the false-repair rate is the only place they show.
+- Redundant repairs cost nothing in loss here; the false-repair rate is the only place they show. *(Correction,
+  2026-10-14: too broad. The rate leaves out repeats of a needed repair. v2 counts them as unnecessary restores.)*
 - One wording, asked once.
 

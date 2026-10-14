@@ -1,0 +1,113 @@
+{
+ "dependencies": [
+  "C14 -> C15",
+  "C14 -> C16",
+  "C14 -> C17",
+  "C14 -> C21",
+  "C17 -> C21"
+ ],
+ "items": {
+  "real": {
+   "orig_c14_seen": 289,
+   "orig_c14_new": 11
+  },
+  "broken": {
+   "orig_c14_seen": 289,
+   "orig_c14_new": 11
+  }
+ },
+ "arms": {
+  "exact_tuple": {
+   "accept_real": 0.7466666666666667,
+   "detect_broken": 1.0,
+   "accept_by_family": {
+    "real": {
+     "orig_c14_new": 0.45454545454545453,
+     "orig_c14_seen": 0.7577854671280276
+    },
+    "broken": {
+     "orig_c14_new": 0.0,
+     "orig_c14_seen": 0.0
+    }
+   }
+  },
+  "closure_with_original": {
+   "accept_real": 1.0,
+   "detect_broken": 1.0,
+   "accept_by_family": {
+    "real": {
+     "orig_c14_new": 1.0,
+     "orig_c14_seen": 1.0
+    },
+    "broken": {
+     "orig_c14_new": 0.0,
+     "orig_c14_seen": 0.0
+    }
+   }
+  },
+  "jev_argmax_single_field": {
+   "accept_real": 0.9933333333333333,
+   "detect_broken": 0.9966666666666667,
+   "accept_by_family": {
+    "real": {
+     "orig_c14_new": 1.0,
+     "orig_c14_seen": 0.9930795847750865
+    },
+    "broken": {
+     "orig_c14_new": 0.09090909090909091,
+     "orig_c14_seen": 0.0
+    }
+   }
+  }
+ },
+ "jev_at_matched_detection": {
+  "exact_tuple": {
+   "detection": 1.0,
+   "jev_accept_real": 0.9933333333333333,
+   "control_accept_real": 0.7466666666666667,
+   "jev_minus_control": [
+    0.2466666666666666,
+    0.19869652911102959,
+    0.30000000000000004
+   ]
+  },
+  "closure_with_original": {
+   "detection": 1.0,
+   "jev_accept_real": 0.9933333333333333,
+   "control_accept_real": 1.0,
+   "jev_minus_control": [
+    -0.00666666666666671,
+    -0.015977009132654617,
+    0.0
+   ]
+  }
+ },
+ "jev_auroc_real_vs_broken": 0.9999444444444444,
+ "jev_choice_counts": {
+  "real": {
+   "single_field": 298,
+   "dependency_closure": 2
+  },
+  "broken": {
+   "dependency_closure": 299,
+   "single_field": 1
+  }
+ },
+ "option_order": {
+  "top_choice_is_first_listed": 0.24666666666666667,
+  "chance_first_listed": 0.25,
+  "rechecks": 50,
+  "recheck_same_choice_share": 1.0,
+  "recheck_mean_abs_change_in_top_probability": 0.049800000000000004
+ },
+ "win": false,
+ "jev": {
+  "calls": 650,
+  "attempts": 650,
+  "models": [
+   "jev-1.13.0"
+  ],
+  "input_tokens": 746042,
+  "call_seconds_median": 0.114
+ }
+}
