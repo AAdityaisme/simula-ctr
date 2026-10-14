@@ -67,8 +67,10 @@ Jev's two-step sequences:
   restored the join, then held, leaving the encoding fault.
 - **Order sensitivity.** In step 1, the top choice was the first-listed option on 28.1% of calls (chance 25%), and
   reversing the order kept it on 33 of 40 rechecks (82.5%), with a mean probability change of 0.080. In step 2: 16.9%
-  first-listed, 40 of 40 kept, 0.052 change. Against v1's fixed order, Jev's clean-batch behaviour moved from 39/40
-  to 34/40 encoding restores. The order changes its actions, not just its probabilities.
+  first-listed, 40 of 40 kept, 0.052 change. **The rechecks (every fourth incident) are all clean (`none`)
+  incidents at both steps**, because the faults cycle `none, join, sentinel, both`, so order sensitivity on faulted
+  incidents is unmeasured by the rechecks. The first-listed shares cover all 160 main calls per step. Against v1's
+  fixed order, Jev's clean-batch behaviour moved from 39/40 to 34/40 encoding restores. The order changes its actions, not just its probabilities.
 - No policy chose `retrain`.
 
 ### v2: what it means for ranking

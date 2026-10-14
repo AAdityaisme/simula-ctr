@@ -65,7 +65,8 @@ Jev at each control's detection rate (bootstrap over the 600 items, 2,000 resamp
   dependency's refit value next to the proposed one, so the task reduces to a string comparison the closure does
   exactly.
 - **Order sensitivity.** The top choice was the first-listed option on 24.7% of items (chance 25%). Reversing an
-  item's order kept the top choice on 50 of 50 rechecks and moved its probability by 0.050 on average. Mean
+  item's order kept the top choice on 50 of 50 rechecks and moved its probability by 0.050 on average. The rechecks
+  (every twelfth item) cover both classes: 25 real and 25 broken edits. Mean
   P(`single_field`) on real edits is 0.79 / 0.76 / 0.76 / 0.79 by its position: no position effect.
 
 Example state (`edit:0`, a real edit; the dependency evidence is shortened here):

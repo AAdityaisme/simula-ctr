@@ -61,7 +61,9 @@ order changed.
 - Jev's top choice was `rematch` on all 300 panels again.
 - **Order sensitivity.** The top choice was the first-listed option on 32.3% of panels (chance 33.3%; it is always
   `rematch`). Reversing a panel's order kept the top choice on 50 of 50 rechecks and moved its probability by 0.087 on
-  average. The score itself is order-sensitive: mean P(`predictive_diagnostic`) is 0.137 / 0.134 / 0.190 when that
+  average. **Those 50 rechecks (every sixth panel) are all genuine panels**, because panel generation alternates
+  genuine and false, so order sensitivity on false panels is unmeasured by the rechecks. The first-listed share above
+  and the position means below cover all 300 main calls. The score itself is order-sensitive: mean P(`predictive_diagnostic`) is 0.137 / 0.134 / 0.190 when that
   option is listed first / second / last. Against v1's fixed order (listed first, mean 0.115), the per-panel scores
   correlate at only 0.67. The AUROC moved from 0.829 to 0.801.
 
