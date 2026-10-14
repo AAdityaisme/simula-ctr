@@ -1,0 +1,459 @@
+{
+ "origins": {
+  "o1": {
+   "later_rows": 194166,
+   "state": {
+    "pool_days": [
+     141021,
+     141022,
+     141023,
+     141024
+    ],
+    "pool_rows": 448731,
+    "deployment": "the model is deployed on the two days after the pool",
+    "pool_last_day_churn": {
+     "C14": 0.1322,
+     "C17": 0.1004,
+     "character_id": 0.005,
+     "app_id": 0.0041
+    },
+    "field_roles": {
+     "C14": "creative id",
+     "C17": "ad attribute that groups creatives",
+     "character_id": "character (AI persona)",
+     "app_id": "host app; ecad2386 marks site-side traffic with no app"
+    },
+    "recipes": {
+     "B": "LightGBM model B as shipped (31 leaves).",
+     "B_15_leaves": "Model B with 15 leaves per tree.",
+     "B_joint_id_mask": "Model B trained with C14, C17 and C21 blanked together on the rows of a random 10% of creatives (C14), to rehearse new creatives."
+    },
+    "splits": {
+     "chronological": {
+      "how": "Validate on the pool's last day; fit on the earlier days.",
+      "fit_rows": 300000,
+      "validation_rows": 89378,
+      "validation_novelty_vs_fit": {
+       "C14": 0.1322,
+       "C17": 0.1004,
+       "character_id": 0.0053,
+       "app_id": 0.0043
+      }
+     },
+     "heldout_C17": {
+      "how": "Validate on rows of a random set of C17 values (an ad attribute that groups creatives); fit on rows of all other C17 values, all days.",
+      "fit_rows": 300000,
+      "validation_rows": 89378,
+      "validation_novelty_vs_fit": {
+       "C14": 1.0,
+       "C17": 1.0,
+       "character_id": 0.0004,
+       "app_id": 0.0097
+      }
+     },
+     "heldout_character": {
+      "how": "Validate on rows of a random set of characters; fit on rows of all other characters.",
+      "fit_rows": 300000,
+      "validation_rows": 89378,
+      "validation_novelty_vs_fit": {
+       "C14": 0.0003,
+       "C17": 0.0,
+       "character_id": 1.0,
+       "app_id": 0.0026
+      }
+     },
+     "heldout_app": {
+      "how": "Validate on rows of a random set of host apps; fit on rows of all other apps.",
+      "fit_rows": 300000,
+      "validation_rows": 89378,
+      "validation_novelty_vs_fit": {
+       "C14": 0.0518,
+       "C17": 0.0508,
+       "character_id": 0.0006,
+       "app_id": 1.0
+      }
+     }
+    }
+   },
+   "fits": [
+    {
+     "split": "chronological",
+     "recipe": "B",
+     "valid_loss": 0.4322622827525979,
+     "later_loss": 0.4438518667508846
+    },
+    {
+     "split": "chronological",
+     "recipe": "B_15_leaves",
+     "valid_loss": 0.43307717306132276,
+     "later_loss": 0.4447560668517591
+    },
+    {
+     "split": "chronological",
+     "recipe": "B_joint_id_mask",
+     "valid_loss": 0.434161457722839,
+     "later_loss": 0.44564333111185717
+    },
+    {
+     "split": "heldout_C17",
+     "recipe": "B",
+     "valid_loss": 0.424167908452204,
+     "later_loss": 0.44350083536785
+    },
+    {
+     "split": "heldout_C17",
+     "recipe": "B_15_leaves",
+     "valid_loss": 0.4234042552473165,
+     "later_loss": 0.44398072174975545
+    },
+    {
+     "split": "heldout_C17",
+     "recipe": "B_joint_id_mask",
+     "valid_loss": 0.4233129357540686,
+     "later_loss": 0.44664714874693456
+    },
+    {
+     "split": "heldout_character",
+     "recipe": "B",
+     "valid_loss": 0.41955513176812986,
+     "later_loss": 0.4413155061558709
+    },
+    {
+     "split": "heldout_character",
+     "recipe": "B_15_leaves",
+     "valid_loss": 0.42076386654517917,
+     "later_loss": 0.442840160178424
+    },
+    {
+     "split": "heldout_character",
+     "recipe": "B_joint_id_mask",
+     "valid_loss": 0.4272385806426766,
+     "later_loss": 0.4450096071019537
+    },
+    {
+     "split": "heldout_app",
+     "recipe": "B",
+     "valid_loss": 0.37464979241152185,
+     "later_loss": 0.4451423197385398
+    },
+    {
+     "split": "heldout_app",
+     "recipe": "B_15_leaves",
+     "valid_loss": 0.3751802364363754,
+     "later_loss": 0.446096933053675
+    },
+    {
+     "split": "heldout_app",
+     "recipe": "B_joint_id_mask",
+     "valid_loss": 0.38330592197666324,
+     "later_loss": 0.4508893791572855
+    }
+   ],
+   "selections": {
+    "jev": {
+     "split": "chronological",
+     "recipe": "B",
+     "recipe_regret": 0.0,
+     "fit_regret": 0.0025363605950137202
+    },
+    "chronological": {
+     "split": "chronological",
+     "recipe": "B",
+     "recipe_regret": 0.0,
+     "fit_regret": 0.0025363605950137202
+    },
+    "novelty_matching": {
+     "split": "heldout_C17",
+     "recipe": "B_joint_id_mask",
+     "recipe_regret": 0.003594734526221388,
+     "fit_regret": 0.005331642591063668
+    }
+   },
+   "intervals": {
+    "jev_minus_chronological": {
+     "diff": 0.0,
+     "ci_lo": 0.0,
+     "ci_hi": 0.0
+    },
+    "jev_minus_novelty_matching": {
+     "diff": -0.0035947345262213317,
+     "ci_lo": -0.00404985411474429,
+     "ci_hi": -0.003185745959203441
+    }
+   },
+   "jev_orders": {
+    "": {
+     "type": "choice",
+     "choice": "chronological",
+     "confidence": 0.55,
+     "probabilities": {
+      "chronological": 0.66,
+      "heldout_C17": 0.25,
+      "heldout_character": 0.07,
+      "heldout_app": 0.02
+     }
+    },
+    "_rev": {
+     "type": "choice",
+     "choice": "chronological",
+     "confidence": 0.69,
+     "probabilities": {
+      "heldout_app": 0.01,
+      "heldout_character": 0.04,
+      "heldout_C17": 0.18,
+      "chronological": 0.77
+     }
+    },
+    "_rot": {
+     "type": "choice",
+     "choice": "chronological",
+     "confidence": 0.6,
+     "probabilities": {
+      "heldout_character": 0.06,
+      "heldout_app": 0.01,
+      "chronological": 0.7,
+      "heldout_C17": 0.23
+     }
+    }
+   }
+  },
+  "o2": {
+   "later_rows": 229697,
+   "state": {
+    "pool_days": [
+     141021,
+     141022,
+     141023,
+     141024,
+     141025,
+     141026
+    ],
+    "pool_rows": 642897,
+    "deployment": "the model is deployed on the two days after the pool",
+    "pool_last_day_churn": {
+     "C14": 0.0264,
+     "C17": 0.0154,
+     "character_id": 0.0053,
+     "app_id": 0.0024
+    },
+    "field_roles": {
+     "C14": "creative id",
+     "C17": "ad attribute that groups creatives",
+     "character_id": "character (AI persona)",
+     "app_id": "host app; ecad2386 marks site-side traffic with no app"
+    },
+    "recipes": {
+     "B": "LightGBM model B as shipped (31 leaves).",
+     "B_15_leaves": "Model B with 15 leaves per tree.",
+     "B_joint_id_mask": "Model B trained with C14, C17 and C21 blanked together on the rows of a random 10% of creatives (C14), to rehearse new creatives."
+    },
+    "splits": {
+     "chronological": {
+      "how": "Validate on the pool's last day; fit on the earlier days.",
+      "fit_rows": 300000,
+      "validation_rows": 100000,
+      "validation_novelty_vs_fit": {
+       "C14": 0.0296,
+       "C17": 0.0154,
+       "character_id": 0.006,
+       "app_id": 0.0035
+      }
+     },
+     "heldout_C17": {
+      "how": "Validate on rows of a random set of C17 values (an ad attribute that groups creatives); fit on rows of all other C17 values, all days.",
+      "fit_rows": 300000,
+      "validation_rows": 100000,
+      "validation_novelty_vs_fit": {
+       "C14": 1.0,
+       "C17": 1.0,
+       "character_id": 0.0004,
+       "app_id": 0.0068
+      }
+     },
+     "heldout_character": {
+      "how": "Validate on rows of a random set of characters; fit on rows of all other characters.",
+      "fit_rows": 300000,
+      "validation_rows": 100000,
+      "validation_novelty_vs_fit": {
+       "C14": 0.0006,
+       "C17": 0.0,
+       "character_id": 1.0,
+       "app_id": 0.0025
+      }
+     },
+     "heldout_app": {
+      "how": "Validate on rows of a random set of host apps; fit on rows of all other apps.",
+      "fit_rows": 300000,
+      "validation_rows": 100000,
+      "validation_novelty_vs_fit": {
+       "C14": 0.0217,
+       "C17": 0.0198,
+       "character_id": 0.0003,
+       "app_id": 1.0
+      }
+     }
+    }
+   },
+   "fits": [
+    {
+     "split": "chronological",
+     "recipe": "B",
+     "valid_loss": 0.44196276187603784,
+     "later_loss": 0.4135036096817413
+    },
+    {
+     "split": "chronological",
+     "recipe": "B_15_leaves",
+     "valid_loss": 0.44298681729812006,
+     "later_loss": 0.4146820202830175
+    },
+    {
+     "split": "chronological",
+     "recipe": "B_joint_id_mask",
+     "valid_loss": 0.44681563808528024,
+     "later_loss": 0.41776222144201697
+    },
+    {
+     "split": "heldout_C17",
+     "recipe": "B",
+     "valid_loss": 0.4896262147333343,
+     "later_loss": 0.41497899833531965
+    },
+    {
+     "split": "heldout_C17",
+     "recipe": "B_15_leaves",
+     "valid_loss": 0.48947700086337187,
+     "later_loss": 0.41543671927857756
+    },
+    {
+     "split": "heldout_C17",
+     "recipe": "B_joint_id_mask",
+     "valid_loss": 0.489045854531238,
+     "later_loss": 0.4173822574384508
+    },
+    {
+     "split": "heldout_character",
+     "recipe": "B",
+     "valid_loss": 0.42417107505199697,
+     "later_loss": 0.41195763380227557
+    },
+    {
+     "split": "heldout_character",
+     "recipe": "B_15_leaves",
+     "valid_loss": 0.42471024273031377,
+     "later_loss": 0.4127452681893783
+    },
+    {
+     "split": "heldout_character",
+     "recipe": "B_joint_id_mask",
+     "valid_loss": 0.42995059041577655,
+     "later_loss": 0.41592906625393544
+    },
+    {
+     "split": "heldout_app",
+     "recipe": "B",
+     "valid_loss": 0.4432154223380609,
+     "later_loss": 0.41835594026020634
+    },
+    {
+     "split": "heldout_app",
+     "recipe": "B_15_leaves",
+     "valid_loss": 0.44259677868564185,
+     "later_loss": 0.41903208983292484
+    },
+    {
+     "split": "heldout_app",
+     "recipe": "B_joint_id_mask",
+     "valid_loss": 0.4415401362413846,
+     "later_loss": 0.42057941555535044
+    }
+   ],
+   "selections": {
+    "jev": {
+     "split": "chronological",
+     "recipe": "B",
+     "recipe_regret": 0.0,
+     "fit_regret": 0.0015459758794657552
+    },
+    "chronological": {
+     "split": "chronological",
+     "recipe": "B",
+     "recipe_regret": 0.0,
+     "fit_regret": 0.0015459758794657552
+    },
+    "novelty_matching": {
+     "split": "heldout_C17",
+     "recipe": "B_joint_id_mask",
+     "recipe_regret": 0.003214194652552682,
+     "fit_regret": 0.005424623636175241
+    }
+   },
+   "intervals": {
+    "jev_minus_chronological": {
+     "diff": 0.0,
+     "ci_lo": 0.0,
+     "ci_hi": 0.0
+    },
+    "jev_minus_novelty_matching": {
+     "diff": -0.0032141946525526977,
+     "ci_lo": -0.0035595885768996806,
+     "ci_hi": -0.0028536421442372445
+    }
+   },
+   "jev_orders": {
+    "": {
+     "type": "choice",
+     "choice": "chronological",
+     "confidence": 0.65,
+     "probabilities": {
+      "chronological": 0.74,
+      "heldout_C17": 0.17,
+      "heldout_character": 0.07,
+      "heldout_app": 0.02
+     }
+    },
+    "_rev": {
+     "type": "choice",
+     "choice": "chronological",
+     "confidence": 0.59,
+     "probabilities": {
+      "heldout_app": 0.02,
+      "heldout_character": 0.06,
+      "heldout_C17": 0.23,
+      "chronological": 0.69
+     }
+    },
+    "_rot": {
+     "type": "choice",
+     "choice": "chronological",
+     "confidence": 0.53,
+     "probabilities": {
+      "heldout_character": 0.07,
+      "heldout_app": 0.02,
+      "chronological": 0.65,
+      "heldout_C17": 0.26
+     }
+    }
+   }
+  }
+ },
+ "mean_recipe_regret": {
+  "jev": 0.0,
+  "chronological": 0.0,
+  "novelty_matching": 0.003404464589387035
+ },
+ "mean_fit_regret": {
+  "jev": 0.0020411682372397377,
+  "chronological": 0.0020411682372397377,
+  "novelty_matching": 0.005378133113619454
+ },
+ "win": false,
+ "jev": {
+  "calls": 6,
+  "models": [
+   "jev-1.13.0"
+  ],
+  "input_tokens": 7476,
+  "call_seconds_sum": 1.187
+ }
+}
