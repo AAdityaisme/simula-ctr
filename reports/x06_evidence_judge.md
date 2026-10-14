@@ -214,3 +214,5 @@ Example state (`panel:0`, the contract lists are shortened here; Jev saw them in
 - The mix shift in (a) always flatters the candidate, with a random size. δ = 0 counts as no-ship.
 - One wording per question, asked once. A different rubric might do better, but tuning it here would overfit.
 
+
+Full suite: 67 passed in 207.08s at 77d68bb

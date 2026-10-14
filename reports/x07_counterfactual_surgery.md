@@ -179,3 +179,5 @@ Example state (`edit:368`, a broken edit to C17; the dependency list is shortene
 - The post-hoc control was added after outcomes and is reported as such, next to the pre-registered one.
 - One wording, asked once.
 
+
+Full suite: 67 passed in 207.08s at 77d68bb

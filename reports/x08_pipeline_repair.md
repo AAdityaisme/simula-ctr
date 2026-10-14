@@ -192,3 +192,5 @@ Example state (`s1:3`, step 1; the `both` fault on block 0, Oct 29 00:00–02:59
   2026-10-14: too broad. The rate leaves out repeats of a needed repair. v2 counts them as unnecessary restores.)*
 - One wording, asked once.
 
+
+Full suite: 67 passed in 207.08s at 77d68bb
