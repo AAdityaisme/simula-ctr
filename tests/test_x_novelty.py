@@ -26,3 +26,20 @@ def test_independent_mask_draws_each_field_separately():
     assert hidden.nunique(axis=1).gt(1).mean() > 0.1
     assert hidden["C14"].equals(mask(rows, ["C14"], coordinated=True)["C14"].isna())  # same C14 draw in both modes
     assert mask(rows, [], coordinated=True).equals(rows)
+
+
+def test_running_counts_use_strictly_earlier_hours_only():
+    from simula.x10_graduation import running, sources
+
+    hours = [1] * 12 + [2] * 3 + [3]
+    rows = pd.DataFrame({"C14": 7, "hour": hours, "click": [1] * 12 + [0, 0, 1] + [1], "p_b": 0.2, "prior": 0.1})
+    r = rows.join(running(rows).set_index(["C14", "hour"]), on=["C14", "hour"])
+    assert r["N"].tolist() == [0] * 12 + [12] * 3 + [15]
+    assert r["K"].tolist() == [0] * 12 + [12] * 3 + [13]
+    assert r["level"].tolist() == [0] * 12 + [10] * 3 + [10]
+    flipped = rows.assign(click=rows["click"].where(rows["hour"].ne(2), 1))  # clicks inside hour 2 change
+    r2 = flipped.join(running(flipped).set_index(["C14", "hour"]), on=["C14", "hour"])
+    same_hour = rows["hour"].le(2).to_numpy()
+    for name, p in sources(r).items():
+        assert np.array_equal(p[same_hour], sources(r2)[name][same_hour]), name
+    assert np.isclose(sources(r)["beta"][-1], (13 + 20 * 0.1) / (15 + 20))
