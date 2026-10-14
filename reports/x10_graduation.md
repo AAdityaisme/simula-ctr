@@ -6,7 +6,7 @@ Branch `exp/x-novelty`, 2026-10-14. Batch X, worker D. Design: Fable's E5 ("sequ
 
 e4 blended B's pCTR for a new creative (C14) toward a cell prior with a fixed weight. A real system sees a new creative's own clicks pile up, hour by hour. As evidence arrives, when should scoring stop trusting the prior and start trusting the creative's own record? Here Jev makes that call at checkpoints, choosing a source for the creative's next impressions.
 
-**Result: null in substance.** The pre-declared bar was met: Jev's policy beats the Beta posterior by 0.024 log loss. But the Beta control is weak, and Jev chose the e4 blend at 97% of checkpoints, covering 98% of rows. Against the e4 blend, the other named control, Jev is 0.00018 worse, with an interval spanning zero. Jev does not beat that control, so it adds nothing.
+**Result: null in substance.** The pre-declared bar was met: Jev's policy beats the Beta posterior by 0.024 log loss. But the Beta control is weak, and Jev chose the e4 blend at 97% of checkpoints, covering 98% of rows. Against the e4 blend, the other named control, Jev is 0.00018 worse, with an interval spanning zero. Jev does not beat that control, so it adds nothing. These numbers come from v2, the decision-time version described under **Versions**. v1 is superseded, and its numbers were identical.
 
 ## Setup
 
@@ -31,7 +31,7 @@ e4 blended B's pCTR for a new creative (C14) toward a cell prior with a fixed we
 - **State.** It holds:
   - the checkpoint and the next one;
   - the creative's impressions, clicks and hours seen so far;
-  - what each source says now, averaged over the creative's earlier rows. At n = 0 it is averaged over the current hour's rows, using features only;
+  - what each source says now, averaged over the creative's earlier rows. At n = 0 there are no earlier rows, so it is the arriving row's own pCTR and prior (v2; see **Versions**);
   - e3's attribute statistics from the first row of that hour: each attribute value with its refit impressions and smoothed CTR.
 
   It holds no character description. Example, attributes cut:
@@ -49,8 +49,18 @@ e4 blended B's pCTR for a new creative (C14) toward a cell prior with a fixed we
   - blend: the click model, nudged slightly toward the cell prior;
   - B: the click model's prediction;
   - running_ctr: this creative's own click rate so far.
-- **Order.** The question, state and policy were committed (`prereg:` commit d5f02a1) before any arm was scored. They did not change.
-- **Cost.** 850 calls (3 smoke, 847 checkpoints), 0 errors, 9 s of wall time on 8 threads, a median of 0.08 s per call. 754,160 input tokens, **$0.032**. `jev-latest` resolved to `jev-1.13.0`. The answers are in `reports/x10_graduation_jev_answers.jsonl`.
+- **Order.** The question, state and policy were committed (`prereg:` commit d5f02a1) before any arm was scored. The question and policy did not change. The level-0 state changed once, as described under **Versions**, in `prereg:` commit 3855a76, before the re-asked answers were scored.
+- **Cost.**
+  - v1: 850 calls (3 smoke, 847 checkpoints), 0 errors, 9 s of wall time on 8 threads, a median of 0.08 s per call, 754,160 input tokens, $0.032.
+  - v2 re-ask: 406 calls (3 smoke, 403 level-0 checkpoints), 0 errors, 4 s, 359,506 input tokens, $0.015.
+  - Total: 1,256 calls, **$0.047**. `jev-latest` resolved to `jev-1.13.0`.
+  - The answers are in `reports/x10_graduation_jev_answers.jsonl` (v1, all levels) and `reports/x10_graduation_jev_answers_v2_level0.jsonl` (v2, level 0). v2 uses the v2 file for level 0 and the v1 file for every other level, whose states did not change.
+
+### Versions
+
+- **v1 (superseded).** At n = 0, the state averaged pCTR and cell prior over every row of the creative's first hour. The decision belongs to the first row, so the state saw the *features* of later same-hour rows, which had not arrived yet. It saw no clicks: N, K and all earlier-hour sums exclude the current hour. The red team found this (`rt-exp-x-novelty-69a798c`). It changed the numbers in 227 of the 403 level-0 states; the other 176 creatives had one row in their first hour.
+- **v2 (current).** At n = 0, the state reads the arriving row only: the first row of the hour in file order. The data has hourly timestamps only, so file order stands in for arrival order. States at levels 10 and above use earlier-hour aggregates and did not change. A test checks that changing later rows of the same hour leaves the level-0 estimates unchanged.
+- **Outcome.** Re-asked on the v2 states, Jev again chose `blend` at all 403 level-0 checkpoints. Its blend probability moved by 0.035 on average. Every prediction, and so every number in the tables below, is identical in v1 and v2. `reports/x10_graduation.json` holds v2 at the top level and v1 under `v1_superseded`.
 
 ## Results
 

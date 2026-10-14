@@ -6,7 +6,7 @@ Branch `exp/x-novelty`, 2026-10-14. Batch X, worker D. Design: Fable's E6 ("conf
 
 Exploration budget is best spent on the new creatives whose real click rate will land far from what we expect. e3 asked Jev which of two ads is better, and it could not tell. This asks a different question: from the same attribute statistics, can Jev tell which new creative will surprise the prior? If it can, its score could weight ε in `rank()`'s near-tie set. Offline, only the forecast is tested.
 
-**Result: null.** Jev's forecast has a Spearman correlation of 0.06 with realized surprise once creative size is held fixed (95% interval −0.15 to 0.28). The best arithmetic control scores 0.08. Neither predicts surprise.
+**Result: null.** Jev's forecast has a Spearman correlation of 0.06 with realized surprise once creative size is held fixed (95% interval −0.15 to 0.28). The best arithmetic control scores 0.08. Neither shows useful forecasting in this sample.
 
 ## Setup
 
@@ -53,7 +53,7 @@ Exploration budget is best spent on the new creatives whose real click rate will
 
 ## What it means for ranking
 
-- **Do not weight exploration by Jev's uncertainty.** It ranks surprising creatives no better than chance and no better than the spread of their attribute CTRs.
+- **Do not weight exploration by Jev's uncertainty.** This sample did not show useful forecasting, and Jev did not beat the arithmetic control (the spread of attribute CTRs). The interval, −0.146 to +0.278, rules out the 0.3 bar but allows a modest positive association.
 - **Spend exploration on size instead.** The creatives the prior misses most are the large ones, the ones that will carry the most traffic. That argues for the e4 table prior giving way to B and to fast per-creative correction as volume arrives (see x10), not for a judge reading attribute tables.
 
 ## Limits
