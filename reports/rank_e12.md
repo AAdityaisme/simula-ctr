@@ -13,8 +13,8 @@ Branch `exp/rank-e12`, 2026-10-14. Experiments 1 and 2 of the rank-with-Jev lane
 - **Per row.** We use B's calibrated pCTR from `bundle/B` and the `lookup(app_id, C18)` baseline fit on the refit window (Oct 21–27). Refit-window history comes from m-estimates with m=20 around the refit CTR. It covers the creative (C14), genre × C18 and app category × C18. An unseen creative gets 0 impressions.
 - **Subsets.** Both creatives seen in refit (851 pairs), both unseen (424), mixed (460), and near-tie, meaning |ΔpCTR| < 0.01 (300).
 - **Arms.** Coin. B, the higher pCTR, with an exact tie scored 0.5 (16 pairs). The lookup baseline. Creative history, the higher smoothed creative CTR. Jev with pCTR. Jev without pCTR. The baselines score ties 0.5 too.
-- **Significance.** The 95% intervals come from a paired bootstrap that resamples whole characters, 1,000 times (`bootstrap_diff`). McNemar is an exact binomial test on the pairs where one arm is right and the other is wrong. It skips pairs that an arm scores as a tie.
-- **Ceiling.** If B's pCTRs were the truth, the best possible accuracy is the mean of p_hi(1−p_lo) / (p_hi(1−p_lo) + p_lo(1−p_hi)). That is 57.4% on all pairs. Two impressions in one context have nearly the same true click rate, so no ranker can score far above a coin.
+- **Significance.** The 95% intervals come from a paired bootstrap that resamples whole characters, 1,000 times (`bootstrap_diff`). This interval is the comparison over all 1,735 pairs. McNemar is an exact binomial test on the discordant pairs, and it is conditional: it only counts pairs where both arms pick decisively, with no 0.5 tie. The table gives that denominator for each arm.
+- **B-implied benchmark.** If B's pCTRs were the true rates, picking the higher one would score the mean of p_hi(1−p_lo) / (p_hi(1−p_lo) + p_lo(1−p_hi)). That is 57.4% on all pairs. It is a benchmark for B, not an upper bound on rankers: one with better information than B could score above it.
 
 ### Jev
 
@@ -26,7 +26,7 @@ Branch `exp/rank-e12`, 2026-10-14. Experiments 1 and 2 of the rank-with-Jev lane
   - With pCTR: one call per pair asks both questions (1,735 calls).
   - Without pCTR: one call per pair asks `pick` only, and the state has no `model_pctr` (1,735 calls).
   - Order check: 300 fixed pairs with X1 and X2 swapped, with pCTR, `pick` only (300 calls).
-- **Cost.** 3,770 calls in 53 s of wall time with 8 threads. The median call took 0.10 s. They used 3.24M input tokens, or $0.14 at $0.042 per million, with 0 errors. The answers are in `reports/rank_e12_jev_answers.jsonl`. States are not committed.
+- **Cost.** 3,770 calls in 53 s of wall time with 8 threads. The median call took 0.10 s. They used 3.24M input tokens, or $0.14 at $0.042 per million, with 0 errors. That run did not count retries, so these tokens and dollars cover the 3,770 successful attempts only. A failed attempt that was retried may have used more. `jev_ask.py` now counts attempts separately. The answers are in `reports/rank_e12_jev_answers.jsonl`. States are not committed.
 
 One example state, with pCTR. The character description is omitted here because it comes from the private dataset; Jev saw the full text.
 
@@ -48,17 +48,17 @@ One example state, with pCTR. The character description is omitted here because 
 
 ### Experiment 1: pairwise accuracy (% of pairs where the arm picks the clicked ad)
 
-| Arm | All (95% CI) | Both seen | Both unseen | Mixed | Near-tie | vs B, pp (95% CI) | McNemar wins / losses, p |
+| Arm | All (95% CI) | Both seen | Both unseen | Mixed | Near-tie | vs B, pp, all pairs (95% CI) | McNemar on decisive pairs: n, wins / losses, p |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Ceiling (B's pCTR as truth) | 57.4 | 56.6 | 55.9 | 60.1 | 50.7 | | |
+| B-implied benchmark (B's pCTR as truth) | 57.4 | 56.6 | 55.9 | 60.1 | 50.7 | | |
 | Coin | 50.0 | 50.0 | 50.0 | 50.0 | 50.0 | −5.2 (−7.7 to −2.8) | |
 | **B** | **55.2 (52.8 to 57.7)** | 53.3 | 53.7 | 60.2 | 50.7 | | |
-| Lookup (app_id, C18) | 51.7 (50.3 to 53.3) | 50.8 | 52.2 | 52.8 | 52.2 | −3.5 (−6.4 to −0.9) | 123 / 116, p=0.70 |
-| Creative history | 52.1 (49.8 to 54.2) | 48.7 | 50.0 | 60.4 | 48.5 | −3.1 (−5.6 to −0.6) | 175 / 214, p=0.054 |
-| Jev with pCTR | 54.5 (52.0 to 57.1) | 50.9 | 53.8 | 62.0 | 49.7 | −0.7 (−2.2 to +0.9) | 93 / 104, p=0.48 |
-| Jev without pCTR | 53.4 (50.8 to 55.7) | 50.8 | 49.8 | 61.5 | 48.7 | −1.8 (−4.6 to +0.8) | 290 / 321, p=0.22 |
+| Lookup (app_id, C18) | 51.7 (50.3 to 53.3) | 50.8 | 52.2 | 52.8 | 52.2 | −3.5 (−6.4 to −0.9) | 488, 123 / 116, p=0.70 |
+| Creative history | 52.1 (49.8 to 54.2) | 48.7 | 50.0 | 60.4 | 48.5 | −3.1 (−5.6 to −0.6) | 1,307, 175 / 214, p=0.054 |
+| Jev with pCTR | 54.5 (52.0 to 57.1) | 50.9 | 53.8 | 62.0 | 49.7 | −0.7 (−2.2 to +0.9) | 1,719, 93 / 104, p=0.48 |
+| Jev without pCTR | 53.4 (50.8 to 55.7) | 50.8 | 49.8 | 61.5 | 48.7 | −1.8 (−4.6 to +0.8) | 1,719, 290 / 321, p=0.22 |
 
-The lookup's McNemar counts look better than its accuracy because both candidates share one app_id, so the lookup often ties (scored 0.5). McNemar leaves those ties out.
+Both candidates share one app_id, so the lookup ties on 1,246 pairs (scored 0.5). Its McNemar test therefore covers only 488 pairs and does not test the −3.5 pp all-pair difference; the bootstrap interval does. B's 16 exact ties are left out of every McNemar count.
 
 **Order robustness.** On the 300 swapped pairs, Jev picks the same underlying ad 90.7% of the time. So about one pick in eleven depends on which ad is listed first.
 
@@ -80,9 +80,9 @@ Jev AUROC − logistic AUROC = **−0.029 (−0.055 to −0.004)**. **Pre-declar
 
 ## What it means for ranking
 
-- **Jev does not out-pick B.** With B's pCTR in front of it, Jev mostly copies it, and the gap to B is within noise. Without pCTR, it lands between creative history and B.
-- **Jev's edge over a coin comes from creative history.** All of it sits in the mixed pairs, where one creative has history and the other does not. There Jev scores 61.5%, close to creative history alone (60.4%). On both-unseen pairs, where only the C-fields and the character remain, Jev without pCTR scores 49.8%, a coin. Nothing suggests Jev reads signal from the anonymized C-fields or the description.
-- **B is already near its own ceiling.** B scores 55.2% against a 57.4% ceiling. On near-ties, the ceiling is 50.7%. So there is little room for any picker inside one context. That supports the review's warning that "a null cannot separate 'Jev adds nothing' from 'nothing is there'."
+- **Jev does not out-pick B.** With B's pCTR in the state, Jev picks the same ad as B on 1,522 of the 1,719 pairs where B is decisive, and the gap to B is within noise. Without pCTR, it lands between creative history and B.
+- **Jev's edge over a coin sits in the mixed pairs.** These are the pairs where one creative has history and the other does not. There Jev without pCTR scores 61.5%, and creative history alone scores 60.4%. On both-seen and both-unseen pairs, it scores 50.8% and 49.8%. No state ablation was run, so this is an association: it does not show which part of the state Jev uses.
+- **B sits 2.2 pp below its own implied benchmark.** If B's pCTRs were the true rates, picking the higher one would score 57.4% overall and 50.7% on near-ties. That benchmark does not bound a better-informed ranker, so these pairs cannot say how much room is left. As the review warned, "a null cannot separate 'Jev adds nothing' from 'nothing is there'."
 - **As a confidence gate, Jev is the wrong tool.** A six-feature logistic regression on numbers B already has beats it. At 20% coverage, the logistic regression gives 67.2% accuracy and Jev only 59.0%. An abstain rule should use the margin plus creative exposure, which needs no network call.
 - **Keep `rank()` as it is.** Neither experiment justifies a Jev call in the serving path.
 
