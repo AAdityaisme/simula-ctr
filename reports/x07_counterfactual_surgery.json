@@ -1,0 +1,136 @@
+{
+ "dependencies": [
+  "C14 -> C15",
+  "C14 -> C16",
+  "C14 -> C17",
+  "C14 -> C21",
+  "C17 -> C21"
+ ],
+ "items": {
+  "real": 300,
+  "broken": 300
+ },
+ "arms": {
+  "exact_tuple": {
+   "accept_real": 0.22,
+   "detect_broken": 1.0,
+   "detect_by_family": {
+    "both_new": 1.0,
+    "c14_seen": 1.0,
+    "c17_only": 1.0
+   },
+   "accept_by_field": {
+    "banner_pos": 0.38333333333333336,
+    "C14": 0.3333333333333333,
+    "C18": 0.18333333333333332,
+    "C19": 0.06666666666666667,
+    "C20": 0.13333333333333333
+   }
+  },
+  "closure": {
+   "accept_real": 1.0,
+   "detect_broken": 0.78,
+   "detect_by_family": {
+    "both_new": 0.33999999999999997,
+    "c14_seen": 1.0,
+    "c17_only": 1.0
+   },
+   "accept_by_field": {
+    "banner_pos": 1.0,
+    "C14": 1.0,
+    "C18": 1.0,
+    "C19": 1.0,
+    "C20": 1.0
+   }
+  },
+  "closure_with_original": {
+   "accept_real": 1.0,
+   "detect_broken": 1.0,
+   "detect_by_family": {
+    "both_new": 1.0,
+    "c14_seen": 1.0,
+    "c17_only": 1.0
+   },
+   "accept_by_field": {
+    "banner_pos": 1.0,
+    "C14": 1.0,
+    "C18": 1.0,
+    "C19": 1.0,
+    "C20": 1.0
+   }
+  },
+  "jev_argmax_single_field": {
+   "accept_real": 0.8766666666666667,
+   "detect_broken": 0.9633333333333334,
+   "detect_by_family": {
+    "both_new": 0.91,
+    "c14_seen": 0.98,
+    "c17_only": 1.0
+   },
+   "accept_by_field": {
+    "banner_pos": 0.9833333333333333,
+    "C14": 0.4,
+    "C18": 1.0,
+    "C19": 1.0,
+    "C20": 1.0
+   }
+  }
+ },
+ "jev_at_matched_detection": {
+  "exact_tuple": {
+   "detection": 1.0,
+   "jev_accept_real": 0.25333333333333335,
+   "control_accept_real": 0.22,
+   "jev_minus_control": [
+    0.033333333333333354,
+    -0.02265741121406661,
+    0.23873508616880232
+   ]
+  },
+  "closure": {
+   "detection": 0.78,
+   "jev_accept_real": 0.97,
+   "control_accept_real": 1.0,
+   "jev_minus_control": [
+    -0.030000000000000027,
+    -0.0632164269710738,
+    -0.010376209307252384
+   ]
+  },
+  "closure_with_original": {
+   "detection": 1.0,
+   "jev_accept_real": 0.25333333333333335,
+   "control_accept_real": 1.0,
+   "jev_minus_control": [
+    -0.7466666666666666,
+    -0.7915309446254072,
+    -0.5460526315789473
+   ]
+  }
+ },
+ "jev_auroc_real_vs_broken": 0.9651833333333333,
+ "jev_choice_counts": {
+  "real": {
+   "single_field": 263,
+   "dependency_closure": 33,
+   "reject": 4
+  },
+  "broken": {
+   "reject": 204,
+   "dependency_closure": 82,
+   "single_field": 11,
+   "unknown": 3
+  }
+ },
+ "reorder_same_choice_share": 0.92,
+ "win": false,
+ "jev": {
+  "calls": 650,
+  "attempts": 650,
+  "models": [
+   "jev-1.13.0"
+  ],
+  "input_tokens": 608399,
+  "call_seconds_median": 0.074
+ }
+}

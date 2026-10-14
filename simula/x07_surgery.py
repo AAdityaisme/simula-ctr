@@ -148,8 +148,12 @@ def evaluate(deps, refit, its, answers):
     family = np.array([fam for _, fam, *_ in its])
     ops = [answers[f"edit:{i}"]["answers"]["operation"] for i in range(len(its))]
     jev = np.array([o["probabilities"]["single_field"] for o in ops])
+    dependents = {y for _, y in deps}
     controls = {"exact_tuple": np.array([tuple(r.values()) in seen for r in results]),
-                "closure": np.array([closure_ok(r, mapping) for r in results])}
+                "closure": np.array([closure_ok(r, mapping) for r in results]),
+                # post hoc, added after outcomes: the original row is real, so editing a dependent alone breaks X -> Y
+                "closure_with_original": np.array([closure_ok(r, mapping) and f not in dependents
+                                                   for r, (_, _, _, f, _) in zip(results, its)])}
     table = {}
     for name, accept in {**controls, "jev_argmax_single_field": np.array([o["choice"] == "single_field" for o in ops])}.items():
         table[name] = {"accept_real": float(accept[real].mean()), "detect_broken": float(1 - accept[~real].mean()),
