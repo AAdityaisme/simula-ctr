@@ -7,7 +7,7 @@ from its own hour.
 Controls: e4's fixed blend (k=500, b=0.1; n=0 for every unseen creative, so 0.9 pB + 0.1 prior) and a Beta posterior
 (K + 20 prior) / (N + 20) around the e4 table prior. Pre-declared win (Fable E5): Jev's policy beats the Beta
 posterior by >= 0.0005 log loss on the unseen-C14 rows, character-bootstrap interval excluding 0. Run:
-  uv run python -m simula.x10_graduation states   # Jev input JSONL outside the checkout
+  uv run python -m simula.x10_graduation states   # level-0 Jev input JSONL (v2) outside the checkout
   uv run --no-project --with typesafe-sdk==0.7.2 --with python-dotenv python jev_ask.py IN.jsonl OUT.jsonl
   uv run python -m simula.x10_graduation report   # reports/x10_graduation.json
 """
@@ -37,18 +37,19 @@ QUESTION = {"source": {"type": "choice", "instructions":
                  "running_ctr": "this creative's own click rate so far"}}}
 WORK = Path.home() / "simula-local/rank-jev-work/exp-x-novelty/x10"
 ANSWERS = Path("reports/x10_graduation_jev_answers.jsonl")
+# v2 re-asks level 0 only: v1's level-0 state averaged pCTR and prior over the whole first hour (red team, 69a798c)
+ANSWERS_V2_LEVEL0 = Path("reports/x10_graduation_jev_answers_v2_level0.jsonl")
 
 
 def running(rows):
     """Per (C14, hour): impressions N, clicks K and hours seen in strictly earlier hours, plus the sums of pB and
-    prior over those earlier rows and the means over the hour's own rows (features only)."""
+    prior over those earlier rows."""
     g = (rows.groupby(["C14", "hour"]).agg(n=("click", "size"), k=("click", "sum"), pb=("p_b", "sum"),
                                            pr=("prior", "sum")).reset_index().sort_values(["C14", "hour"]))
     by = g.groupby("C14")
     for col, out in (("n", "N"), ("k", "K"), ("pb", "pb_before"), ("pr", "prior_before")):
         g[out] = by[col].cumsum() - g[col]
     g["hours_seen"] = by.cumcount()
-    g["pb_now"], g["prior_now"] = g["pb"] / g["n"], g["pr"] / g["n"]
     g["level"] = CHECKPOINTS[np.searchsorted(CHECKPOINTS, g["N"], side="right") - 1]
     return g.drop(columns=["n", "k", "pb", "pr"])
 
@@ -79,19 +80,24 @@ def checkpoints(rows):
     return rows.drop_duplicates(["C14", "level"]).reset_index(drop=True)
 
 
+def estimates(r):
+    """What each source says at a checkpoint row: averaged over earlier rows, or the arriving row itself at n = 0
+    (later rows of the same hour have not arrived yet)."""
+    n = int(r["N"])
+    pb = r["pb_before"] / n if n else r["p_b"]
+    prior = r["prior_before"] / n if n else r["prior"]
+    return {"averaged_over": "earlier impressions" if n else "this first impression (no clicks seen yet)",
+            "prior": round(float(prior), 4), "blend": round(float(0.9 * pb + 0.1 * prior), 4),
+            "B": round(float(pb), 4), "running_ctr": round(float((r["K"] + 0.5) / (n + 1)), 4) if n else None}
+
+
 def state(r):
     """Jev's state at one checkpoint: the creative's own earlier record and what each source would say now."""
     n = int(r["N"])
-    base = "earlier impressions" if n else "this hour's impressions (no clicks seen yet)"
-    pb = r["pb_before"] / n if n else r["pb_now"]
-    prior = r["prior_before"] / n if n else r["prior_now"]
     later = CHECKPOINTS[CHECKPOINTS > n]
     return {"checkpoint": int(r["level"]), "next_checkpoint": int(later[0]) if len(later) else None,
             "creative_so_far": {"impressions": n, "clicks": int(r["K"]), "hours_seen": int(r["hours_seen"])},
-            "estimates": {"averaged_over": base, "prior": round(float(prior), 4),
-                          "blend": round(float(0.9 * pb + 0.1 * prior), 4), "B": round(float(pb), 4),
-                          "running_ctr": round(float((r["K"] + 0.5) / (n + 1)), 4) if n else None},
-            "attributes": _candidate(r)}
+            "estimates": estimates(r), "attributes": _candidate(r)}
 
 
 def write_states(points, path):
@@ -103,9 +109,10 @@ def write_states(points, path):
                     + "\n")
 
 
-def read_answers(path):
-    """{(C14, level): source}; a repeated id keeps its last line, error lines are dropped."""
-    last = {row["id"]: row for row in map(json.loads, Path(path).read_text().splitlines())}
+def read_answers(*paths):
+    """{(C14, level): source}; a repeated id keeps its last line, so a later file overrides an earlier one, and
+    error lines are dropped."""
+    last = {row["id"]: row for path in paths for row in map(json.loads, Path(path).read_text().splitlines())}
     return {(int(i.split(":")[0]), int(i.split(":")[1])): row["answers"]["source"]["choice"]
             for i, row in last.items() if "answers" in row}, list(last.values())
 
@@ -117,8 +124,8 @@ def policy(rows, choices):
     return np.select([picked == s for s in SOURCES], [src[s] for s in SOURCES]), picked
 
 
-def evaluate(rows, answers):
-    choices, calls = read_answers(answers)
+def evaluate(rows, *answers):
+    choices, calls = read_answers(*answers)
     preds = sources(rows)
     preds["jev"], picked = policy(rows, choices)
     y, chars = rows["click"].to_numpy(), rows["character_id"].to_numpy()
@@ -155,11 +162,11 @@ if __name__ == "__main__":
     rows = prepare(args.data)
     if args.step == "states":
         points = checkpoints(rows)
-        write_states(points, WORK / "states.jsonl")
+        write_states(points[points["level"].eq(0)], WORK / "states_v2_level0.jsonl")  # v2: only level 0 changed
         print(f"{len(rows)} rows, {rows['C14'].nunique()} creatives, {len(points)} checkpoint calls -> {WORK}")
         print(points["level"].value_counts().sort_index().to_dict())
     else:
-        out = evaluate(rows, ANSWERS)
+        out = {**evaluate(rows, ANSWERS, ANSWERS_V2_LEVEL0), "v1_superseded": evaluate(rows, ANSWERS)}
         Path("reports/x10_graduation.json").write_text(json.dumps(out, indent=1, default=float) + "\n")
         print(json.dumps({k: out[k] for k in ("log_loss", "comparisons", "jev_choices_per_checkpoint_call", "win")},
                          indent=1))

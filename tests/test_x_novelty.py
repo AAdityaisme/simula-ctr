@@ -54,3 +54,19 @@ def test_partial_spearman_removes_a_shared_driver():
     assert abs(partial_spearman(x, y, z)) < 0.1  # correlated only through z
     w = rng.normal(size=2000)
     assert partial_spearman(w + 0.1 * z, w + 0.1 * z + 0.1 * rng.normal(size=2000), z) > 0.9
+
+
+
+def test_checkpoint_estimates_see_no_later_row_of_their_hour():
+    from simula.x10_graduation import checkpoints, estimates, running
+
+    def first_estimates(rows):
+        r = rows.join(running(rows).set_index(["C14", "hour"]), on=["C14", "hour"])
+        return [estimates(p) for _, p in checkpoints(r).iterrows()]
+
+    rows = pd.DataFrame({"C14": 7, "hour": [1] * 12 + [2], "click": 0, "p_b": 0.1, "prior": 0.2})
+    later = rows.assign(p_b=[0.1] + [0.9] * 12, prior=[0.2] + [0.6] * 12)  # only rows after the first change
+    level0, level10 = first_estimates(rows)
+    assert first_estimates(later)[0] == level0 == {"averaged_over": "this first impression (no clicks seen yet)",
+                                                   "prior": 0.2, "blend": 0.11, "B": 0.1, "running_ctr": None}
+    assert first_estimates(later)[1]["B"] != level10["B"]  # level 10 rightly averages the 12 earlier rows
