@@ -2,8 +2,8 @@ import numpy as np
 import pandas as pd
 
 from simula.x06_evidence import checklist, cmh_z, naive_z, readout
-from simula.x07_surgery import FIELDS, accept_at_detection, closure_ok, dependencies
-from simula.x08_repair import correct, inject, invariants, repair
+from simula.x07_surgery import FIELDS, accept_at_detection, closure_ok, dependencies, items
+from simula.x08_repair import correct, inject, invariants, repair, unnecessary
 
 
 def test_mix_shift_fools_naive_but_not_cmh():
@@ -79,3 +79,26 @@ def test_invariants_and_correct_repair_order():
     assert correct("both", []) == "restore_join"
     assert correct("both", ["restore_join"]) == "restore_missing_encoding"
     assert correct("none", ["hold"]) == "hold"
+
+
+def test_c14_items_share_field_originals_and_values():
+    def t(c14, c17, c20):
+        return dict(zip(FIELDS, ["0", c14, "320", "50", c17, "0", "35", c20, "x"]))
+    refit = pd.DataFrame([t(c14, c17, c20) for c14, c17 in [("a", "p"), ("b", "q"), ("c", "p")] for c20 in "13"])
+    test = pd.DataFrame([t("a", "p", "2"), t("c", "p", "2"), t("b", "q", "2"), t("n", "q", "2")])
+    deps = dependencies(refit)
+    mapping = {(x, y): dict(zip(refit[x], refit[y])) for x, y in deps}
+    observed = set(map(tuple, test.to_numpy()))
+    its = items(refit, test, pd.concat([refit, test]), deps, seed=0, n=2)
+    assert [i[0] for i in its] == ["real"] * 2 + ["broken"] * 2 and {i[3] for i in its} == {"C14"}
+    for kind, _, row, f, value in its:
+        result = {**row, f: value}
+        assert row["C14"] in "acn" and value in "abc"  # originals and new values both come from the real pairs
+        assert (tuple(result.values()) in observed) == closure_ok(result, mapping) == (kind == "real")
+
+
+def test_unnecessary_counts_absent_and_repeated_restores():
+    assert unnecessary(["restore_missing_encoding", "restore_missing_encoding"], "none") == 2
+    assert unnecessary(["restore_join", "restore_join"], "join") == 1
+    assert unnecessary(["restore_join", "restore_missing_encoding"], "both") == 0
+    assert unnecessary(["hold", "retrain"], "none") == 0

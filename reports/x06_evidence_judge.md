@@ -2,7 +2,31 @@
 
 Branch `exp/x-evidence`, 2026-10-14. Code: `simula/x06_evidence.py`.
 
-## Pre-registration (committed before any outcome-bearing run)
+## v2 (2026-10-14, after the red-team review of `abecb65`)
+
+**v1 is superseded.** Its readout states carried real Oct 29–30 clicks: every `sides` and `mix` state (and the 50
+reshuffled rechecks) showed click totals drawn from the test window. That breaks rule 3 of
+`specs/rank-jev-x/common.md`: no test-window outcomes in any Jev state. The root cause is a spec error by the
+orchestrator: `specs/rank-jev-x/wc-evidence.md` asked for readouts "from test-window rows", which contradicts rule 3.
+I followed the spec line without flagging the conflict. v1's panel options were also always in one order.
+
+### v2 pre-registration (committed before any v2 Jev call)
+
+Everything in the v1 pre-registration below still holds, except:
+
+- **(a) readouts use refit-window rows only.** Real impressions and clicks come from Oct 21–27. No Oct 29–30 row
+  reaches a readout state. The δ injection uses the refit per-side base rate. The 50 reshuffled-rows rechecks stay.
+- **(b) panels keep their rows**: Oct 29–30 features and B's scores, with clicks simulated from models fitted before
+  the window, so no real test click enters a state. The three options are now listed in a seeded random order per
+  panel. 50 rechecks (every sixth panel) ask again with that panel's order reversed.
+- **Order sensitivity, reported:** the share of top choices that were the first-listed option (chance 1/3), the
+  recheck same-choice share, and the mean absolute change in the probability of the main call's top choice.
+- **Wins unchanged.** Verdict: win if the win holds; loss if the interval of Jev minus the control is below 0;
+  null otherwise.
+- Files: answers `reports/x06_v2_jev_answers.jsonl`, numbers `reports/x06_evidence_judge_v2.json`. The v1 files are
+  kept unchanged.
+
+## v1 pre-registration (superseded)
 
 The questions, state formats, controls and wins below are fixed in code. Both tasks are synthetic and their truth
 comes from the generating process. Intervals resample tasks (readouts or panels), not impressions.
@@ -48,7 +72,7 @@ comes from the generating process. Intervals resample tasks (readouts or panels)
 
 The Oct 29–30 window was already inspected, so everything is exploratory.
 
-## Results
+## v1 results (superseded: test-window clicks in the readout states)
 
 `jev-latest` resolved to `jev-1.13.0`. This is the only version of the questions and states. 800 calls in 800
 attempts with 0 errors, 8 s of wall time, 482,649 input tokens, $0.020. Answers: `reports/x06_jev_answers.jsonl`.
@@ -125,7 +149,7 @@ Example state (`panel:0`, the contract lists are shortened here; Jev saw them in
  "share_of_pairs_differing": {"device_model": 0.964, "device_conn_type": 0.129, "is_null_device": 0.01}}
 ```
 
-## What it means for ranking
+## v1: what it meant for ranking (superseded)
 
 - At the deploy gate, a standard stratified test beats Jev clearly. A typed judge reading a 2×2 readout is not a
   substitute for CMH, and it is not even as good as the naive test. Keep the gate arithmetic.
@@ -134,7 +158,7 @@ Example state (`panel:0`, the contract lists are shortened here; Jev saw them in
 - B is untouched by either result. These tasks test the process around B, and the arithmetic version of each
   process wins.
 
-## Limits
+## v1 limits (superseded)
 
 - Both tasks are synthetic. Readouts reuse real Oct 29–30 clicks, and panels reuse real rows with simulated clicks.
   The window was already inspected, so everything is exploratory. Nothing here is a causal CTR lift.
@@ -143,4 +167,3 @@ Example state (`panel:0`, the contract lists are shortened here; Jev saw them in
 - The mix shift in (a) always flatters the candidate, with a random size. δ = 0 counts as no-ship.
 - One wording per question, asked once. A different rubric might do better, but tuning it here would overfit.
 
-Full suite: 58 passed in 9.20s at 9086c93

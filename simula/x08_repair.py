@@ -7,7 +7,9 @@ Each policy takes two steps, each one of restore_join, restore_missing_encoding,
 on Oct 22-28) or hold; repairs apply before B scores. States are label-free batch statistics against Oct 28 and never
 name the fault. Controls: fixed invariant checks, and a depth-3 tree trained on 200 incidents from Oct 25-27 blocks
 with separate seeds. Pre-declared win: Jev restores a larger share of lost log loss than both controls, paired
-bootstrap interval over incidents above 0, at a false-repair rate no higher than each control's. Run:
+bootstrap interval over incidents above 0, at a false-repair rate no higher than each control's. v2 lists the options
+in a seeded random order per call, rechecks every fourth incident with that order reversed, and also counts every
+unnecessary restore execution. Run:
   uv run python -m simula.x08_repair states1     # step-1 Jev input
   uv run --no-project --with typesafe-sdk==0.7.2 --with python-dotenv python jev_ask.py IN.jsonl OUT.jsonl
   uv run python -m simula.x08_repair states2     # step-2 Jev input, after Jev's step-1 repairs; then jev_ask again
@@ -27,9 +29,9 @@ from simula import train
 from simula.data import add_flags, load, load_characters
 from simula.features import FEATURE_SETS, fit_encoder, transform
 from simula.rank_pairs import read_answers
-from simula.x06_evidence import WORK, _boot
+from simula.x06_evidence import WORK, _boot, option_orders, order_sensitivity, ordered
 
-ANSWERS = Path("reports/x08_jev_answers.jsonl")
+ANSWERS = Path("reports/x08_v2_jev_answers.jsonl")
 FAULTS = ["none", "join", "sentinel", "both"]
 META = ["safety_tier", "creator_type", "genre", "created_at"]
 ENCODED = ["C20", "device_id", "is_null_device"]
@@ -130,6 +132,12 @@ def correct(fault, done):
     return "hold"
 
 
+def unnecessary(actions, fault):
+    """Restore executions that fix nothing: that fault was never injected, or an earlier step already restored it."""
+    needed = {"restore_join": fault in ("join", "both"), "restore_missing_encoding": fault in ("sentinel", "both")}
+    return sum(a in needed and (not needed[a] or a in actions[:k]) for k, a in enumerate(actions))
+
+
 def recent_model(df, rounds, seed=0):
     """B refit on Oct 22-28 (300k-row subsample, B's tree count), calibrated like B on Oct 28 (in-sample). Cached."""
     path = WORK / "x08_recent"
@@ -199,7 +207,8 @@ def run_policy(r, choose):
 
 
 def write_step(r, k, path, step1=None):
-    """Jev input for step k. Step 2 replays Jev's step-1 answers."""
+    """Jev input for step k, options in a seeded order per incident. Step 2 replays Jev's step-1 answers."""
+    orders = option_orders(INTERVENTION, len(r.eval), seed=80 + k)
     with open(path, "w") as f:
         for i in range(len(r.eval)):
             clean, batch = faulty(r, i)
@@ -209,7 +218,11 @@ def write_step(r, k, path, step1=None):
                 batch, model = step(r, batch, clean, model, a)
                 done = [a]
             s = state(stats(batch, model, r.ref), done)
-            f.write(json.dumps({"id": f"s{k}:{i}", "state": s, "questions": {"intervention": INTERVENTION}}) + "\n")
+            f.write(json.dumps({"id": f"s{k}:{i}", "state": s,
+                                "questions": {"intervention": ordered(INTERVENTION, orders[i])}}) + "\n")
+            if i % 4 == 0:  # 40 rechecks per step, one per block and fault cycle
+                f.write(json.dumps({"id": f"r{k}:{i}", "state": s,
+                                    "questions": {"intervention": ordered(INTERVENTION, orders[i][::-1])}}) + "\n")
 
 
 def evaluate(r, answers):
@@ -242,6 +255,11 @@ def evaluate(r, answers):
                        "restored_share_by_fault": {f: float(restored[name][faults == f].sum() / lost[faults == f].sum())
                                                    for f in FAULTS[1:]},
                        "false_repair_rate": float(false.mean()),
+                       "unnecessary_restore_executions": int(sum(unnecessary(x["actions"], f) for x, f in zip(rows, faults))),
+                       "incidents_with_an_unnecessary_restore": float(np.mean([unnecessary(x["actions"], f) > 0
+                                                                               for x, f in zip(rows, faults)])),
+                       "sequences": pd.Series([" > ".join(x["actions"]) for x in rows]).groupby(faults).value_counts()
+                       .unstack(fill_value=0).to_dict(orient="index"),
                        "retrain_rate": float(np.mean(["retrain" in x["actions"] for x in rows])),
                        "loss_change_on_clean_incidents": float(-restored[name][~broken].mean()),
                        "first_actions": pd.Series([x["actions"][0] for x in rows]).groupby(faults).value_counts()
@@ -252,8 +270,12 @@ def evaluate(r, answers):
         return lambda b: (restored["jev"][idx[b]].sum() - restored[name][idx[b]].sum()) / lost[idx[b]].sum()
     diffs = {name: _boot(share_diff(name), len(idx)) for name in ("invariants", "tree")}
     win = all(diffs[n][1] > 0 and table["jev"]["false_repair_rate"] <= table[n]["false_repair_rate"] for n in diffs)
+    order = {f"step{k}": order_sensitivity(
+        [answers[f"s{k}:{i}"]["answers"]["intervention"] for i in range(len(r.eval))],
+        {int(key.split(":")[1]): a["answers"]["intervention"] for key, a in answers.items() if key.startswith(f"r{k}:")},
+        option_orders(INTERVENTION, len(r.eval), seed=80 + k)) for k in (1, 2)}
     calls = list(answers.values())
-    return {"incidents": {f: int((faults == f).sum()) for f in FAULTS},
+    return {"option_order": order, "incidents": {f: int((faults == f).sum()) for f in FAULTS},
             "mean_lost_log_loss_by_fault": {f: float(lost[faults == f].mean()) for f in FAULTS},
             "policies": table, "jev_restored_share_minus": diffs, "win": bool(win),
             "jev": {"calls": len(calls), "attempts": int(sum(c["attempts"] for c in calls)),
@@ -269,10 +291,10 @@ if __name__ == "__main__":
     run = prepare(args.data)
     WORK.mkdir(parents=True, exist_ok=True)
     if args.step == "states1":
-        write_step(run, 1, WORK / "x08_states1.jsonl")
+        write_step(run, 1, WORK / "x08_v2_states1.jsonl")
     elif args.step == "states2":
-        write_step(run, 2, WORK / "x08_states2.jsonl", read_answers(ANSWERS))
+        write_step(run, 2, WORK / "x08_v2_states2.jsonl", read_answers(ANSWERS))
     else:
         out = evaluate(run, read_answers(ANSWERS))
-        Path("reports/x08_pipeline_repair.json").write_text(json.dumps(out, indent=1, default=float) + "\n")
+        Path("reports/x08_pipeline_repair_v2.json").write_text(json.dumps(out, indent=1, default=float) + "\n")
         print(json.dumps(out, indent=1, default=float))

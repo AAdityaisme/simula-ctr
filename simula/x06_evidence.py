@@ -1,7 +1,8 @@
 """x06, evidence judge: does Jev read deploy-gate and benchmark evidence better than the standard tests?
 
-(a) Ship/no-ship readouts (Fable E7). 200 synthetic A/B readouts built from Oct 29-30 rows. Each arm draws 8,000 real
-    impressions by side; the candidate arm is oversampled site-side (site CTR is higher) by a random margin, and a
+(a) Ship/no-ship readouts (Fable E7). 200 synthetic A/B readouts built from refit-window (Oct 21-27) rows, so no
+    test-window click reaches a state (v2; v1 drew Oct 29-30 clicks). Each arm draws 8,000 real impressions by side;
+    the candidate arm is oversampled site-side (site CTR is higher) by a random margin, and a
     per-side click-rate shift delta in {-1, -0.5, 0, +0.5, +1} pp is injected into it. Truth: ship iff delta > 0.
     Jev answers a Noul from the per-side table (arm `sides`) and from overall rows plus a mix note (arm `mix`).
     Controls: naive pooled z on overall CTR, and the CMH statistic stratified by side. Metric: AUROC.
@@ -12,7 +13,8 @@
     LightGBM fitted on the refit window, so any ranking gain is nuisance. Only panels where B's accuracy exceeds 50%
     become claims. Control: exact-request matching plus a fixed checklist (>= 10 request-identical pairs, B above
     50% on them, B above the request-only ranker). Pre-declared win: at the checklist's retention of genuine
-    panels, Jev rejects a larger share of false panels, interval above 0.
+    panels, Jev rejects a larger share of false panels, interval above 0. The options are in a seeded random order
+    per panel; 50 rechecks reverse that order.
 
 Intervals resample readouts or panels (tasks), not impressions. Run:
   uv run python -m simula.x06_evidence states
@@ -33,7 +35,7 @@ from simula.features import CONTRACT, fit_encoder, transform
 from simula.rank_pairs import CONTEXT, _auc_diff, _scored, build_pairs, read_answers
 
 WORK = Path.home() / "simula-local/rank-jev-work/exp-x-evidence"
-ANSWERS = Path("reports/x06_jev_answers.jsonl")
+ANSWERS = Path("reports/x06_v2_jev_answers.jsonl")
 DELTAS = [-0.01, -0.005, 0.0, 0.005, 0.01]
 N_ARM, N_READOUTS, N_PANELS, N_RECHECK = 8000, 200, 150, 50
 REQUEST = CONTRACT["request"] + CONTRACT["character"]
@@ -43,6 +45,27 @@ USE = {"type": "choice", "instructions": "How should this comparison be used for
     "predictive_diagnostic": "it supports the claim that the ranker orders candidate ads",
     "rematch": "the apparent gain may come from request differences between paired impressions; re-match first",
     "unidentifiable": "this data cannot separate a candidate effect from request differences"}}
+
+
+def option_orders(question, n, seed):
+    """A seeded random option order for each of n tasks."""
+    rng, keys = np.random.default_rng(seed), list(question["criteria"])
+    return [[keys[i] for i in rng.permutation(len(keys))] for _ in range(n)]
+
+
+def ordered(question, order):
+    """The question with its options listed in `order`."""
+    return {**question, "criteria": {k: question["criteria"][k] for k in order}}
+
+
+def order_sensitivity(main, rechecks, orders):
+    """main: Choice answers per task; rechecks: {task: answer with that task's options reversed}; orders: main orders."""
+    return {"top_choice_is_first_listed": float(np.mean([a["choice"] == o[0] for a, o in zip(main, orders)])),
+            "chance_first_listed": 1 / len(orders[0]), "rechecks": len(rechecks),
+            "recheck_same_choice_share": float(np.mean([r["choice"] == main[i]["choice"] for i, r in rechecks.items()])),
+            "recheck_mean_abs_change_in_top_probability": float(np.mean(
+                [abs(r["probabilities"][main[i]["choice"]] - main[i]["probabilities"][main[i]["choice"]])
+                 for i, r in rechecks.items()]))}
 
 
 def readout(pools, delta, rng):
@@ -99,10 +122,10 @@ def readout_states(cells, rng):
     return {"rows": sides}, mix
 
 
-def readouts(test, seed=0):
-    """The 200 readouts, cycling over DELTAS. Returns a list of (delta, cells, sides_state, mix_state)."""
+def readouts(rows, seed=0):
+    """The 200 readouts from `rows` (refit window), cycling over DELTAS. Returns [(delta, cells, sides, mix)]."""
     rng = np.random.default_rng(seed)
-    pools = {s: test.loc[test["is_site_side"].eq(s == "site"), "click"].to_numpy().astype(bool) for s in ("site", "app")}
+    pools = {s: rows.loc[rows["is_site_side"].eq(s == "site"), "click"].to_numpy().astype(bool) for s in ("site", "app")}
     out = []
     for i in range(N_READOUTS):
         delta = DELTAS[i % len(DELTAS)]
@@ -180,7 +203,7 @@ def prepare(data_dir):
         WORK.mkdir(parents=True, exist_ok=True)
         np.savez(rates, p_b=train.predict(bundle, test), p_r=p_r)
     cached = np.load(rates)
-    return readouts(test), panels(test, cached["p_b"], cached["p_r"])
+    return readouts(refit), panels(test, cached["p_b"], cached["p_r"])
 
 
 def write_states(reads, pans, path):
@@ -194,11 +217,11 @@ def write_states(reads, pans, path):
             put(f"mix:{i}", mix, {"ship": SHIP})
         for i in range(N_RECHECK):
             put(f"resides:{i}", readout_states(reads[i][1], rng)[0], {"ship": SHIP})
-        reordered = {**USE, "criteria": dict(reversed(USE["criteria"].items()))}
+        orders = option_orders(USE, len(pans), seed=6)
         for i, (_, s) in enumerate(pans):
-            put(f"panel:{i}", panel_state(s), {"use": USE})
-            if i < N_RECHECK:
-                put(f"repanel:{i}", panel_state(s), {"use": reordered})
+            put(f"panel:{i}", panel_state(s), {"use": ordered(USE, orders[i])})
+            if i % 6 == 0:  # 50 rechecks spread over both worlds
+                put(f"repanel:{i}", panel_state(s), {"use": ordered(USE, orders[i][::-1])})
 
 
 def _at_retention(score, genuine, retention):
@@ -244,7 +267,6 @@ def evaluate(reads, pans, answers):
     def diff(i):
         g = genuine[i]
         return _at_retention(jev[i], g, keep[i][g].mean()) - float(np.mean(~keep[i][~g]))
-    reorder = [answers[f"repanel:{i}"]["answers"]["use"] for i in range(N_RECHECK)]
     b = {"panels": {"genuine": int(genuine.sum()), "false": int((~genuine).sum())},
          "checklist": {"retention_genuine": retention, "rejection_false": float(np.mean(~keep[~genuine]))},
          "jev_at_checklist_retention": {"rejection_false": _at_retention(jev, genuine, retention)},
@@ -253,7 +275,8 @@ def evaluate(reads, pans, answers):
                         .value_counts().to_dict() for w in ("genuine", "false")},
          "auroc_genuine": {"jev": float(roc_auc_score(genuine, jev)), "exact_request_z": float(roc_auc_score(genuine, exact_z)),
                            "accuracy_gap_vs_request_only": float(roc_auc_score(genuine, gap))},
-         "reorder_same_choice_share": float(np.mean([r["choice"] == u["choice"] for r, u in zip(reorder, use)])),
+         "option_order": order_sensitivity(use, {int(k.split(":")[1]): a["answers"]["use"] for k, a in answers.items()
+                                                 if k.startswith("repanel:")}, option_orders(USE, len(pans), seed=6)),
          "medians": {w: {k: float(np.median([s[k] for ww, s in pans if ww == w]))
                          for k in ("pairs", "ranker_accuracy", "request_only_ranker_accuracy")}
                      | {"request_identical_pairs": float(np.median([s["request_identical_pairs"]["pairs"]
@@ -275,9 +298,9 @@ if __name__ == "__main__":
     reads, pans = prepare(args.data)
     if args.step == "states":
         WORK.mkdir(parents=True, exist_ok=True)
-        write_states(reads, pans, WORK / "x06_states.jsonl")
-        print("wrote", WORK / "x06_states.jsonl")
+        write_states(reads, pans, WORK / "x06_v2_states.jsonl")
+        print("wrote", WORK / "x06_v2_states.jsonl")
     else:
         out = evaluate(reads, pans, read_answers(ANSWERS))
-        Path("reports/x06_evidence_judge.json").write_text(json.dumps(out, indent=1, default=float) + "\n")
+        Path("reports/x06_evidence_judge_v2.json").write_text(json.dumps(out, indent=1, default=float) + "\n")
         print(json.dumps(out, indent=1, default=float))

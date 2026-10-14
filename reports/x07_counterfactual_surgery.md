@@ -2,7 +2,40 @@
 
 Branch `exp/x-evidence`, 2026-10-14. Code: `simula/x07_surgery.py`. After Astra's experiment 6.
 
-## Pre-registration (committed before any outcome-bearing run)
+## v2 (2026-10-14, after the red-team review of `abecb65`)
+
+**v1 is superseded**, for two reasons:
+
+1. The field choice revealed the label. Real edits used only `banner_pos`, C14, C18, C19 and C20; broken edits only
+   C15, C16, C17 and C21. A rule that reads the edited field's name alone accepts 300/300 real and rejects 300/300
+   broken edits.
+2. The registered closure was a weaker control than Jev's information allowed. It ignored the original row that Jev
+   saw. A closure that uses the original row was added after outcomes in v1. In v2 it is the registered control.
+
+### v2 pre-registration (committed before any v2 Jev call)
+
+- **Items.** 600 one-field edits, all to C14. In this data C14 is the only field with both coherent and
+  dependency-breaking single-field edits, so a shared, balanced field pool must be C14 alone. The pool: pairs of
+  observed Oct 29–30 tuples that differ only in C14, where the target creative was seen in refit (6,906 pairs).
+  - Real (300): a random pair. The edit turns its first tuple into its second.
+  - Broken (300): an original drawn from the same pairs' first tuples and a new creative drawn from the same pairs'
+    targets. Kept when the result breaks a learned refit dependency and is absent from the full data.
+  - So the edited field, the originals' distribution and the new values' distribution are the same for both kinds.
+    Every new creative was seen in refit. A family label records whether the original's creative was seen in refit.
+- **Jev.** Question and state unchanged from v1. The options are listed in a seeded random order per item. 50
+  rechecks (every twelfth item) ask again with that order reversed. Order sensitivity is reported as in x06.
+- **Controls.** Exact-tuple lookup (accept iff the result was seen in refit). Dependency closure with the original
+  row, the registered control: accept iff no learned dependency is broken, given that the original row is real. For
+  C14 edits it reduces to checking the result against the refit mapping.
+- **Win:** at the closure's detection rate on broken items, Jev accepts a larger share of real items, with the
+  bootstrap interval over items above 0. Jev at the exact-tuple detection rate is reported too. Verdict: win if the
+  win holds; loss if the interval is below 0; null otherwise.
+- Broken items break a refit dependency by construction, so the closure detects all of them. Real items fail it only
+  where a refit dependency changes in Oct 29–30. If the closure accepts every real edit, no judge can beat it.
+- Files: answers `reports/x07_v2_jev_answers.jsonl`, numbers `reports/x07_counterfactual_surgery_v2.json`. The v1
+  files are kept unchanged.
+
+## v1 pre-registration (superseded)
 
 - **Constraints, refit only.** X → Y is a dependency when every refit (Oct 21–27) value of X has exactly one Y.
   Re-derived on refit: C14 → C15, C16, C17, C21, and C17 → C21. These match the full-data check for C14.
@@ -27,7 +60,7 @@ Branch `exp/x-evidence`, 2026-10-14. Code: `simula/x07_surgery.py`. After Astra'
 
 The Oct 29–30 window was already inspected, so everything is exploratory.
 
-## Results
+## v1 results (superseded: the edited field revealed the label, and the registered closure saw less than Jev)
 
 `jev-latest` resolved to `jev-1.13.0`. One version of the question and state. 650 calls in 650 attempts with 0
 errors, 7 s of wall time, 608,399 input tokens, $0.026. Answers: `reports/x07_jev_answers.jsonl`.
@@ -78,7 +111,7 @@ Example state (`edit:368`, a broken edit to C17; the dependency list is shortene
   {"rule": "C17 -> C21", "determinant": "2533", "determinant_training_impressions": 461, "dependent_values_in_training": {"48": 461}, "proposed_dependent": "23"}]}
 ```
 
-## What it means for ranking
+## v1: what it meant for ranking (superseded)
 
 - Robustness tests for B (swap one ad field, see how the score moves) should be gated by dependency closure computed
   from the original row. That rule is exact here and costs nothing. Jev adds errors, mainly by blocking creative
@@ -86,7 +119,7 @@ Example state (`edit:368`, a broken edit to C17; the dependency list is shortene
 - Jev does reason with the dependency list: it caught 91% of the violations my weak control missed. That is a
   sign the typed judge reads structure. It is not a reason to put it in the loop, because the right rule is simpler.
 
-## Limits
+## v1 limits (superseded)
 
 - The items are synthetic edits of real held-out tuples. The window was already inspected, so everything is
   exploratory. Nothing here touches CTR.
@@ -95,4 +128,3 @@ Example state (`edit:368`, a broken edit to C17; the dependency list is shortene
 - The post-hoc control was added after outcomes and is reported as such, next to the pre-registered one.
 - One wording, asked once.
 
-Full suite: 58 passed in 9.20s at 9086c93

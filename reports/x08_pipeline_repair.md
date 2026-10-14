@@ -2,7 +2,30 @@
 
 Branch `exp/x-evidence`, 2026-10-14. Code: `simula/x08_repair.py`. After Astra's experiment 8.
 
-## Pre-registration (committed before any outcome-bearing run)
+## v2 (2026-10-14, after the red-team review of `abecb65`)
+
+**v1 is superseded.** All 320 v1 calls listed the four options in one fixed order, with no order check. Two text
+problems are corrected below. The declared false-repair rate counts an incident once if a policy restores a fault that
+was never injected. So it leaves out repeats of a needed repair, and v1's line that the rate is "the only place they
+show" was too broad. The tree's misses were 3 sentinel-only incidents (held twice) and 3 combined incidents
+(restored the join, then held). v1 said only "3 sentinel incidents".
+
+### v2 pre-registration (committed before any v2 Jev call)
+
+- Incidents, actions, question text, state, controls, metrics and win are unchanged from v1.
+- The options are listed in a seeded random order per call, with independent orders for step 1 and step 2. Step 2
+  replays Jev's v2 step-1 answer.
+- 40 rechecks per step (every fourth incident) ask again with that call's order reversed. Order sensitivity is
+  reported as in x06.
+- **Added operational metric**, next to the declared false-repair rate: unnecessary restore executions. These are
+  restores whose fault was never injected or was already restored by an earlier step, counted over all 320 steps,
+  plus the share of incidents with at least one. The win still uses the declared false-repair rate.
+- Verdict: win if the win holds; loss if Jev's restored share is no better than a control's or its false-repair rate
+  is higher; null otherwise.
+- Files: answers `reports/x08_v2_jev_answers.jsonl`, numbers `reports/x08_pipeline_repair_v2.json`. The v1 files are
+  kept unchanged.
+
+## v1 pre-registration (superseded)
 
 - **Incidents.** 160 serving batches, each a 3-hour block of Oct 29–30 rows (10 blocks; each block gets every fault
   type in turn). A fault hits a random share f ~ U(0.1, 1) of an in-memory copy. 40 of each:
@@ -40,7 +63,7 @@ Branch `exp/x-evidence`, 2026-10-14. Code: `simula/x08_repair.py`. After Astra's
 
 The Oct 29–30 window was already inspected, so everything is exploratory. Clicks enter only the loss, never a state.
 
-## Results
+## v1 results (superseded: fixed option order, false-repair metric hid repeated repairs)
 
 `jev-latest` resolved to `jev-1.13.0`. One version of the question and state. 320 calls (160 per step) in 320
 attempts with 0 errors, 4 s of wall time, 216,824 input tokens, $0.009. Answers: `reports/x08_jev_answers.jsonl`.
@@ -96,7 +119,7 @@ Example state (`s1:3`, step 1; the `both` fault on block 0, Oct 29 00:00–02:59
  "actions_already_taken": []}
 ```
 
-## What it means for ranking
+## v1: what it meant for ranking (superseded)
 
 - Before retraining B on a bad day, run invariant checks. A registry join can never give one character two
   metadata rows, and these encodings never go unseen. Those two facts catch every injected fault here. A small
@@ -105,7 +128,7 @@ Example state (`s1:3`, step 1; the `both` fault on block 0, Oct 29 00:00–02:59
 - Silent join breakage is the costly fault for B (0.007 log loss, about three quarters of B's 0.0097 gain over A).
   That is worth a monitor, not a Jev call.
 
-## Limits
+## v1 limits (superseded)
 
 - The faults are synthetic and few: two kinds, on in-memory copies. Real incidents are messier, and their text
   would be harder to keep neutral.
@@ -114,4 +137,3 @@ Example state (`s1:3`, step 1; the `both` fault on block 0, Oct 29 00:00–02:59
 - Redundant repairs cost nothing in loss here; the false-repair rate is the only place they show.
 - One wording, asked once.
 
-Full suite: 58 passed in 9.20s at 9086c93

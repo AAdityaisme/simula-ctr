@@ -1,16 +1,18 @@
 """x07, approve counterfactual surgery (Astra 6): can Jev tell a coherent one-field edit of an ad from a broken one?
 
 Constraints are learned on the refit window only: X -> Y is a dependency when every refit value of X has exactly one
-Y. Items are one-field edits of a held-out (Oct 29-30) ad tuple (banner_pos, C14-C21):
-- real (300): the edit turns one observed test tuple into another observed test tuple, 60 per field over the five
-  fields that ever differ alone (banner_pos, C14, C18, C19, C20);
-- broken (300): the edit swaps a dependent field (C15, C16, C17 or C21) for another refit value, in three families of
-  100: C14 seen in refit; C14 new but C17 seen (only C17 -> C21 can bind); C14 and C17 both new. Every broken result
-  is asserted absent from the full data.
-Jev answers Choice `operation`; its score is P(single_field). Controls: exact-tuple lookup (accept iff the result was
-seen in refit) and empirical dependency closure (accept iff no learned dependency with a refit-seen determinant is
-violated). Pre-declared win: at closure's detection rate on broken items, Jev accepts a larger share of real items,
-bootstrap interval over items above 0. Run:
+Y. v2 items are C14 edits of a held-out (Oct 29-30) ad tuple (banner_pos, C14-C21). C14 is the only field with both
+coherent and dependency-breaking single-field edits here, so the edited field carries no label (v1 used disjoint
+field pools, which a field-name rule separated perfectly). Real and broken items share one pool of originals and one
+pool of new values, both refit-seen creatives:
+- real (300): the edit turns one observed test tuple into another observed test tuple;
+- broken (300): the same kind of original gets a creative from the real targets whose refit dependents differ from
+  the row's, so the result breaks a learned dependency; every broken result is asserted absent from the full data.
+Jev answers Choice `operation` with the options in a seeded random order per item; its score is P(single_field).
+Controls: exact-tuple lookup (accept iff the result was seen in refit) and dependency closure with the original row
+(accept iff the edit leaves every learned dependency intact; it sees the same row Jev does). Pre-declared win: at the
+closure's detection rate on broken items, Jev accepts a larger share of real items, bootstrap interval over items
+above 0. Run:
   uv run python -m simula.x07_surgery states
   uv run --no-project --with typesafe-sdk==0.7.2 --with python-dotenv python jev_ask.py IN.jsonl OUT.jsonl
   uv run python -m simula.x07_surgery report
@@ -26,12 +28,11 @@ from sklearn.metrics import roc_auc_score
 
 from simula.data import add_flags, load, split
 from simula.rank_pairs import read_answers
-from simula.x06_evidence import WORK, _boot
+from simula.x06_evidence import WORK, _boot, option_orders, order_sensitivity, ordered
 
-ANSWERS = Path("reports/x07_jev_answers.jsonl")
+ANSWERS = Path("reports/x07_v2_jev_answers.jsonl")
 FIELDS = ["banner_pos", "C14", "C15", "C16", "C17", "C18", "C19", "C20", "C21"]
-REAL_FIELDS, DEPENDENT = ["banner_pos", "C14", "C18", "C19", "C20"], ["C15", "C16", "C17", "C21"]
-N_REAL, N_BROKEN, N_RECHECK = 60, 100, 50
+N_REAL = 300  # and as many broken
 NOTES = "Anonymized categorical ad attributes of one ad slot. C14 is the creative id by convention; the others are " \
         "undocumented."
 OPERATION = {"type": "choice", "instructions": "Which operation does the evidence support for this proposed edit?",
@@ -51,33 +52,29 @@ def closure_ok(result, mapping):
     return all(result[y] == m[result[x]] for (x, y), m in mapping.items() if result[x] in m)
 
 
-def items(refit_tuples, test_tuples, all_tuples, seed=0):
-    """Real and broken one-field edits: [(kind, family, original dict, field, new value)]."""
+def items(refit_tuples, test_tuples, all_tuples, deps, seed=0, n=N_REAL):
+    """Real and broken C14 edits over shared originals and new values: [(kind, family, original dict, field, value)].
+
+    family says whether the original's creative was seen in refit."""
     rng = np.random.default_rng(seed)
-    out = []
-    arr = test_tuples[FIELDS].to_numpy()
-    for j, f in enumerate(REAL_FIELDS):
-        k = FIELDS.index(f)
-        rest = pd.Series([tuple(np.delete(r, k)) for r in arr])
-        pairs = [(a, b) for idx in rest.groupby(rest).indices.values() if len(idx) > 1
-                 for a, b in itertools.permutations(idx, 2)]
-        for i in rng.choice(len(pairs), min(N_REAL, len(pairs)), replace=False):
-            a, b = pairs[i]
-            out.append(("real", f, dict(zip(FIELDS, arr[a])), f, arr[b][k]))
-    seen = {f: set(refit_tuples[f]) for f in ("C14", "C17")}
-    families = {"c14_seen": test_tuples["C14"].isin(seen["C14"]),
-                "c17_only": ~test_tuples["C14"].isin(seen["C14"]) & test_tuples["C17"].isin(seen["C17"]),
-                "both_new": ~test_tuples["C14"].isin(seen["C14"]) & ~test_tuples["C17"].isin(seen["C17"])}
+    arr, k = test_tuples[FIELDS].to_numpy(), FIELDS.index("C14")
+    seen = set(refit_tuples["C14"])
+    rest = pd.Series([tuple(np.delete(r, k)) for r in arr])
+    pairs = [(a, b) for idx in rest.groupby(rest).indices.values() if len(idx) > 1
+             for a, b in itertools.permutations(idx, 2) if arr[b][k] in seen]
+    mapping = {(x, y): dict(zip(refit_tuples[x], refit_tuples[y])) for x, y in deps}
     observed = set(map(tuple, all_tuples[FIELDS].to_numpy()))
-    for family, mask in families.items():
-        pool, n = test_tuples[mask][FIELDS].to_numpy(), 0
-        while n < N_BROKEN:
-            row = dict(zip(FIELDS, pool[rng.integers(len(pool))]))
-            f = "C21" if family == "c17_only" else DEPENDENT[rng.integers(len(DEPENDENT))]
-            value = refit_tuples[f].iloc[rng.integers(len(refit_tuples))]
-            if value != row[f] and tuple({**row, f: value}.values()) not in observed:
-                out.append(("broken", family, row, f, value))
-                n += 1
+
+    def item(kind, a, value):
+        row = dict(zip(FIELDS, arr[a]))
+        return (kind, "orig_c14_seen" if row["C14"] in seen else "orig_c14_new", row, "C14", value)
+    out = [item("real", pairs[i][0], arr[pairs[i][1]][k]) for i in rng.choice(len(pairs), n, replace=False)]
+    while len(out) < 2 * n:
+        a, _ = pairs[rng.integers(len(pairs))]
+        value = arr[pairs[rng.integers(len(pairs))][1]][k]
+        result = {**dict(zip(FIELDS, arr[a])), "C14": value}
+        if not closure_ok(result, mapping) and tuple(result.values()) not in observed:
+            out.append(item("broken", a, value))
     return out
 
 
@@ -114,19 +111,20 @@ def prepare(data_dir):
     refit, test = split(t, "refit"), split(t, "test")
     refit_tuples = refit[FIELDS].drop_duplicates()
     deps = dependencies(refit_tuples)
-    return deps, refit, items(refit_tuples, test[FIELDS].drop_duplicates(), t[FIELDS].drop_duplicates())
+    return deps, refit, items(refit_tuples, test[FIELDS].drop_duplicates(), t[FIELDS].drop_duplicates(), deps)
 
 
 def write_states(deps, refit, its, path):
-    """Jev input: every edit, plus the first N_RECHECK edits of each kind with the options reversed."""
-    counts = _counts(refit)
-    reordered = {**OPERATION, "criteria": dict(reversed(OPERATION["criteria"].items()))}
+    """Jev input: every edit with its own option order, plus 50 edits again with that order reversed."""
+    counts, orders = _counts(refit), option_orders(OPERATION, len(its), seed=7)
     with open(path, "w") as f:
         for i, item in enumerate(its):
             s = evidence(item, refit, deps, counts)
-            f.write(json.dumps({"id": f"edit:{i}", "state": s, "questions": {"operation": OPERATION}}) + "\n")
+            f.write(json.dumps({"id": f"edit:{i}", "state": s,
+                                "questions": {"operation": ordered(OPERATION, orders[i])}}) + "\n")
             if i % 12 == 0:  # 50 rechecks spread over both kinds
-                f.write(json.dumps({"id": f"reorder:{i}", "state": s, "questions": {"operation": reordered}}) + "\n")
+                f.write(json.dumps({"id": f"reorder:{i}", "state": s,
+                                    "questions": {"operation": ordered(OPERATION, orders[i][::-1])}}) + "\n")
 
 
 def accept_at_detection(score, real, detection):
@@ -148,17 +146,15 @@ def evaluate(deps, refit, its, answers):
     family = np.array([fam for _, fam, *_ in its])
     ops = [answers[f"edit:{i}"]["answers"]["operation"] for i in range(len(its))]
     jev = np.array([o["probabilities"]["single_field"] for o in ops])
-    dependents = {y for _, y in deps}
+    dependents = {y for _, y in deps}  # the original row is real, so editing a dependent alone breaks X -> Y
     controls = {"exact_tuple": np.array([tuple(r.values()) in seen for r in results]),
-                "closure": np.array([closure_ok(r, mapping) for r in results]),
-                # post hoc, added after outcomes: the original row is real, so editing a dependent alone breaks X -> Y
                 "closure_with_original": np.array([closure_ok(r, mapping) and f not in dependents
                                                    for r, (_, _, _, f, _) in zip(results, its)])}
     table = {}
     for name, accept in {**controls, "jev_argmax_single_field": np.array([o["choice"] == "single_field" for o in ops])}.items():
         table[name] = {"accept_real": float(accept[real].mean()), "detect_broken": float(1 - accept[~real].mean()),
-                       "detect_by_family": {fam: float(1 - accept[family == fam].mean()) for fam in np.unique(family[~real])},
-                       "accept_by_field": {fam: float(accept[family == fam].mean()) for fam in REAL_FIELDS}}
+                       "accept_by_family": {kind: {fam: float(accept[(real == (kind == "real")) & (family == fam)].mean())
+                                                   for fam in np.unique(family)} for kind in ("real", "broken")}}
     matched = {}
     for name, accept in controls.items():
         d = 1 - accept[~real].mean()
@@ -169,13 +165,14 @@ def evaluate(deps, refit, its, answers):
                          "control_accept_real": float(accept[real].mean()), "jev_minus_control": _boot(diff, len(its))}
     rechecks = [k for k in answers if k.startswith("reorder:")]
     calls = list(answers.values())
-    return {"dependencies": [f"{x} -> {y}" for x, y in deps], "items": {"real": int(real.sum()), "broken": int((~real).sum())},
+    return {"dependencies": [f"{x} -> {y}" for x, y in deps],
+            "items": {kind: pd.Series(family[real == (kind == "real")]).value_counts().to_dict() for kind in ("real", "broken")},
             "arms": table, "jev_at_matched_detection": matched, "jev_auroc_real_vs_broken": float(roc_auc_score(real, jev)),
             "jev_choice_counts": {k: pd.Series([o["choice"] for o, r in zip(ops, real) if r == (k == "real")]).value_counts().to_dict()
                                   for k in ("real", "broken")},
-            "reorder_same_choice_share": float(np.mean([answers[k]["answers"]["operation"]["choice"] ==
-                                                        ops[int(k.split(":")[1])]["choice"] for k in rechecks])),
-            "win": bool(matched["closure"]["jev_minus_control"][1] > 0),
+            "option_order": order_sensitivity(ops, {int(k.split(":")[1]): answers[k]["answers"]["operation"] for k in rechecks},
+                                              option_orders(OPERATION, len(its), seed=7)),
+            "win": bool(matched["closure_with_original"]["jev_minus_control"][1] > 0),
             "jev": {"calls": len(calls), "attempts": int(sum(c["attempts"] for c in calls)),
                     "models": sorted({c["model"] for c in calls}), "input_tokens": int(sum(c["tokens_in"] for c in calls)),
                     "call_seconds_median": float(np.median([c["seconds"] for c in calls]))}}
@@ -189,9 +186,9 @@ if __name__ == "__main__":
     deps, refit, its = prepare(args.data)
     if args.step == "states":
         WORK.mkdir(parents=True, exist_ok=True)
-        write_states(deps, refit, its, WORK / "x07_states.jsonl")
-        print("dependencies:", deps, "items:", len(its), "wrote", WORK / "x07_states.jsonl")
+        write_states(deps, refit, its, WORK / "x07_v2_states.jsonl")
+        print("dependencies:", deps, "items:", len(its), "wrote", WORK / "x07_v2_states.jsonl")
     else:
         out = evaluate(deps, refit, its, read_answers(ANSWERS))
-        Path("reports/x07_counterfactual_surgery.json").write_text(json.dumps(out, indent=1, default=float) + "\n")
+        Path("reports/x07_counterfactual_surgery_v2.json").write_text(json.dumps(out, indent=1, default=float) + "\n")
         print(json.dumps(out, indent=1, default=float))
