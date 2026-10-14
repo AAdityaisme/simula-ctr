@@ -14,7 +14,7 @@ Pre-registered before any outcome-bearing run:
 - Clean slice: test rows whose (device_ip, device_model) has at most 2 impressions that day.
 - Win: Jev beats the rule on the clean slice, paired character-cluster interval excluding 0, every arm recalibrated.
   Also reported: kappa(Jev, rule), all-test loss, rows excluded.
-Run: OMP_NUM_THREADS=3 uv run python -m simula.x15_curation [smoke]
+Run: OMP_NUM_THREADS=3 uv run python -m simula.x15_curation [smoke | noise]
 """
 import json
 import sys
@@ -120,7 +120,36 @@ def run():
             "jev": xtrain.jev_cost(answers)}
 
 
+def noise():
+    """Post-hoc, after the pre-registered run: per-seed losses, extra seeds for no exclusion, and a placebo that drops
+    as many random non-profile refit rows as the rule does. Separates exclusion effects from refit noise."""
+    df = xtrain.frame()
+    refit, cal, test = (split(df, w) for w in ("refit", "calibrate", "test"))
+    prof = profiles(refit)
+    answers = xtrain.ask_jev(items(prof), "x15")
+    flags = {"rule": rule(prof), "jev": np.array([answers[i["id"]]["answers"]["exclude_as_automated"]["noul"]
+                                                   for i in items(prof)]) >= 0.5}
+    key = refit["device_id"].astype(str) + ":" + refit["day"].astype(str)
+    prof_key = prof["device_id"].astype(str) + ":" + prof["day"].astype(str)
+    drop = {arm: key.isin(set(prof_key[f])) for arm, f in flags.items()}
+    placebo = refit.index[~key.isin(set(prof_key))].to_series().sample(int(drop["rule"].sum()), random_state=0)
+    drop["placebo"], drop["none"] = refit.index.isin(placebo), np.zeros(len(refit), bool)
+    y, clean = test["click"].to_numpy(), clean_slice(test)
+    out = {}
+    for arm, seeds in (("none", range(6)), ("placebo", SEEDS), ("rule", SEEDS), ("jev", SEEDS)):
+        for seed in seeds:
+            loss = xtrain.row_loss(y, xtrain.calibrated(
+                xtrain.fit(refit[~drop[arm]], FEATURE_SETS["B"], TREES, seed)[:2], cal, test))
+            out[f"{arm}:{seed}"] = {"rows_dropped": int(drop[arm].sum()), "test": float(loss.mean()),
+                                    "clean": float(loss[clean].mean())}
+            print(arm, seed, out[f"{arm}:{seed}"], flush=True)
+    return out
+
+
 if __name__ == "__main__":
+    if sys.argv[1:] == ["noise"]:
+        Path("reports/x15_noise.json").write_text(json.dumps(noise(), indent=1) + "\n")
+        sys.exit()
     if sys.argv[1:] == ["smoke"]:
         prof = profiles(split(xtrain.frame(), "refit"))
         print(len(prof), "profiles")
